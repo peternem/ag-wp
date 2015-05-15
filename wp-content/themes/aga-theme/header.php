@@ -33,7 +33,6 @@
 
 	<header id="masthead" class="site-header" role="banner">
 		<nav class="navbar navbar-default" role="navigation">
-<<<<<<< HEAD
 			<div class="container-fluid">
 				<div class="row">
 					<div class="site-navigation-inner col-sm-12">
