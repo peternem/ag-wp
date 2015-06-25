@@ -8,7 +8,7 @@
 
 <?php //the_post_thumbnail( 'sparkling-featured', array( 'class' => 'single-featured' )); ?>
 
-<div class="post-inner-content row">
+<div class="post-inner-content aga-row row">
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-content col-md-8">
 		<?php the_content(); ?>
@@ -19,11 +19,30 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-	<div class="col-md-4">
-		<h2>Heading</h2>
-		<p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-		<p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+	<div class="col-md-4 aga-box">
+	    <?php
+        if (is_page('company-news')) {
+            ?>
+                <h2>Recent News Posts</h2>
+                <ul>
+                    <li><a href="#">Donec id elit non mi porta gravida at eget metus</a></li>
+                    <li><a href="#">Donec id elit non mi porta gravida at eget metus</a></li>
+                    <li><a href="#">Donec id elit non mi porta gravida at eget metus</a></li>
+                    <li><a href="#">Donec id elit non mi porta gravida at eget metus</a></li>
+                </ul>
+            <?php
+        } else {
+            if(get_field('right_column_image')) {
+                ?>
+                <img src="<?php echo get_field('right_column_image'); ?>" alt="" class="aga-img img-responsive" />
+                <?php
+            }
+        }
+        
+        
+        
+        ?>
 	</div>
-	<?php edit_post_link( __( 'Edit', 'sparkling' ), '<footer class="entry-footer"><i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span></footer>' ); ?>
+	<?php edit_post_link( __( 'Edit', 'sparkling' ), '<footer class="entry-footer col-md-12"><i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span></footer>' ); ?>
 </article><!-- #post-## -->
 </div>

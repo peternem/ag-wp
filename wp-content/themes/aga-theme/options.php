@@ -49,7 +49,7 @@ function optionsframework_options() {
 	// Typography Defaults
 	$typography_defaults = array(
 		'size'  => '14px',
-		'face'  => 'Open Sans',
+		'face'  => 'Lato',
 		'style' => 'normal',
 		'color' => '#6B6B6B'
 	);
@@ -64,7 +64,7 @@ function optionsframework_options() {
 			'georgia'        => 'Georgia',
 			'times'          => 'Times New Roman',
 			'tahoma'         => 'Tahoma, Geneva',
-			'Open Sans'      => 'Open Sans',
+			'Lato'      => 'Lato',
 			'palatino'       => 'Palatino',
 			'helvetica'      => 'Helvetica',
 			'Helvetica Neue' => 'Helvetica Neue'

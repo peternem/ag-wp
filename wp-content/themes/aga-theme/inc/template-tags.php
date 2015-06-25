@@ -52,12 +52,16 @@ function sparkling_post_nav() {
 		return;
 	}
 	?>
-	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'sparkling' ); ?></h1>
-		<div class="nav-links">
+	<nav class="navigation post-navigation container-fluid" role="navigation">
+	    <div class="aga-row row">
+	        <div class="col-md-12">
+                <h1 class="screen-reader-text"><?php _e( 'Post navigation', 'sparkling' ); ?></h1>
+            </div>
+		</div>
+		<div class="nav-links aga-row row">
 			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<i class="fa fa-chevron-left"></i> %title', 'Previous post link', 'sparkling' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title <i class="fa fa-chevron-right"></i>', 'Next post link',     'sparkling' ) );
+				previous_post_link( '<div class="nav-previous col-md-6">%link</div>', _x( '<i class="fa fa-chevron-left"></i> %title', 'Previous post link', 'sparkling'),true );
+				next_post_link(     '<div class="nav-next col-md-6">%link</div>',     _x( '%title <i class="fa fa-chevron-right"></i>', 'Next post link', 'sparkling' ),true );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->

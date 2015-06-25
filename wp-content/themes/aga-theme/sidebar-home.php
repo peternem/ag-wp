@@ -5,7 +5,26 @@
  * @package sparkling
  */
 ?>
-
+    <section class="home-widget aga-box">
+        <?php $my_query = new WP_Query(array('tag'=>'promotion'));
+            while($my_query->have_posts()){
+                $my_query->the_post();
+        ?>
+        <h2><?php the_title() ?></h2>
+        <div class="row">
+            <div class="col-md-12">
+                <?php the_post_thumbnail('tab-rectangle', array( 'class' => 'aga-img img-responsive' )); ?> 
+            </div>
+            <div class="col-md-12">
+                <?php if(function_exists('the_subtitle')) { ?>
+                <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
+                <?php } ?> 
+                <?php the_excerpt(); ?>
+                <p><a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
+            </div>
+        </div>
+            <?php   } ?>
+    </section>
 	<?php
 	// If footer sidebars do not have widget let's bail.
 
@@ -14,23 +33,21 @@
 	// If we made it this far we must have widgets.
 	?>
 
-	<div class="home-widget-area row">
 		<?php if ( is_active_sidebar( 'home-widget-1' ) ) : ?>
-		<div class="col-sm-4 home-widget" role="complementary">
+		<section class=" home-widget aga-box" role="complementary">
 			<?php dynamic_sidebar( 'home-widget-1' ); ?>
-		</div><!-- .widget-area .first -->
+		</section><!-- .widget-area .first -->
 		<?php endif; ?>
 
 		<?php if ( is_active_sidebar( 'home-widget-2' ) ) : ?>
-		<div class="col-sm-4 home-widget" role="complementary">
+		<section class=" home-widget aga-box" role="complementary">
 			<?php dynamic_sidebar( 'home-widget-2' ); ?>
-		</div><!-- .widget-area .second -->
+		</section><!-- .widget-area .second -->
 		<?php endif; ?>
 
 		<?php if ( is_active_sidebar( 'home-widget-3' ) ) : ?>
-		<div class="col-sm-4 home-widget" role="complementary">
+		<section class="home-widget aga-box" role="complementary">
 			<?php dynamic_sidebar( 'home-widget-3' ); ?>
-		</div><!-- .widget-area .third -->
+		</section><!-- .widget-area .third -->
 		<?php endif; ?>
-	</div>
 
