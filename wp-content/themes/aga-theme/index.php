@@ -10,51 +10,30 @@
  *
  * @package sparkling
  */
-
-get_header();
 ?>
-<?php if( is_home() ) {
-?>
-<?php get_template_part('carousel-index'); ?>
-<?php } ?>
-
-<div id="primary" class="content-area">
-	<main id="main" class="site-main" role="main">
-
-		<?php if ( have_posts() ) :
-		?>
-		<?php if( is_home() ) {
-		?>
-		<!-- About Section -->
-		<div id="welcome" class="content-area container-fluid white">
-			<?php get_template_part('intro-index'); ?>
-		</div>
-		<div id="collections" class="content-area container-fluid grey">
-			<?php get_template_part('collections-index'); ?>
-		</div>
-		<div id="hardware" class="content-area container-fluid white">
-            <?php get_template_part('hardware-index'); ?>
-        </div>
-		<div id="news" class="content-area container-fluid grey">
-			<?php get_template_part('new-product-index'); ?>
-		</div>
+<?php get_header(); ?>
+	<?php if ( have_posts() ) :?>
+		<?php if( is_home() ) { ?>
+			<section id="welcome" class="content-area container-fluid white">
+				<?php get_template_part('intro-index'); ?>
+			</section>
+			<section id="collections" class="content-area container-fluid grey collections">
+				<?php get_template_part('collections-index'); ?>
+			</section>
+			<section id="hardware" class="content-area container-fluid white hardware">
+		            <?php get_template_part('hardware-index'); ?>
+		    </section>
+			<section id="news" class="content-area container-fluid grey">
+				<?php get_template_part('new-product-index'); ?>
+			</section>
 		<?php } else { ?>
-		<?php while ( have_posts() ) : the_post();
-		?>
-
-		<?php get_template_part('content', get_post_format()); ?>
-
-		<?php endwhile; ?>
-
-		<?php sparkling_paging_nav(); ?>
-
+			<?php while ( have_posts() ) : the_post(); ?>
+				<?php get_template_part('content', get_post_format()); ?>
+			<?php endwhile; ?>
+			<?php sparkling_paging_nav(); ?>
 		<?php } ?>
-
-		<?php else : ?>
-		<?php get_template_part('content', 'none'); ?>
-		<?php endif; ?>
-	</main><!-- #main -->
-</div><!-- #primary -->
-
+	<?php else : ?>
+	<?php get_template_part('content', 'none'); ?>
+	<?php endif; ?>
 <?php //get_sidebar(); ?>
 <?php get_footer(); ?>

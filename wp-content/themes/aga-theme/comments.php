@@ -18,8 +18,8 @@ if ( post_password_required() ) {
 }
 ?>
 
-<div id="comments" class="comments-area">
-
+<div id="comments" class="comments-area aga-row row">
+	<article id="comments" class="col-md-12" >
 	<?php // You can start editing here -- including this comment! ?>
 
 	<?php if ( have_comments() ) : ?>
@@ -66,5 +66,5 @@ if ( post_password_required() ) {
 	<?php endif; ?>
 
 	<?php comment_form(); ?>
-
+	</article>
 </div><!-- #comments -->

@@ -25,76 +25,51 @@
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
 <?php wp_head(); ?>
-
 </head>
 
 <body <?php body_class(); ?>>
+
+
+
 <div id="page" class="hfeed site">
-
-<header id="masthead" class="site-header" role="banner">
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="site-navigation-inner col-sm-12">
-    		        <div class="navbar-header">
-    		            <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-    		                <span class="sr-only">Toggle navigation</span>
-    		                <span class="icon-bar"></span>
-    		                <span class="icon-bar"></span>
-    		                <span class="icon-bar"></span>
-    		            </button>
-
-        				<?php if( get_header_image() != '' ) : ?>
-        
-        					<div id="logo">
-        						<a class="aglogo" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>"  height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="<?php bloginfo( 'name' ); ?>"/></a>
-        					</div><!-- end of #logo -->
-
-			            <?php endif; // header image was removed ?>
-
-			            <?php if( !get_header_image() ) : ?>
-
-        					<div id="logo">
-        						<span class="site-name"><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
-        					</div><!-- end of #logo -->
-        
-        				<?php endif; // header image was removed (again) ?>
-                        <form class="navbar-form navbar-right">
-                            <div class="form-group">
-                                <label for="zipSearch">Dealer Locator</label>
-                                <input id="zipSearch" type="text" placeholder="Zip Code" class="form-control input-sm">
-                            </div>
-                            <button type="submit" class="btn btn-sm btn-primary">Search <i class="fa fa-angle-double-right"></i></button>
-                        </form>
-                    </div>
-				    <?php //sparkling_header_menu(); ?>
-				</div>
-	       </div>
-           <div class="row">
-                <div class="site-navigation-inner col-sm-12 mainNav">
-                    <!-- <div class="navbar-header">
-                        <button type="button" class="btn navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div> -->
-                    <?php sparkling_header_menu(); ?>
-                    
-
-                </div>
-           </div>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+        <div class="navbar-header">
+ 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>       
+			<?php if( get_header_image() != '' ) : ?>
+			<div id="logo">
+				<a class="aglogo" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>"  height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="<?php bloginfo( 'name' ); ?>"/></a>
+			</div><!-- end of #logo -->
+			<?php endif; // header image was removed ?>
+			<?php if( !get_header_image() ) : ?>
+			<div id="logo">
+				<span class="site-name"><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
+			</div><!-- end of #logo -->
+			<?php endif; // header image was removed (again) ?>        
         </div>
-	</nav><!-- .site-navigation -->
+        <div id="navbar" class="navbar-collapse collapse">
+ 			<?php sparkling_header_menu(); ?>
+			<div class="navbar-form navbar-right">
+				<form>
+				<div class="form-group">
+					<label for="zipSearch">Dealer Locator</label>
+					<input id="zipSearch" type="text" placeholder="Zip Code" class="form-control input-sm">
+				</div>
+				<button type="submit" class="btn btn-sm btn-primary">Search <i class="fa fa-angle-double-right"></i></button>
+				</form>
+			</div>      
+        </div>
+	</div>
+</nav>
+
+<?php if( is_home() ) { ?>
+<header id="masthead" class="site-header" role="banner">
+	<?php get_template_part('carousel-index'); ?>
 </header><!-- #masthead -->
-
-	<div id="content" class="site-content">
-
-		<div class="top-section">
-			<?php sparkling_featured_slider(); ?>
-			<?php sparkling_call_for_action(); ?>
-		</div>
-
-		<div class="main-content-area">
-				<div class="main-content-inner <?php //echo sparkling_main_content_bootstrap_classes(); ?> <?php //echo of_get_option( 'site_layout' ); ?>">
+<?php } ?>
+<main id="main" class="site-main" role="main">

@@ -227,7 +227,7 @@ add_filter( 'gallery_style', 'sparkling_remove_gallery_css' );
 function sparkling_scripts() {
 
   // Add Bootstrap default CSS
-  wp_enqueue_style( 'sparkling-bootstrap', get_template_directory_uri() . '/inc/css/bootstrap.min.css' );
+  wp_enqueue_style( 'sparkling-bootstrap', get_template_directory_uri() . '/inc/bootstrap/css/bootstrap.min.css' );
 
   // Add Font Awesome stylesheet
   wp_enqueue_style( 'sparkling-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
@@ -260,7 +260,7 @@ function sparkling_scripts() {
   if( ( is_home() || is_front_page() ) && of_get_option('sparkling_slider_checkbox') == 1 ) {
     wp_enqueue_script( 'flexslider-customization', get_template_directory_uri() . '/inc/js/flexslider-custom.js', array('jquery', 'flexslider-js'), '20140716', true );
   }
-
+  
   // Main theme related functions
 	//wp_enqueue_script( 'sparkling-functions', get_template_directory_uri() . '/inc/js/functions.min.js', array('jquery') );
 	wp_enqueue_script( 'sparkling-functions', get_template_directory_uri() . '/inc/js/dev/functions.js', array('jquery') );

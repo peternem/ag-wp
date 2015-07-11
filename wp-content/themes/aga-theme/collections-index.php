@@ -23,13 +23,8 @@
             <!-- the loop -->
             <?php $postx_counter = 0; ?>
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                <?php $postx_counter++;  ?>
-                <?php if ($postx_counter == 5) {
-                    ?>
-                </div><div class="aga-row row"> 
-                    <?php
-                } ?>
-                <section class="col-md-3 aga-box" data-post="<?php echo $postx_counter ?>">
+   
+                <section class="col-sm-6 col-md-4 col-lg-4 aga-box" data-post="<?php echo $postx_counter ?>">
                      
                     <h2><a class="" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
                     <div class="row">

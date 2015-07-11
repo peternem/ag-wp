@@ -21,7 +21,7 @@
                 </div>
                     <?php   } ?>
             </section>
-            <section class="col-md-4 aga-box">
+            <section class="col-sm-4 col-md-4 aga-box">
                 <h2>News</h2>
                 <ul>
                     <li><a href="#">Donec id elit non mi porta gravida at eget metus.</a>

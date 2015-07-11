@@ -7,22 +7,26 @@ jQuery(document).ready(function($){
 
 		t.param = {};
 
-		t.param.classes = {
+		// DIFFERENT IN ACF VERSION 4 and 5 {
 
-			btn_small:		'acf-icon small',
-			btn_add_row:	'acf-sprite-add',
-			btn_add_col:	'acf-sprite-add',
-			btn_remove_row:	'acf-sprite-remove',
-			btn_remove_col:	'acf-sprite-remove',
-		};
+			t.param.classes = {
 
-		t.param.htmlbuttons = {
+				btn_small:		'acf-icon small',
+				btn_add_row:	'acf-sprite-add',
+				btn_add_col:	'acf-sprite-add',
+				btn_remove_row:	'acf-sprite-remove',
+				btn_remove_col:	'acf-sprite-remove',
+			};
 
-			add_row:		'<a href="#" class="acf-table-add-row ' + t.param.classes.btn_small + '"><i class="' + t.param.classes.btn_add_row + '"></i></a>',
-			remove_row:		'<a href="#" class="acf-table-remove-row ' + t.param.classes.btn_small + '"><i class="' + t.param.classes.btn_remove_row + '"></i></a>',
-			add_col:		'<a href="#" class="acf-table-add-col ' + t.param.classes.btn_small + '"><i class="' + t.param.classes.btn_add_col + '"></i></a>',
-			remove_col:		'<a href="#" class="acf-table-remove-col ' + t.param.classes.btn_small + '"><i class="' + t.param.classes.btn_remove_col + '"></i></a>',
-		};
+			t.param.htmlbuttons = {
+
+				add_row:		'<a href="#" class="acf-table-add-row ' + t.param.classes.btn_small + '"><i class="' + t.param.classes.btn_add_row + '"></i></a>',
+				remove_row:		'<a href="#" class="acf-table-remove-row ' + t.param.classes.btn_small + '"><i class="' + t.param.classes.btn_remove_row + '"></i></a>',
+				add_col:		'<a href="#" class="acf-table-add-col ' + t.param.classes.btn_small + '"><i class="' + t.param.classes.btn_add_col + '"></i></a>',
+				remove_col:		'<a href="#" class="acf-table-remove-col ' + t.param.classes.btn_small + '"><i class="' + t.param.classes.btn_remove_col + '"></i></a>',
+			};
+
+		// }
 
 		t.param.htmltable = {
 
@@ -83,9 +87,9 @@ jQuery(document).ready(function($){
 		t.init = function() {
 
 			t.each_table();
-			t.table_add_col();
+			t.table_add_col_event();
 			t.table_remove_col();
-			t.table_add_row();
+			t.table_add_row_event();
 			t.table_remove_row();
 			t.cell_editor();
 			t.prevent_cell_links();
@@ -97,7 +101,7 @@ jQuery(document).ready(function($){
 
 		t.each_table = function( ) {
 
-			$('.field_type-table .acf-table-root').each( function() {
+			$('.acf-field-table .acf-table-root').each( function() {
 
 				var p = {};
 				p.obj_root = $( this );
@@ -111,6 +115,12 @@ jQuery(document).ready(function($){
 				t.table_render( p );
 
 				t.misc_render( p );
+
+				if ( p.data.b[ 1 ] === undefined && p.data.b[ 0 ][ 1 ] === undefined && p.data.b[ 0 ][ 0 ].c === '' ) {
+
+					p.obj_root.find( '.acf-table-remove-col' ).hide(),
+					p.obj_root.find( '.acf-table-remove-row' ).hide();
+				}
 
 			} );
 		};
@@ -415,17 +425,30 @@ jQuery(document).ready(function($){
 			// }
 		};
 
-		t.table_add_col = function() {
+		t.table_add_col_event = function() {
 
 			$( 'body' ).on( 'click', '.acf-table-add-col', function( e ) {
 
 				e.preventDefault();
 
-				var p = {},
-					that = $( this ),
-					that_index = that.parent().index();
+				var that = $( this ),
+					p = {};
 
-				p.obj_root = that.parents( '.acf-table-root' );
+				p.obj_col = that.parent();
+
+				t.table_add_col( p );
+
+			} );
+		};
+
+		t.table_add_col = function( p ) {
+
+				// requires
+				// p.obj_col
+
+				var that_index = p.obj_col.index();
+
+				p.obj_root = p.obj_col.parents( '.acf-table-root' );
 				p.obj_table = p.obj_root.find( '.acf-table-table' );
 
 				$( p.obj_table.find( '.acf-table-top-row' ).children()[ that_index ] ).after( t.param.htmltable.top_cell.replace( '<!--ph-->', '' ) );
@@ -441,8 +464,10 @@ jQuery(document).ready(function($){
 
 				t.table_top_labels( p );
 
+				p.obj_table.find( '.acf-table-remove-col' ).show();
+				p.obj_table.find( '.acf-table-remove-row' ).show();
+
 				t.table_build_json( p );
-			} );
 		};
 
 		t.table_remove_col = function() {
@@ -453,19 +478,42 @@ jQuery(document).ready(function($){
 
 				var p = {},
 					that = $( this ),
-					that_index = that.parent().index();
+					that_index = that.parent().index(),
+					obj_rows = undefined,
+					cols_count = false;
 
 				p.obj_root = that.parents( '.acf-table-root' );
 				p.obj_table = p.obj_root.find( '.acf-table-table' );
+				p.obj_top = p.obj_root.find( '.acf-table-top-row' );
+				obj_rows = p.obj_table.find( '.acf-table-body-row' );
+				cols_count = p.obj_top.find( '.acf-table-top-cell' ).length;
 
 				$( p.obj_table.find( '.acf-table-top-row' ).children()[ that_index ] ).remove();
 
 				$( p.obj_table.find( '.acf-table-header-row' ).children()[ that_index ] ).remove();
 
-				p.obj_table.find( '.acf-table-body-row' ).each( function() {
+				if ( cols_count == 1 ) {
 
-					$( $( this ).children()[ that_index ] ).remove();
-				} );
+					obj_rows.remove();
+
+					t.table_add_col( {
+						obj_col: p.obj_table.find( '.acf-table-top-left' )
+					} );
+
+					t.table_add_row( {
+						obj_row: p.obj_table.find( '.acf-table-header-row' )
+					} );
+
+					p.obj_table.find( '.acf-table-remove-col' ).hide();
+					p.obj_table.find( '.acf-table-remove-row' ).hide();
+				}
+				else {
+
+					obj_rows.each( function() {
+
+						$( $( this ).children()[ that_index ] ).remove();
+					} );
+				}
 
 				$( p.obj_table.find( '.acf-table-bottom-row' ).children()[ that_index ] ).remove();
 
@@ -476,41 +524,54 @@ jQuery(document).ready(function($){
 			} );
 		};
 
-		t.table_add_row = function() {
+		t.table_add_row_event = function() {
 
 			$( 'body' ).on( 'click', '.acf-table-add-row', function( e ) {
 
 				e.preventDefault();
 
-				var p = {},
-					that = $( this ),
-					obj_row = that.parent().parent(),
-					that_index = 0,
-					col_amount = 0,
-					body_cells_html = '';
+				var that = $( this ),
+					p = {};
 
-				p.obj_root = that.parents( '.acf-table-root' );
-				p.obj_table = p.obj_root.find( '.acf-table-table' );
-				p.obj_table_rows = p.obj_table.children();
-				col_amount = p.obj_table.find( '.acf-table-top-cell' ).size();
-				that_index = that.parent().parent().index();
+				p.obj_row = that.parent().parent();
 
-				for ( i = 0; i < col_amount; i++ ) {
+				t.table_add_row( p );
+			});
+		};
 
-					body_cells_html = body_cells_html + t.param.htmltable.body_cell.replace( '<!--ph-->', '' );
-				}
+		t.table_add_row = function( p ) {
 
-				$( p.obj_table_rows[ that_index ] )
-					.after( t.param.htmltable.body_row )
-					.next()
-					.find('.acf-table-body-left')
-					.after( body_cells_html );
+			// requires
+			// p.obj_row
 
-				t.table_left_labels( p );
+			var that_index = 0,
+				col_amount = 0,
+				body_cells_html = '';
 
-				t.table_build_json( p );
+			p.obj_root = p.obj_row.parents( '.acf-table-root' );
+			p.obj_table = p.obj_root.find( '.acf-table-table' );
+			p.obj_table_rows = p.obj_table.children();
+			col_amount = p.obj_table.find( '.acf-table-top-cell' ).size();
+			that_index = p.obj_row.index();
 
-			} );
+			for ( i = 0; i < col_amount; i++ ) {
+
+				body_cells_html = body_cells_html + t.param.htmltable.body_cell.replace( '<!--ph-->', '' );
+			}
+
+			$( p.obj_table_rows[ that_index ] )
+				.after( t.param.htmltable.body_row )
+				.next()
+				.find('.acf-table-body-left')
+				.after( body_cells_html );
+
+			t.table_left_labels( p );
+
+			p.obj_table.find( '.acf-table-remove-col' ).show();
+			p.obj_table.find( '.acf-table-remove-row' ).show();
+
+			t.table_build_json( p );
+
 		};
 
 		t.table_remove_row = function() {
@@ -520,12 +581,25 @@ jQuery(document).ready(function($){
 				e.preventDefault();
 
 				var p = {},
-					that = $( this );
+					that = $( this ),
+					rows_count = false;
 
 				p.obj_root = that.parents( '.acf-table-root' );
 				p.obj_table = p.obj_root.find( '.acf-table-table' );
+				p.obj_rows = p.obj_root.find( '.acf-table-body-row' );
+
+				rows_count = p.obj_rows.length;
 
 				that.parent().parent().remove();
+
+				if ( rows_count == 1 ) {
+
+					t.table_add_row( {
+						obj_row: p.obj_table.find( '.acf-table-header-row' )
+					} );
+
+					p.obj_table.find( '.acf-table-remove-row' ).hide();
+				}
 
 				t.table_left_labels( p );
 
@@ -711,6 +785,9 @@ jQuery(document).ready(function($){
 				t.table_build_json( p );
 
 				cell_editor.remove();
+
+				p.obj_root.find( '.acf-table-remove-col' ).show(),
+				p.obj_root.find( '.acf-table-remove-row' ).show();
 			}
 		};
 

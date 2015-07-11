@@ -61,47 +61,66 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .entry-meta .fa.fa-pencil-square-o {
   margin: 0 5px 0 0;
 }
-.wp-admin .acf-table-body-cont .img-responsive {
-  max-width: 100%;
-  width: 100%;
-}
 /* Main Nav xx
 ----------------------------------------------------
 */
-.navbar {
-  background: #bdb7a5;
-  /* Old browsers */
+.navbar-collapse.collapse .nav-left {
+  float: left;
+  margin-left: 2%;
+  overflow: visible;
 }
 .navbar-form {
   border: none;
 }
-.navbar-default {
-  border: none;
+.navbar-collapse.collapse.in .navbar-nav {
+  margin: 14.25px -15px;
 }
-.navbar-right {
-  margin-right: auto;
+.navbar-collapse.collapse.in .nav-left {
+  width: 100%;
+  float: left;
+  margin: 0;
+  overflow: visible;
 }
-.navbar-nav > li > a {
-  font-weight: 700;
-}
-.navbar-header {
+.navbar-collapse.collapse.in .navbar-form {
+  margin: 0 0 15px;
+  padding: 0;
   float: none;
+  clear: left;
   width: 100%;
 }
-.mainNav {
-  background-color: #e6dec8;
-  border-bottom: 2px solid #d9d3c2;
-  border-top: 2px solid #d9d3c2;
+.navbar-form {
+  margin-top: 25.33333333px;
+  margin-bottom: 25.33333333px;
+  padding-right: 0;
 }
 .aglogo {
-  float: left;
-  margin: 20px;
+  display: block;
+  margin-top: 25.33333333px;
+}
+.hgi-links {
+  margin: 0;
+  padding: 0;
+}
+.hgi-links li {
+  list-style: none;
+  display: inline-block;
+}
+.hgi-links li a {
+  display: inline-block;
+  font-weight: 700;
+  padding: 10px 15px;
+  position: relative;
+}
+.hgi-links li a:hover,
+.hgi-links li a:focus {
+  background-color: #eee;
+  text-decoration: none;
 }
 /*******************************
  * Breadcrumb Nav Styling
  ****************************************************************/
 .breadcrumb-container {
-  background-color: #f5f5f5;
+  background-color: #fcfcfc;
 }
 .breadcrumb {
   border-radius: 0px;
@@ -188,6 +207,15 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .content-area > h2 {
   margin: 0 0 2%;
   text-align: center;
+}
+.hardware .aga-box,
+.collections .aga-box {
+  min-height: 500px;
+  margin-bottom: 4%;
+}
+.row-eg-height .aga-box {
+  margin-bottom: 3%;
+  min-height: 730px;
 }
 .archive .single-featured {
   left: 0;
@@ -309,6 +337,10 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 .footer-widget {
   border-left: 1px dotted #5a5e4d;
+  min-height: 200px;
+  padding-bottom: 2%;
+  padding-top: 2%;
+  text-align: center;
 }
 .footer-widget:first-child {
   border-left: none;
@@ -408,11 +440,6 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .fa-vimeo:before {
   content: "\f194";
 }
-@media (max-width: 992px) {
-  .site-branding {
-    text-align: center;
-  }
-}
 /* scroll-to-top
 ----------------------------------------------------
 */
@@ -440,7 +467,28 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   background: #DA4453;
   opacity: .8;
 }
+@media (max-width: 992px) {
+  .site-branding {
+    text-align: center;
+  }
+  .carousel .carousel-caption {
+    bottom: 20%;
+  }
+  .collections .aga-box {
+    min-height: 515px;
+  }
+  .content-area > h2 {
+    margin: 0 0 6%;
+    text-align: center;
+  }
+}
 @media (max-width: 768px) {
+  .aglogo {
+    margin: 20px;
+  }
+  .breadcrumb {
+    padding: 8px 30px;
+  }
   form.navbar-form.navbar-right {
     display: none;
   }
@@ -452,13 +500,23 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   .jumbotron p {
     font-size: 20px;
   }
-  .aga-box {
+  .carousel .carousel-caption {
+    bottom: 10%;
+  }
+  .carousel .carousel-caption h1 {
+    font-size: 41px;
+  }
+  .row-eg-height .aga-box {
+    margin-bottom: 5%;
+    min-height: inherit;
+  }
+  .aga-row .aga-box {
     margin-bottom: 5%;
   }
-  .aga-box .col-md-5 {
+  .aga-row .aga-box .col-md-5 {
     margin-bottom: 5%;
   }
-  .aga-box h2 {
+  .aga-row .aga-box h2 {
     padding: 2% 2%;
   }
   .post-area.col-md-8 {
@@ -467,10 +525,75 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   .footer-widget {
     margin-bottom: 5%;
   }
+  .col-xs-1,
+  .col-sm-1,
+  .col-md-1,
+  .col-lg-1,
+  .col-xs-2,
+  .col-sm-2,
+  .col-md-2,
+  .col-lg-2,
+  .col-xs-3,
+  .col-sm-3,
+  .col-md-3,
+  .col-lg-3,
+  .col-xs-4,
+  .col-sm-4,
+  .col-md-4,
+  .col-lg-4,
+  .col-xs-5,
+  .col-sm-5,
+  .col-md-5,
+  .col-lg-5,
+  .col-xs-6,
+  .col-sm-6,
+  .col-md-6,
+  .col-lg-6,
+  .col-xs-7,
+  .col-sm-7,
+  .col-md-7,
+  .col-lg-7,
+  .col-xs-8,
+  .col-sm-8,
+  .col-md-8,
+  .col-lg-8,
+  .col-xs-9,
+  .col-sm-9,
+  .col-md-9,
+  .col-lg-9,
+  .col-xs-10,
+  .col-sm-10,
+  .col-md-10,
+  .col-lg-10,
+  .col-xs-11,
+  .col-sm-11,
+  .col-md-11,
+  .col-lg-11,
+  .col-xs-12,
+  .col-sm-12,
+  .col-md-12,
+  .col-lg-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 @media (max-width: 480px) {
-  .aglogo {
-    margin: 20px 0 20px 0;
+  body {
+    font-size: 14px;
+  }
+  h1,
+  .h1 {
+    font-size: 31px;
+  }
+  .breadcrumb {
+    font-size: 12px;
+  }
+  .aga-row .aga-box h2 {
+    padding: 0 0 2%;
   }
   .jumbotron h1,
   .jumbotron .h1 {
@@ -490,5 +613,15 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   }
   .jumbotron {
     padding: 0 0 2%;
+  }
+  .carousel .carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    min-height: 310px;
+  }
+  .carousel .carousel-caption h1 {
+    font-size: 25px;
   }
 }

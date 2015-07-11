@@ -3,9 +3,8 @@
  * @package sparkling
  */
 ?>
- <section class="col-md-8 aga-box">
     <header class="entry-header page-header">
-        <h1 class="entry-title "><?php the_title(); ?></h1>
+        <h1 class="entry-title "><h1 class="entry-title"><?php $singleCat = single_cat_title(); ?></h1>
         <div class="entry-meta">
             <?php //sparkling_posted_on(); ?>
             <?php
@@ -17,12 +16,11 @@
                 <?php  printf( __( ' %1$s', 'sparkling' ), $categories_list ); ?>
             </span>
             <?php endif; // End if categories ?>
-            <?php edit_post_link( __( 'Edit', 'sparkling' ), '<i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span>' ); ?>
-
         </div><!-- .entry-meta -->
     </header><!-- .entry-header -->
     <div class="entry-content">
     <?php the_content(); ?>
+    <?php edit_post_link( __( 'Edit', 'sparkling' ), '<i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span>' ); ?>
     <?php
         wp_link_pages( array(
             'before'            => '<div class="page-links">'.__( 'Pages:', 'sparkling' ),
@@ -34,13 +32,3 @@
         ) );
     ?>
     </div>
-<!-- .entry-content -->
-</section>
-<section class="col-md-4 aga-features">
-
-<?php
-if(get_field('collection_features')){
-    echo get_field('collection_features');
-}
-?>          
-</section>

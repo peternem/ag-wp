@@ -1,9 +1,0 @@
-/****************************************************
- * Admin Page CSS Tweaks 
- ***************************************************/
-
-.wp-admin .acf-table-body-cont .img-responsive {
-    height: auto;
-    max-width: 350px;
-    width: 100%;
-}

@@ -5,12 +5,16 @@
  * @package sparkling
  */
 ?>
-
-<?php //the_post_thumbnail( 'sparkling-featured', array( 'class' => 'single-featured' )); ?>
-
 <div class="post-inner-content aga-row row">
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="entry-content col-md-8">
+		<header class="entry-header page-header">
+			<h1 class="entry-title"><?php the_title(); ?></h1>
+			<?php if(function_exists('the_subtitle')) {
+	       	echo '<p>'.the_subtitle().'</p>'; 
+	       }
+	       ?> 
+		</header><!-- .entry-header -->
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(

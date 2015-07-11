@@ -1,6 +1,8 @@
+
+
 // Bootstrap specific functions and styling
 jQuery(document).ready(function(){
-
+	
 	// here for each comment reply link of WordPress
 	jQuery( '.comment-reply-link' ).addClass( 'btn btn-sm btn-default' );
 
@@ -20,29 +22,9 @@ jQuery(document).ready(function(){
 
 });
 
-// jQuery powered scroll to top
 
-jQuery(document).ready(function(){
-
-	//Check to see if the window is top if not then display button
-	jQuery(window).scroll(function(){
-		if (jQuery(this).scrollTop() > 100) {
-			jQuery('.scroll-to-top').fadeIn();
-		} else {
-			jQuery('.scroll-to-top').fadeOut();
-		}
-	});
-
-	//Click event to scroll to top
-	jQuery('.scroll-to-top').click(function(){
-		jQuery('html, body').animate({scrollTop : 0},800);
-		return false;
-	});
-
-});
-
-jQuery(document).ready(function() {
-
+jQuery(document).ready(function() {	
+	
 	//Check to see if the window is top if not then display button
 	jQuery(window).scroll(function(){
 		if (jQuery(this).scrollTop() > 100) {
@@ -73,15 +55,4 @@ jQuery(document).ready(function() {
 	});
 });
 
-// Slider functions
-// Can also be used with $(document).ready()
-jQuery(document).ready(function ($) {
-//  $(window).load(function() {
-//    $('.flexslider').flexslider({
-//      animation: "fade",
-//      slideshowSpeed: 7000,
-//      smoothHeight: true,
-//      touch: true
-//    });
-//  });
-});
+
