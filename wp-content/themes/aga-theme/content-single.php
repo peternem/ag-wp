@@ -11,11 +11,16 @@
     </nav>
     <section id="post-<?php the_ID(); ?>" <?php post_class('container-fluid white'); ?>>
         <div class="post-inner-content aga-row row">
-    	    <article class="col-sm-6 col-md-6 col-lg-6 aga-box">
+    	    <article class="col-sm-6 col-md-6 col-lg-6">
         		<header class="entry-header page-header">
         			<h1 class="entry-title "><?php the_title(); ?></h1>
+        			<?php if(function_exists('the_subtitle')) { ?>
+			        <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
+			        <?php } ?> 
         		</header><!-- .entry-header -->
+                <div class="entry-content">
                 <?php the_content(); ?>
+                </div>
                 
                 <?php
                     wp_link_pages( array(

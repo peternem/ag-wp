@@ -5,10 +5,8 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="blog-item-wrap col-md-12">
-				<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
-			 	<?php the_post_thumbnail( 'tab-rectangle', array( 'class' => 'img-responsive single-featured' )); ?>
-			</a>
+	<div class="blog-item-wrap col-md-8">
+				
 		<div class="post-inner-content">
 			<header class="entry-header page-header">
 
@@ -27,7 +25,7 @@
 			</header><!-- .entry-header -->
 
 			<?php if ( is_search() ) : // Only display Excerpts for Search ?>
-			<div class="entry-summary">xxx
+			<div class="entry-summary">
 				<?php the_excerpt(); ?>
 				<p><a class="btn btn-default read-more" href="<?php the_permalink(); ?>"><?php _e( 'Read More', 'sparkling' ); ?></a></p>
 			</div><!-- .entry-summary -->
@@ -48,5 +46,11 @@
 		    	?>
 			<?php endif; ?>
 		</div>
+		
 	</div>
+	<div class="col-md-4">
+		<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
+			 	<?php the_post_thumbnail( 'tab-rectangle', array( 'class' => 'img-responsive single-featured aga-img' )); ?>
+			</a>
+		</div>
 </article><!-- #post-## -->

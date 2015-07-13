@@ -27,7 +27,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>The Collections.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p>Agalite Offers Five Different Collections To Complement Any Bathroom Design</p>
               <p><a class="btn btn-sm btn-primary" href="#collections" role="button">Learn more <i class="fa fa-angle-double-right"></i></a></p>
             </div>
           </div>
@@ -37,7 +37,7 @@
           <div class="container">
             <div class="carousel-caption">
               <h1>Heavy Glass Hardware</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+              <p>Featuring 1/2" or 3/8" Frameless Heavy Glass Shower Doors Hardware</p>
               <p><a class="btn btn-sm btn-primary" href="#hardware" role="button">Browse gallery <i class="fa fa-angle-double-right"></i></a></p>
             </div>
           </div>

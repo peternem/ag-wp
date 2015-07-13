@@ -19,11 +19,11 @@
         <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<p><span class="edit-link"><i class="fa fa-pencil-square-o"></i>', '</span></p>' ); ?>
          
          <?php
-         if ( is_admin_bar_showing()) {
-            echo "<p>Rank: ".the_field('collection_rank')."</p>";
-            $cat_slug = get_category(get_query_var('cat'))->slug;  
-            echo "<p>Slug: ".$cat_slug."</p>";            
-         } 
+//          if ( is_admin_bar_showing()) {
+//             echo "<p>Rank: ".the_field('collection_rank')."</p>";
+//             $cat_slug = get_category(get_query_var('cat'))->slug;  
+//             echo "<p>Slug: ".$cat_slug."</p>";            
+//          } 
          ?>
     </div>
 </div>

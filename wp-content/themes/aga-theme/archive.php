@@ -19,7 +19,7 @@ get_header(); ?>
                                 <?php if(function_exists('upbootwp_breadcrumbs')) upbootwp_breadcrumbs(); ?>
                             </nav>
 <section class="content-area container-fluid white">
-	<div class="aga-row row">
+	<div class="post-inner-content aga-row row">
 		<div class="col-md-6">
 <!-- 			<header class="entry-header page-header"> -->
 <!-- 				<h1 class="entry-title"><?php //$singleCat = single_cat_title(); ?> </h1> -->
@@ -42,7 +42,7 @@ get_header(); ?>
 
 		</div>
 	</div>
-</section>
+
 						<?php
 						elseif ( is_tag() ) :
 							single_tag_title();
@@ -90,7 +90,6 @@ get_header(); ?>
 							_e( 'Archives', 'sparkling' );
 						endif;
 					?>
-            <section id="welcome" class="content-area container-fluid white">
             <div class="aga-row row row-eg-height">
                     <?php $cat_slug = get_category(get_query_var('cat'))->slug; ?>
                     <?php
@@ -125,21 +124,21 @@ get_header(); ?>
             		<?php //while ( have_posts() ) : the_post(); ?> 
                         <?php //if ($posty_counter == 0) { echo "<div class=\"aga-row row\">"; } ?>
                         <?php $posty_counter++;  ?>
-                        <?php if (($posty_counter == 3) || ($posty_counter == 6) || ($posty_counter == 9)) { echo "</div><div class=\"aga-row row row-eg-height\">";} ?>
+                       
                         <article  id="post-<?php the_ID(); ?>" class="col-md-4 aga-box col-eq-height" data-post="<?php echo $posty_counter ?>">
-                            <?php $this_category->cat_ID; ?>
+                            <?php //$this_category->cat_ID; ?>
                             <?php get_template_part( 'archive-single-option', get_post_format() ); ?>
                         </article>
             		<?php endwhile; ?>    
             		<?php wp_reset_postdata(); ?>
                 </div>
-            </section>
+
 			<?php //sparkling_paging_nav(); ?>
 		<?php else : ?>
 			<?php get_template_part( 'content', 'none' ); ?>
 		<?php endif; ?>
                 
             </div>
-
+            </section>	
 <?php //get_sidebar(); ?>
 <?php get_footer(); ?>
