@@ -1,7 +1,7 @@
 <!-- Example row of columns -->
 <!-- <h2>The Collections</h2> -->
 <div class="aga-row row"> 
-    <section class="col-md-8 aga-box">
+    <section class="col-xs-8 col-sm-8 col-md-8 aga-box">
         <?php $my_query = new WP_Query('name=welcome-to-agalite');
             while($my_query->have_posts()){
                 $my_query->the_post();
@@ -23,7 +23,7 @@
         </div>
             <?php   } ?>
     </section>        
-    <section class="col-md-4 aga-box">
+    <section class="col-xs-4 col-sm-4 col-md-4 aga-box">
         <?php $my_query = new WP_Query('name=promotional-post');
             while($my_query->have_posts()){
                 $my_query->the_post();

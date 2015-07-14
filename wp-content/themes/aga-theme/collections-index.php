@@ -17,14 +17,13 @@
             $the_query = new WP_Query( $args ); ?>
             
             <?php if ( $the_query->have_posts() ) : ?>
-            
-            <!-- pagination here -->
-            
+
             <!-- the loop -->
             <?php $postx_counter = 0; ?>
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
-   
-                <section class="col-sm-6 col-md-4 col-lg-4 aga-box" data-post="<?php echo $postx_counter ?>">
+   			<?php $postx_counter++; ?>
+   			<?php //if ($postx_counter % 4 ==0) { echo "<div class=\"clearfix visible-xs-block visible-sm-block visible-md-block visible-lg-block\"></div>";}?>
+                <section class="col-xs-6 col-sm-6 col-md-4 col-lg-4 aga-box" data-post="<?php echo $postx_counter ?>">
                      
                     <h2><a class="" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
                     <div class="row">
@@ -43,8 +42,5 @@
                 </section>
             <?php endwhile; endif;?>
             <!-- end of the loop -->
-            
-            <!-- pagination here -->
-            
             <?php wp_reset_postdata(); ?>
     </div>

@@ -611,6 +611,18 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 
 
+@media (max-width: 1024px) {
+
+	.collections {
+    	.aga-box {
+    		min-height: 515px;
+    		&:nth-child(3n+1){
+    			clear:both;
+    		}
+    	}
+    }
+}
+
 @media (max-width: 992px) {
 	.site-branding {
 	    text-align: center;
@@ -620,8 +632,24 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 			bottom: 20%;
 		}    	
     }
-    .collections .aga-box {
-		min-height: 515px;
+	.collections {
+    	.aga-box {
+    		min-height: 515px;
+    		&:nth-child(2n+1){
+    			clear:both;
+    		}
+    		&:nth-child(3n+1){
+    			clear:inherit;
+    		}
+    	}
+    }
+    .aga-row {
+	    .aga-box {
+	        h2 {
+	        	font-size: 20px;
+	          	padding: 2% 0;
+	        }
+	    }		
 	}
 	.content-area > h2 {
 		margin: 0 0 6%;
@@ -669,6 +697,18 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	        min-height: inherit;
 	    }
     }
+    .collections {
+    	.aga-box {
+    		min-height: 550px;
+    		&:nth-child(2n+1){
+    			clear:both;
+    		}
+    		&:nth-child(3n+1){
+    			clear:inherit;
+    		}
+    		
+    	}
+    }
 	.aga-row {
 	    .aga-box {
 	        margin-bottom: @global-margin-bottom;
@@ -676,7 +716,8 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	            margin-bottom: @global-margin-bottom;
 	        }
 	        h2 {
-	          padding: 2% 2%;
+	        	font-size: 20px;
+	          	padding: 2% 0;
 	        }
 	    }		
 	}
@@ -707,9 +748,13 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	.breadcrumb {
 		font-size: 12px;
 	}
-    .aga-row .aga-box h2 {
-		padding: 0 0 2%;
-	}
+    .aga-row {
+    	.aga-box {
+    		h2 {
+				padding: 0 0 2%;
+			}
+    	}
+    }
     .jumbotron h1, .jumbotron .h1 {
         font-size: 23px;
         text-shadow: 4px 3px 10px #000000;
@@ -741,7 +786,26 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	    	}
 	    }    	
     }
-
+    .collections {
+    	.aga-box {
+    		min-height: inherit;
+    		margin-bottom: 10%;	
+    	}
+    	.col-xs-6 {
+    		width: 100%;
+    	}
+    }
+	.footer-widget {
+		min-height: inherit;
+		form.form-search {
+		  padding: 15px;
+		}
+	}
+	#welcome {
+		.col-xs-8, .col-xs-4  {
+			width: 100%
+		}
+	}
     
 }
 
