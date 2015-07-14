@@ -1,6 +1,6 @@
    <!-- Example row of columns -->
 
-    <div id="options" class="aga-row row row-eg-height"> 
+    <div id="options" class="aga-row row"> 
         
             
             <?php 
@@ -32,7 +32,7 @@
             <?php $postx_counter = -1; ?>
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
                 <?php $postx_counter++;  ?>
-                <article class="col-sm-6 col-md-6 col-lg-4 aga-box col-eq-height" data-post="<?php echo $postx_counter ?>">
+                <article class="col-xs-6 col-sm-6 col-md-4 col-lg-4 aga-box " data-post="<?php echo $postx_counter ?>">
                     
                     <h2><a class="" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
                     <div class="row">

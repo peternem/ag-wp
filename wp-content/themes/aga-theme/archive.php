@@ -20,7 +20,7 @@ get_header(); ?>
                             </nav>
 <section class="content-area container-fluid white">
 	<div class="post-inner-content aga-row row">
-		<div class="col-md-6">
+		<div class="col-sm-6 col-md-6 col-lg-6">
 <!-- 			<header class="entry-header page-header"> -->
 <!-- 				<h1 class="entry-title"><?php //$singleCat = single_cat_title(); ?> </h1> -->
 <!-- 			</header> -->
@@ -90,7 +90,7 @@ get_header(); ?>
 							_e( 'Archives', 'sparkling' );
 						endif;
 					?>
-            <div class="aga-row row row-eg-height">
+            <div class="aga-row row">
                     <?php $cat_slug = get_category(get_query_var('cat'))->slug; ?>
                     <?php
                     if ($cat_slug == "collections") {
@@ -125,7 +125,7 @@ get_header(); ?>
                         <?php //if ($posty_counter == 0) { echo "<div class=\"aga-row row\">"; } ?>
                         <?php $posty_counter++;  ?>
                        
-                        <article  id="post-<?php the_ID(); ?>" class="col-md-4 aga-box col-eq-height" data-post="<?php echo $posty_counter ?>">
+                        <article  id="post-<?php the_ID(); ?>" class="col-md-4 aga-box" data-post="<?php echo $posty_counter ?>">
                             <?php //$this_category->cat_ID; ?>
                             <?php get_template_part( 'archive-single-option', get_post_format() ); ?>
                         </article>

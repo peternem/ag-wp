@@ -49,6 +49,8 @@
                 </article>
         	
     	</div>
+    	<div class="collections">
+    	
         <?php 
         $cat_name = "";
         if (is_single('estate-collection')) {
@@ -60,6 +62,7 @@
           
         }
         ?>
+        </div>
 <?php
 $table = get_field( 'swing_door_options' );
 

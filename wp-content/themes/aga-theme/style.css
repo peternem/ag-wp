@@ -222,9 +222,6 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   min-height: 500px;
   margin-bottom: 4%;
 }
-.row-eg-height .aga-box {
-  min-height: 730px;
-}
 .archive .single-featured {
   left: 0;
   position: relative;
@@ -531,10 +528,6 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   }
   .carousel .carousel-caption h1 {
     font-size: 41px;
-  }
-  .row-eg-height .aga-box {
-    margin-bottom: 5%;
-    min-height: inherit;
   }
   .collections .aga-box {
     min-height: 550px;
