@@ -267,6 +267,53 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
  * Content Area
  ****************************************************/ 
 
+.options {
+	&.divider {
+		.type:last-child {
+			.row:last-child {
+			    border-left: 1px dotted #d9d3c2;
+			}
+		}
+	}
+	&.glass {
+		.acf-desc {
+		    font-size: 14px;
+		}
+		.slides {
+		   	max-height: 322px;
+		    min-height: 322px;
+		    overflow: hidden;
+		}
+	}
+	&.designer {
+		.acf-label {
+		    font-size:14px;
+		}
+		.slides {
+		   	max-height: 262px;
+		    min-height: 262px;
+		    overflow: hidden;
+		}
+	}
+	&.treatments {
+		.acf-desc {
+		    font-size: 16px;
+		}
+	}
+	.acf-label {
+	    font-size:16px;
+	    font-weight: 600;
+	    margin: 1.5% 0;
+	}
+	.slides {
+	    padding-bottom: 20px;
+	}
+	h2 {
+	    margin: 0 0 2%;
+	}
+}
+
+
 .white {
 	padding-bottom: @global-margin-bottom;
 	padding-top: @global-margin-bottom;
@@ -574,6 +621,18 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   opacity: .8;
 }
 
+@media (min-width: 1025px) {
+
+	.collections {
+    	.aga-box {
+    		//min-height: 515px;
+    		&:nth-child(3n+1){
+    			clear:both;
+    			//background-color: pink;
+    		}
+    	}
+    }
+}
 
 @media (max-width: 1024px) {
 
@@ -618,6 +677,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	.content-area > h2 {
 		margin: 0 0 6%;
 		text-align: center;
+	}
+	.options.divider .type:last-child .row:last-child {
+		border-left: inherit;
 	}
 }
 
@@ -677,6 +739,15 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	        	font-size: 20px;
 	          	padding: 2% 0;
 	        }
+	    }
+	    .entry-content {
+	    	margin-bottom: @global-margin-bottom;
+	    }
+	    .type {
+	    	margin-bottom: @global-margin-bottom;
+	    	&:last-child {
+	    		margin-bottom: 0;
+	    	}
 	    }		
 	}
 
@@ -732,6 +803,11 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
         padding: 0 0 2%;
     }
     
+    .options {
+    	.col-xs-6 {
+    		width: 100% !important;
+    	}
+    }
     .carousel  {
 	    .carousel-caption {
 	    	position: relative;
@@ -753,6 +829,7 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
     		width: 100%;
     	}
     }
+
 	.footer-widget {
 		min-height: inherit;
 		form.form-search {

@@ -11,7 +11,7 @@
     </nav>
     <section id="post-<?php the_ID(); ?>" <?php post_class('container-fluid white'); ?>>
         <div class="post-inner-content aga-row row">
-    	    <article class="col-sm-6 col-md-6 col-lg-6">
+    	    <article class="col-sm-8 col-md-8 col-lg-8">
         		<header class="entry-header page-header">
         			<h1 class="entry-title "><?php the_title(); ?></h1>
         			<?php if(function_exists('the_subtitle')) { ?>
@@ -32,20 +32,12 @@
                         'echo'              => 1
                     ) );
                 ?>
-                 <footer class="col-md-12 aga-box entry-meta">
+                 <footer class="entry-meta">
                 <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span>' ); ?>
                 </footer><!-- .entry-meta -->
     		</article>
-    		<article class="col-sm-6 col-md-6 col-lg-6 aga-features">
-    		    <?php the_post_thumbnail( 'tab-square', array( 'class' => 'single-featured img-responsive aga-img' )); ?>
-    		    <?php
-
-//                 if(get_field('collection_features'))
-//                 {
-//                     echo get_field('collection_features');
-//                 }
-                
-                ?>    		
+    		<article class="col-sm-4 col-md-4 col-lg-4 aga-features">
+    		    <?php the_post_thumbnail( 'tab-square', array( 'class' => 'single-featured img-responsive aga-img' )); ?>  		
                 </article>
         	
     	</div>
@@ -55,6 +47,8 @@
         $cat_name = "";
         if (is_single('estate-collection')) {
             get_template_part('collection-options-estate');
+            
+            
         }
         
         if (is_single('accent-collection')) {
@@ -63,65 +57,32 @@
         }
         ?>
         </div>
-<?php
-$table = get_field( 'swing_door_options' );
-
-if ( $table ) {
-    echo '<div class="table ">';
-        if ( $table['header'] ) {
-            echo '<div class="thead">';
-                echo '<div class="tr post-inner-content aga-row row">';
-                    foreach ( $table['header'] as $th ) {
-                        echo '<span class="th col-md-6">';
-                            echo "<h2>".$th['c']."</h2>";
-                        echo '</span>';
-                    }
-                echo '</div>';
-            echo '</div>';
-        }
-        echo '<div class="tbody">';
-            foreach ( $table['body'] as $tr ) {
-                echo '<div class="tr post-inner-content aga-row row">';
-                    foreach ( $tr as $td ) {
-                        echo '<div class="td col-md-6">';
-                            echo $td['c'];
-                        echo '</div>';
-                    }
-                echo '</div>';
-            }
-        echo '</div>';
-    echo '</div>';
-}        
-?>
-<?php
-
-$table = get_field( 'sliding_door_options' );
-
-if ( $table ) {
-    echo '<div class="table ">';
-        if ( $table['header'] ) {
-            echo '<div class="thead">';
-                echo '<div class="tr post-inner-content aga-row row">';
-                    foreach ( $table['header'] as $th ) {
-                        echo '<span class="th col-md-6">';
-                            echo "<h2>".$th['c']."</h2>";
-                        echo '</span>';
-                    }
-                echo '</div>';
-            echo '</div>';
-        }
-        echo '<div class="tbody">';
-            foreach ( $table['body'] as $tr ) {
-                echo '<div class="tr post-inner-content aga-row row">';
-                    foreach ( $tr as $td ) {
-                        echo '<div class="td col-md-6">';
-                            echo $td['c'];
-                        echo '</div>';
-                    }
-                echo '</div>';
-            }
-        echo '</div>';
-    echo '</div>';
-}        
-?>
+		
+    	<?php  
+    	if (has_tag("glass")){
+    		get_template_part('options-glass');
+    	} 
+    	if (has_tag("header")){
+    		get_template_part('options-header');
+    	}
+    	if (has_tag("handle-pull")){
+    		get_template_part('options-handle-pull');
+    	}
+    	if (has_tag("pulls-and-towel-bars")){
+    		get_template_part('options-slider-pull-tbar');
+    	}
+    	if (has_tag("hinges")){
+    		get_template_part('options-hinge');
+    	}
+    	if (has_tag("treatments")){
+    		get_template_part('options-glass-treatment');
+    	}
+    	if (has_tag("designer-glass")){
+    		get_template_part('options-designer-glass');
+    	}
+    	if (has_tag("metal-finish")){
+    		get_template_part('options-metal-finishes');
+    	}
+    	
+    	?>
 </section><!-- #post-## -->
