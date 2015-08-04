@@ -18,9 +18,9 @@ get_header(); ?>
                             <nav id="breadCrumb" class="breadcrumb-container" role="breadcrumb">
                                 <?php if(function_exists('upbootwp_breadcrumbs')) upbootwp_breadcrumbs(); ?>
                             </nav>
-<section class="content-area container-fluid white">
+<section class="content-area container-fluid white collections">
 	<div class="post-inner-content aga-row row">
-		<div class="col-sm-6 col-md-6 col-lg-6">
+		<div class="col-sm-8 col-md-8 col-lg-6">
 <!-- 			<header class="entry-header page-header"> -->
 <!-- 				<h1 class="entry-title"><?php //$singleCat = single_cat_title(); ?> </h1> -->
 <!-- 			</header> -->
@@ -34,7 +34,7 @@ get_header(); ?>
                     <?php endwhile; ?>
                     <?php wp_reset_query(); ?> 
 		</div>
-		<div class="col-sm-6 col-md-6 col-lg-6 aga-features">
+		<div class="col-sm-4 col-md-4 col-lg-6 aga-features">
 			<?php if (function_exists('z_taxonomy_image')){
 			$attr = array('class' => 'single-featured img-responsive aga-img');
 			z_taxonomy_image(NULL, 'tab-square', $attr); 
@@ -106,11 +106,13 @@ get_header(); ?>
                     } else {
                         $sticky = get_option( 'sticky_posts' );
                         $argsx= array(
-                            'orderby'   => 'title',
+                           // 'orderby'   => 'title',
                             'order'     => 'ASC',
                             'category_name' => $cat_slug,
                             'ignore_sticky_posts' => 1, 
                             'post__not_in' => $sticky,
+                        	'meta_key'          => 'option_rank',
+                        	'orderby'           => 'meta_value_num',
                             //'tag__not_in'=>array('23'),
                             'posts_per_page' => -1,
                         );
@@ -124,8 +126,13 @@ get_header(); ?>
             		<?php //while ( have_posts() ) : the_post(); ?> 
                         <?php //if ($posty_counter == 0) { echo "<div class=\"aga-row row\">"; } ?>
                         <?php $posty_counter++;  ?>
+                       	<?php if ($cat_slug == "collections") { ?>
+                       		<article  id="post-<?php the_ID(); ?>" class="col-md-4 aga-box" data-post="<?php echo $posty_counter ?>">
+                       	<?php 	} else { ?>
+                       		<article  id="post-<?php the_ID(); ?>" class="col-xs-6 col-sm-6 col-md-4 col-lg-3 aga-box" data-post="<?php echo $posty_counter ?>">
+                       <?php 	} ?>
                        
-                        <article  id="post-<?php the_ID(); ?>" class="col-md-4 aga-box" data-post="<?php echo $posty_counter ?>">
+                        
                             <?php //$this_category->cat_ID; ?>
                             <?php get_template_part( 'archive-single-option', get_post_format() ); ?>
                         </article>

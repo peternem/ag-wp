@@ -25,6 +25,15 @@ jQuery(document).ready(function(){
 
 jQuery(document).ready(function() {	
 	
+	jQuery(function() {
+		jQuery('.pop').click(function (e) {
+	
+			jQuery('#imagemodal .imagepreview').attr('src', jQuery(this).attr('data-img-url'));
+			jQuery('#imagemodal .modal-title').html(jQuery(this).attr('data-img-alt'));
+			jQuery('#imagemodal').modal('show');  
+		});	
+	});
+	
 	//Check to see if the window is top if not then display button
 	jQuery(window).scroll(function(){
 		if (jQuery(this).scrollTop() > 100) {
@@ -46,7 +55,19 @@ jQuery(document).ready(function() {
 		      target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
 		      if (target.length) {
 		        jQuery('html,body').animate({
-		          scrollTop: target.offset().top
+		          scrollTop: target.offset().top - 50
+		        }, 1000);
+		        return false;
+		      }
+		    }
+		});
+		jQuery('.opt-jumpmenu a[href*=#]:not([href=#])').click(function() {
+		    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+		      var target = jQuery(this.hash);
+		      target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
+		      if (target.length) {
+		        jQuery('html,body').animate({
+		          scrollTop: target.offset().top - 50
 		        }, 1000);
 		        return false;
 		      }

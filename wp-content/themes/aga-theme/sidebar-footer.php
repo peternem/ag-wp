@@ -20,19 +20,19 @@
             <?php sparkling_footer_links(); ?>
         </nav>
 		<?php if ( is_active_sidebar( 'footer-widget-1' ) ) : ?>
-		<div class="col-md-3 footer-widget" role="complementary">
+		<div class="col-sm-4 col-md-3 col-lg-3 footer-widget" role="complementary">
 			<?php dynamic_sidebar( 'footer-widget-1' ); ?>
 		</div><!-- .widget-area .first -->
 		<?php endif; ?>
 
 		<?php if ( is_active_sidebar( 'footer-widget-2' ) ) : ?>
-		<div class="col-md-3 footer-widget" role="complementary">
+		<div class="col-sm-4 col-md-3 col-lg-3 footer-widget" role="complementary">
 			<?php dynamic_sidebar( 'footer-widget-2' ); ?>
 		</div><!-- .widget-area .second -->
 		<?php endif; ?>
 
 		<?php if ( is_active_sidebar( 'footer-widget-3' ) ) : ?>
-		<div class="col-md-3 footer-widget" role="complementary">
+		<div class="col-sm-4 col-md-3 col-lg-3 footer-widget" role="complementary">
 			<?php dynamic_sidebar( 'footer-widget-3' ); ?>
 		</div><!-- .widget-area .third -->
 		<?php endif; ?>

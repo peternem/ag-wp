@@ -1,6 +1,6 @@
         <div class="post-inner-content aga-row row options designer">
         	<!-- Designer Glass - Face Bevel -->
-        	<div class="col-md-12">
+        	<div id="faceBevel" class="col-md-12">
             	<?php if( have_rows('face_bevel_options') ): ?>
 					<div class="row">	
 						<div class="col-md-12">
@@ -30,9 +30,10 @@
 				<?php endif; ?>
         	</div>
         </div>	
-        <div class="post-inner-content aga-row row options divider designer">
-        	<div class="col-md-6 type ">
-    			<!-- Pattern Glass -->
+        <div class="post-inner-content aga-row row options designer">
+        	<!-- sandBlasted -->
+        	<div  id="sandBlasted" class="col-md-12 type ">
+    
         	<?php if( have_rows('sandblasting_options') ): ?>
 					<div class="row">	
 						<div class="col-md-12">
@@ -50,7 +51,7 @@
 					$label = get_sub_field('label');
 					$description = get_sub_field('description');
 					?>
-					<div class="col-xs-4 col-sm-4 col-md-4 slides">
+					<div class="col-xs-4 col-sm-4 col-md-2 slides">
 						<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
 						<div class="acf-label"><?php echo $label; ?></div>
 					    <div class="acf-desc"><?php echo $description; ?></div>
@@ -62,7 +63,7 @@
 				<?php endif; ?> 				
         	</div>
         	<!-- AG Originals Glass -->
-        	<div class="col-md-6 type">
+        	<div id="agaliteOriginals" class="col-md-12 type">
 				<?php if( have_rows('agalite_originals_options') ): ?>
 					<div class="row">	
 						<div class="col-md-12">
@@ -80,7 +81,7 @@
 						$label = get_sub_field('label');
 						$description = get_sub_field('description');
 						?>
-						<div class="col-xs-4 col-sm-4 col-md-4 slides">
+						<div class="col-xs-4 col-sm-4 col-md-2 slides">
 							<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
 							<div class="acf-label"><?php echo $label; ?></div>
 					    	<div class="acf-desc"><?php echo $description; ?></div>

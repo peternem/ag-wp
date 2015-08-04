@@ -60,6 +60,14 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 @global-margin-bottom: 5%;
 @global-max-width: 1366px;
 
+// Opacity Mixin
+.opacity (@opacity) {
+    opacity: @opacity;
+    -ms-filter: ~`"progid:DXImageTransform.Microsoft.Alpha(opacity=(" + "@{opacity}" * 100 + "))"`; 
+    filter: ~`"alpha(opacity = (" + "@{opacity}" * 100 + "))"`;
+}
+
+
 /* Global
 ----------------------------------------------------
 */
@@ -69,6 +77,10 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
     max-width: @global-max-width;
 }
 
+.modal-dialog.modal-lg {
+    max-width: 680px;
+    width: 100%;
+}
 
 /***************************************************
  * Font Awesome Styling 
@@ -185,6 +197,24 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	    margin-right: 10px;
 	}
 }
+
+
+/*******************************
+ * 
+ * Options Nav Menu Styling
+ * 
+ * ****************************/
+.opt-jumpmenu {
+	margin: 10% 0;
+	text-align: center;
+	h4 {
+	    padding-bottom: 2%;
+	}
+	.btn.btn-primary {
+	    margin: 0 10px 10px;
+	}	
+}
+
 
 /*******************************
  * Breadcrumb Nav Styling
@@ -307,6 +337,25 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	}
 	.slides {
 	    padding-bottom: 20px;
+	    .fa.fa-external-link {
+		    margin-left: 6px;
+		}
+		&.zoom {
+			position: relative;
+			a {
+			    background-color: #fff;
+			    display: block;
+			    padding: 5px 10px;
+			    position: absolute;
+			    right: 23px;
+			    top: 3px;
+				.opacity(.50);
+				&:hover, &:focus {
+				    background-color: #000;
+				    color: #fff;
+				}
+			}
+		}
 	}
 	h2 {
 	    margin: 0 0 2%;
@@ -352,7 +401,7 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 
 .page-header {
 	border-bottom: @global-border-size solid @global-border-color;
-    margin: 0 0 28px;
+    margin: 0 0 45px;
     padding: 0;
     h1 {
     	margin-top: 0;
@@ -401,13 +450,14 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 
 .aga-box {
-    h2 {
+    h2,h3 {
 		border-bottom: @global-border-size solid @global-border-color;
 	    color: #504834;
-	    font-size: 23px;
 	    margin: 0 0 6%;
 	    padding: 15px 0;
 	    width: auto;
+	    height:81px;
+	    //overflow: hidden;
         a {
 			color: #504834;
 			&:hover {
@@ -624,13 +674,35 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 @media (min-width: 1025px) {
 
 	.collections {
-    	.aga-box {
+    	.col-md-4.aga-box {
     		//min-height: 515px;
-    		&:nth-child(3n+1){
-    			clear:both;
-    			//background-color: pink;
-    		}
+    		// &:nth-child(3n+1){
+    			// clear:both;
+    		// }
     	}
+    }
+    .single {
+    	 .collection-options {
+	    	.col-lg-3.aga-box {
+	    		//min-height: 515px;
+	    		&:nth-child(4n+1){
+	    			clear:both;
+	    			//background-color: pink;
+	    		}
+	    	}
+	    }
+    }
+
+    .archive {
+    	.collections {
+	    	.col-lg-3.aga-box {
+	    		//min-height: 515px;
+	    		&:nth-child(4n+1){
+	    			clear:both;
+	    			//background-color: pink;
+	    		}
+	    	}
+	    }
     }
 }
 
@@ -686,6 +758,11 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 
 
 @media (max-width: 768px) {
+	.modal-dialog.modal-lg {
+    	max-width: 580px;
+    	width: 100%;
+   	 	margin: 0px auto;
+	}
 	.aglogo {
       margin: 20px;
     }
@@ -735,10 +812,15 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	        .col-md-5 {
 	            margin-bottom: @global-margin-bottom;
 	        }
-	        h2 {
+	        h2, {
 	        	font-size: 20px;
 	          	padding: 2% 0;
 	        }
+	       	h3, {
+	        	
+	          	padding: 2% 0;
+	        }
+	        
 	    }
 	    .entry-content {
 	    	margin-bottom: @global-margin-bottom;
@@ -756,6 +838,7 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
     }
     .footer-widget {
         margin-bottom: @global-margin-bottom;
+         min-height: inherit;
     }
     .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
 		padding-left: 15px;
@@ -768,6 +851,7 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 
 @media (max-width: 480px) {
+	.options .slides.zoom a.pop { display: none;}
 	body {
 		font-size: 14px;
 	}
@@ -841,6 +925,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 			width: 100%
 		}
 	}
-    
+    .opt-jumpmenu .btn.btn-primary {
+	    margin: 0 0 10px;
+	    width: 100%;
+	}
 }
 

@@ -1,6 +1,6 @@
  <div class="post-inner-content aga-row row options">
-        	<!-- Swing Header -->
-        	<div class="col-md-12 type">
+        	<!-- Hinge Options -->
+        	<div id="hingeOptions" class="col-md-12 type">
             	<?php if( have_rows('hinge_options') ): ?>
 					<div class="row">
 						<div class="col-md-12">
@@ -18,7 +18,8 @@
 					$label = get_sub_field('label');
 					$description = get_sub_field('description');
 					?>
-					<div class="col-xs-4 col-sm-4 col-md-2 slides">
+					<div class="col-xs-4 col-sm-4 col-md-2 slides zoom">
+					<a href="#" class="pop" title="Popup" data-img-alt="<?php echo $label; ?>" data-img-url="<?php echo $image['url']; ?>" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-expand" alt="Popup"></i></a>
 						<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
 						<div class="acf-label"><?php echo $label; ?></div>
 					    <div class="acf-desc"><?php echo $description; ?></div>
@@ -29,6 +30,6 @@
 				
 				<?php endif; ?>
         	</div>
- 			<!-- Sliding Header -->
-        	<div class="col-md-6 type"></div>
+        <!-- Modal -->
+		<?php //get_template_part('modal-popup'); ?>
  </div>

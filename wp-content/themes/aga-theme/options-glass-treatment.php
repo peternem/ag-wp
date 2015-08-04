@@ -6,7 +6,7 @@
 						<div class="col-md-12">
 							<?php
 							if(get_field('glass_treatment_label')) {
-								echo '<header class="entry-header page-header"><h2>' . get_field('glass_treatment_label') . '</h2></header>';
+								echo '<header id="treatmemtOptions" class="entry-header page-header"><h2>' . get_field('glass_treatment_label') . '</h2></header>';
 							}
 							?>
 						</div>

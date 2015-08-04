@@ -21,10 +21,10 @@
 					<!-- <nav role="navigation" class="col-md-6">
 		    					<?php //sparkling_footer_links(); ?>
 					</nav> -->
-					<div class="col-md-6">
+					<!-- <div class="col-md-6">
 		    					<?php //echo of_get_option( 'custom_footer_text', 'sparkling' ); ?>
 		    					<?php //sparkling_footer_info(); ?>
-					</div>
+					</div>-->
 				</div>
 			</div><!-- .site-info -->
 			<div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->

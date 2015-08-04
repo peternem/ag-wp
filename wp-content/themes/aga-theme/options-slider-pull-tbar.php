@@ -1,6 +1,6 @@
  <div class="post-inner-content aga-row row options">
-        	<!-- Swing Header -->
-        	<div class="col-md-6 type">
+        	<!-- Pulls -->
+        	<div id="pullOptions" class="col-md-12 type">
             	<?php if( have_rows('slider_pull_options') ): ?>
 					<div class="row">
 						<div class="col-md-12">
@@ -18,7 +18,7 @@
 					$label = get_sub_field('label');
 					$description = get_sub_field('description');
 					?>
-					<div class="col-xs-12 col-sm-12 col-md-12 slides">
+					<div class="col-xs-12 col-sm-6 col-md-6 slides">
 						<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
 						<div class="acf-label"><?php echo $label; ?></div>
 					    <div class="acf-desc"><?php echo $description; ?></div>
@@ -29,8 +29,10 @@
 				
 				<?php endif; ?>
         	</div>
+</div>
+ <div class="post-inner-content aga-row row options">
  			<!-- Sliding Header -->
-        	<div class="col-md-6 type">
+        	<div id="towelBar" class="col-md-12 type">
 				<?php if( have_rows('slider_towel_bar_options') ): ?>
 				
 					<div class="row">
@@ -49,7 +51,7 @@
 						$label = get_sub_field('label');
 						$description = get_sub_field('description');
 						?>
-						<div class="col-xs-12 col-sm-12 col-md-12 slides">
+						<div class="col-xs-12 col-sm-6 col-md-6 slides">
 							<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
 							<div class="acf-label"><?php echo $label; ?></div>
 					    	<div class="acf-desc"><?php echo $description; ?></div>
