@@ -1,5 +1,5 @@
    <!-- Example row of columns -->
-    <h2>Agalite Hardware</h2>
+    <h1>Agalite Hardware</h1>
     <div class="aga-row row"> 
             
             <?php 

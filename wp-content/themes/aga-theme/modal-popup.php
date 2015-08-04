@@ -1,5 +1,5 @@
 <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <?php if (has_tag("hinges") || has_tag("panels") || has_tag("configs")){ ?>?>
+  <?php if (has_tag("hinges") || has_tag("panels") || has_tag("configs") || has_tag("designer-glass")){ ?>?>
   	<div class="modal-dialog modal-sm" style="width: 100%; max-width: 460px;">
  <?php } else { ?>
  	<div class="modal-dialog modal-lg">

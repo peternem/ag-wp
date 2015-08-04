@@ -287,7 +287,8 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   padding-bottom: 5%;
   padding-top: 5%;
 }
-.content-area > h2 {
+.content-area > h2,
+.content-area h1 {
   margin: 0 0 2%;
   text-align: center;
 }
@@ -378,6 +379,12 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 .aga-box li a {
   font-weight: 700;
+}
+.collection-options .aga-box {
+  padding-bottom: 50px;
+}
+.collection-options .subtitle {
+  height: 55px;
 }
 .aga-img {
   border: 2px solid #d9d3c2;
@@ -585,7 +592,8 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
     font-size: 20px;
     padding: 2% 0;
   }
-  .content-area > h2 {
+  .content-area > h2,
+  .content-area > h1 {
     margin: 0 0 6%;
     text-align: center;
   }

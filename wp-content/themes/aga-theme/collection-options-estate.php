@@ -40,7 +40,7 @@
                     <h3><a class="" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h3>
                     <div class="row">
                         <div class="col-md-12">
-                            <a class="" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('tab-rectangle', array( 'class' => 'aga-img img-responsive' )); ?></a> 
+                            <a class="" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('tab-square', array( 'class' => 'aga-img img-responsive' )); ?></a> 
                         </div>
                         <div class="col-md-12">
                            <?php if(function_exists('the_subtitle')) { ?>
