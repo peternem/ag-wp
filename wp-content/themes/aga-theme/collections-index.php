@@ -1,13 +1,14 @@
    <!-- Example row of columns -->
     <h1>The Collections</h1>
     <div class="aga-row row"> 
-
-            <?php 
+			<?php 
+			$category_id = get_cat_ID('collections');
             $sticky = get_option( 'sticky_posts' );
             $args= array(
                 'post_type' => 'post',
-                'category_name' => 'collections',
-                'post_type'         => 'post',
+               // 'category_name' => 'collections',
+            	'category__in' => array ($category_id),
+            	//'post__in' => $sticky,
                 'posts_per_page'    => -1,
                 'meta_key'          => 'collection_rank',
                 'orderby'           => 'meta_value_num',
@@ -35,8 +36,11 @@
                             <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
                             <?php } ?> 
                             <?php the_excerpt(); ?>
-                            <p><a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
-                            <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<p><i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span></p>' ); ?>
+                            <footer>
+                            	<a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a>
+                            	<?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<div><i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span></div>' ); ?>
+                            </footer>
+                            
                   
                     
                 </section>

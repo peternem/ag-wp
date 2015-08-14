@@ -1,10 +1,7 @@
    <!-- Example row of columns -->
 
     <div id="options" class="aga-row row"> 
-        
-            
             <?php 
-            // $cat_name = "";
             if (is_single('estate-collection')) {
                 $cat_name = "estate-collection";
             }
@@ -12,13 +9,20 @@
             if (is_single('accent-collection')) {
                 $cat_name = "accent-collection";              
             }
+
+            if (is_single('silhouette-elite-collection')) {
+            	$cat_name = "silhouette-elite-collection";
+            }
+            
+            if (is_single('silhouette-slider-collection')) {
+            	$cat_name = "silhouette-slider-collection";
+            }
             $sticky = get_option( 'sticky_posts' );
             
             $args = array(
                 'post_type' => 'post',
+            	'post_count' => -1,
                 'category_name' => $cat_name,
-                'ignore_sticky_posts' => 1, 
-                'post__not_in' => $sticky,
             	'meta_key'          => 'option_rank',
             	'orderby'           => 'meta_value_num',
             	'order'             => 'ASC'

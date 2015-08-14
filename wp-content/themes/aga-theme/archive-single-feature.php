@@ -4,7 +4,7 @@
  */
 ?>
     <header class="entry-header page-header">
-        <h1 class="entry-title "><h1 class="entry-title"><?php $singleCat = single_cat_title(); ?></h1>
+       <h1 class="entry-title"><?php $singleCat = single_cat_title(); ?></h1>
         <div class="entry-meta">
             <?php //sparkling_posted_on(); ?>
             <?php
