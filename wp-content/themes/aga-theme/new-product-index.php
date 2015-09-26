@@ -20,28 +20,41 @@
                     </div>
                 </div>
                     <?php   } ?>
+                    <?php wp_reset_postdata(); ?>
             </section>
             <section class="col-sm-4 col-md-4 aga-box">
                 <h2>News</h2>
                 <ul>
-                    <li><a href="#">Donec id elit non mi porta gravida at eget metus.</a>
-                        
-                    </li>
-                    <li><a href="#">Fusce dapibus, tellus ac cursus commodo odio dui.</a>
-                        <a class="btn btn-link pull-right" href="#" role="button">Learn More <i class="fa fa-angle-double-right"></i></a>
-                    </li>
-                    <li><a href="#">Donec id elit non mi porta gravida at eget metus.</a>
-                        <a class="btn btn-link pull-right" href="#" role="button">Learn More <i class="fa fa-angle-double-right"></i></a>
-                    </li>
-                    <li><a href="#">Fusce dapibus, tellus ac cursus commodo odio dui.</a>
-                        <a class="btn btn-link pull-right" href="#" role="button">Learn More <i class="fa fa-angle-double-right"></i></a>
-                    </li>
-                    <li><a href="#">Donec id elit non mi porta gravida at eget metus.</a>
-                        <a class="btn btn-link pull-right" href="#" role="button">Learn More <i class="fa fa-angle-double-right"></i></a>
-                    </li>
-                    <li><a href="#">Fusce dapibus, tellus ac cursus commodo odio dui.</a>
-                        <a class="btn btn-link pull-right" href="#" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></li>
-                    </ul>
+               
+               <?php 	
+		            $args = array( 
+						'post_type' 		=> 'news',
+						'posts_per_page' 	=>-1,
+						'taxonomy'  	=> 'news_category',
+						'order'             => 'ASC',
+						'post_status' 		=> 'publish',
+	            	);
+		          
+		            
+		            $my_query = new WP_Query($args);
+		            
+		            while($my_query->have_posts()) : $my_query->the_post(); ?>
+						<li>
+							<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		        				<?php //the_date('F Y', '<span class="post-date">', '</span><br/>'); ?>
+		        				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+		        				
+							<?php  
+							$ebtn_text =  __( '<i class="fa fa-pencil-square-o"></i> Edit', 'upbootwp' );
+							edit_post_link($ebtn_text,'<div>','</div>' );
+							?>
+	       					</article>
+	       				</li>
+					<?php endwhile; ?>
+					 
+                </ul>		
+					<?php  wp_reset_postdata(); ?>
+					 <p><a class="btn btn-primary btn-sm" href="/ag-news/" role="button">More News <i class="fa fa-angle-double-right"></i></a></p>
             </section>
             <section class="col-md-4 aga-box">
                 <?php $my_query = new WP_Query('name=product-gallery');
@@ -62,5 +75,6 @@
                     </div>
                 </div>
                     <?php   } ?>
+                    <?php wp_reset_postdata(); ?>
             </section>  
     </div>

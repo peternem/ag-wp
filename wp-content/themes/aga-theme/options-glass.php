@@ -95,7 +95,7 @@
 				 <?php if( have_rows('berman_glass_options') ): ?>
 				<div class="row">
 					<div class="col-md-12">
-						<header class="entry-header page-header"><h2>Berman Glass Editions</h2></header>
+						<header class="entry-header page-header"><h2>Berman Glass editions</h2></header>
 					</div>
 				</div>
 				<div class="row">

@@ -103,6 +103,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	}
 }
 
+.aga-features .wp-post-image {
+    margin: 0 auto;
+}
 
 /* Main Nav xx
 ----------------------------------------------------
@@ -161,6 +164,10 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .navbar {
    .container-fluid {
 	    max-width: 1366px;
+	}
+	.description {
+	    font-size: 12px;
+	    margin-left: 10px;
 	}
 }
 
@@ -296,6 +303,40 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 /***************************************************
  * Content Area
  ****************************************************/ 
+
+.entry-content {
+	a {
+		color: #337ab7;
+		font-weight: 700;
+		&:hover {
+			color: #23527c;
+    		text-decoration: underline;
+		}
+	}
+}
+
+.textwidget {
+	a {
+		font-weight: 700;
+		&:hover {
+			color: #23527c;
+    		text-decoration: underline;
+		}
+	}
+}
+
+.post-edit-link {
+	color: #337ab7;
+	font-weight: 700;
+	padding-left: 5px;
+	&:hover {
+		color: #23527c;
+		text-decoration: underline;
+	}
+}
+
+
+
 .collections > h1 {
     text-align: center;
 }
@@ -318,13 +359,13 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 		}
 	}
 	&.designer {
-		.acf-label {
-		    font-size:14px;
-		}
+
 		.slides {
-		   	max-height: 262px;
 		    min-height: 262px;
 		    overflow: hidden;
+		    &:nth-child(6n+1) {
+		    	clear: both;
+		    }
 		}
 	}
 	&.treatments {
@@ -333,9 +374,12 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 		}
 	}
 	.acf-label {
-	    font-size:16px;
+	    font-size:15px;
 	    font-weight: 600;
 	    margin: 1.5% 0;
+	 }
+	.acf-desc {
+		font-size:14px;
 	}
 	.slides {
 	    padding-bottom: 20px;
@@ -369,6 +413,14 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	padding-bottom: @global-margin-bottom;
 	padding-top: @global-margin-bottom;
 }
+
+.news-list {
+	padding-top: @global-margin-bottom;
+}
+.news-list-last {
+		padding-top: 0;
+		padding-bottom: @global-margin-bottom;
+	}
 
 .grey {
 	background-color: #f5f4ef;
@@ -547,6 +599,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
     }
 }
 
+.widget.widget_search {
+    margin-bottom: 15%;
+}
 .footer-widget-area {
     overflow: auto;
     padding-bottom: @global-margin-bottom;
@@ -661,6 +716,10 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 .fa-vimeo:before {
   content: "\f194";
+}
+
+.fa.fa-envelope-o {
+    margin-left: 5px;
 }
 
 /* scroll-to-top
@@ -871,23 +930,41 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 
 @media (max-width: 480px) {
-	.options .slides.zoom a.pop { display: none;}
+	
 	body {
 		font-size: 14px;
 	}
 	h1, .h1 {
 		font-size: 31px;
 	}
+	h2, .h2 {
+		font-size: 21px;
+	}
+	p
+	p {
+		font-size: 14px !important;
+	}
 	.breadcrumb {
 		font-size: 12px;
 	}
     .aga-row {
+    	&.row {
+    		margin-bottom: 60px
+    	}
     	.aga-box {
     		h2 {
 				padding: 0 0 2%;
 			}
     	}
     }
+    .aga-box {
+		.subtitle {
+		    max-height:  inherit;
+		    min-height: inherit;
+		    overflow: auto;
+		}
+		h2,h3 { height: auto;}
+	}
     .jumbotron h1, .jumbotron .h1 {
         font-size: 23px;
         text-shadow: 4px 3px 10px #000000;
@@ -933,6 +1010,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
     		width: 100%;
     	}
     }
+    .collection-options .subtitle {
+	    height: inherit;
+	}
 
 	.footer-widget {
 		min-height: inherit;
@@ -949,5 +1029,14 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	    margin: 0 0 10px;
 	    width: 100%;
 	}
+	.options .slides.zoom a.pop { display: none;}
+	.options .acf-label {
+	    font-size: 14px;
+	}
+	
+	.aga-row .col-xs-6.aga-box, .col-xs-4.slides.zoom {
+	    width: 100%;
+	}
+
 }
 

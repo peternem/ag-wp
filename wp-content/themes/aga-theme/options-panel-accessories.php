@@ -1,7 +1,7 @@
+<?php if( have_rows('panel_options') ): ?>
  <div class="post-inner-content aga-row row options">
         	<!-- Panel Accesories -->
         	<div id="panelAccessories" class="col-md-12 type">
-            	<?php if( have_rows('panel_options') ): ?>
 					<div class="row">
 						<div class="col-md-12">
 							<?php
@@ -57,7 +57,6 @@
 					<?php endwhile; ?>
 				
 					</div>
-				
-				<?php endif; ?>
         	</div>
  </div>
+<?php endif; ?>

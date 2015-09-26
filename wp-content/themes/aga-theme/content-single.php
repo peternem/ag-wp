@@ -3,12 +3,14 @@
  * @package sparkling
  */
 ?>
-    <?php //the_post_thumbnail( 'sparkling-featured', array( 'class' => 'single-featured' )); ?>
-    <!-- Main jumbotron for a primary marketing message or call to action -->
    
+	<?php $cust_post_t = get_post_type( $post  ); ?>
+    <?php if ($cust_post_t !== 'news') { ?>
     <nav id="breadCrumb" class="breadcrumb-container" role="breadcrumb">
         <?php if(function_exists('upbootwp_breadcrumbs')) upbootwp_breadcrumbs(); ?>
     </nav>
+    <?php } ?>
+    
     <section id="post-<?php the_ID(); ?>" <?php post_class('container-fluid white'); ?>>
         <div class="post-inner-content aga-row row">
     	    <article class="col-sm-6 col-md-6 col-lg-6">
@@ -17,15 +19,7 @@
         			<?php if(function_exists('the_subtitle')) { ?>
 			        <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
 			        <?php } ?> 
-			                    <?php
-                /* translators: used between list items, there is a space after the comma */
-                $categories_list = get_the_category_list( __( ', ', 'sparkling' ) );
-                if ( $categories_list && sparkling_categorized_blog() ) :
-            ?>
-            <span class="cat-links"><i class="fa fa-folder-open-o"></i>
-                <?php  printf( __( ' %1$s', 'sparkling' ), $categories_list ); ?>
-            </span>
-            <?php endif; // End if categories ?>
+			                  
         		</header><!-- .entry-header -->
                 <div class="entry-content">
                 <?php the_content(); ?> 
@@ -70,10 +64,8 @@
         	
     	</div>
     	<div class="collection-options">
-    	<?php 
-
-					?>
         <?php 
+        // Loads all options for each collection
         $cat_name = "";
         if (is_single('estate-collection')) {
             get_template_part('collection-options-estate');  
@@ -87,11 +79,22 @@
         	get_template_part('collection-options-estate');
         
         }
+        if (is_single('fresco-collection')) {
+        	get_template_part('collection-options-estate');
+        }
+        
+        if (is_single('vision-collection')) {
+        	get_template_part('collection-options-estate');
+        }
+        
+        if (is_single('agalite-hardware')) {
+        	get_template_part('hardware-options');
+        }
         ?>
         </div>
-		
+        
     	<?php  
-    	
+    	// Loads all idividual items for each collection option
     	if (has_tag("hinges")){
     		get_template_part('options-hinge');
     	}
@@ -131,6 +134,30 @@
     	if (has_tag("configs")){
     		get_template_part('options-configs');
     	}
+    	
+    	//  Hardware Options
+    	if (has_tag("hardware-clamps-1")){
+    		get_template_part('options-hardware-clamps');
+    	}
+	  	if (has_tag("standard-hinges")){
+	    	get_template_part('options-hardware-hinges');
+	    }
+	    if (has_tag("heavy-duty-hinges")){
+	    	get_template_part('options-hardware-hvy-hinges');
+	    }
+	    if (has_tag("adjustable-hinges")){
+	    	get_template_part('options-hardware-adj-hinges');
+	    }
+	    if (has_tag("pivot-hinges")){
+	    	get_template_part('options-hardware-pivot-hinges');
+	    }
+	    if (has_tag("hardware-kpct")){
+	    	get_template_part('options-hardware-kpct');
+	    }
+	    if (has_tag("light-duty-hinges")){
+	    	get_template_part('options-hardware-lt-hinges');
+	    }	    
+	    
     	?>
     	<?php get_template_part('modal-popup'); ?>
 </section><!-- #post-## -->

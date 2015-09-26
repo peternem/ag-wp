@@ -1,4 +1,4 @@
-   <!-- Example row of columns -->
+<section id="hardware" class="content-area container-fluid white hardware">
     <h1>Agalite Hardware</h1>
     <div class="aga-row row"> 
             
@@ -36,3 +36,4 @@
 
             <?php wp_reset_postdata(); ?>
     </div>
+ </section>

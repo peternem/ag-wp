@@ -13,7 +13,7 @@
 					</div>
 					<div class="row">
 					<div class="col-xs-4 col-sm-4 col-md-4 slides">
-						<p class="lead">Are you looking for something unique and eyecatching? Try Agalite’s Soft Curve Slider Option.</p>
+						<p class="lead">Are you looking for something unique and eye catching? Try Agalite’s Soft Curve Slider Option.</p>
 					</div>
 					<?php while( have_rows('soft_curve_slider_options') ): the_row(); 
 					// vars

@@ -1,33 +1,9 @@
-   <!-- Example row of columns -->
-    <div id="options" class="aga-row row"> 
+<div id="options" class="aga-row row"> 
             <?php 
-            if (is_single('estate-collection')) {
-                $cat_name = "estate-collection";
+            $cat_name = "";
+            if (is_single('agalite-hardware')) {
+            	$cat_name = "hardware";
             }
-           
-            if (is_single('accent-collection')) {
-                $cat_name = "accent-collection";              
-            }
-
-            if (is_single('silhouette-elite-collection')) {
-            	$cat_name = "silhouette-elite-collection";
-            }
-            
-            if (is_single('silhouette-slider-collection')) {
-            	$cat_name = "silhouette-slider-collection";
-            }
-            
-            if (is_single('fresco-collection')) {
-            	$cat_name = "fresco-collection";
-            }
-            
-            if (is_single('vision-collection')) {
-            	$cat_name = "vision-collection";
-            }
-            
-//             if (is_single('agalite-hardware')) {
-//             	$cat_name = "hardware";
-//             }
             
             $sticky = get_option( 'sticky_posts' );
             
@@ -75,4 +51,15 @@
             <!-- pagination here -->
             
             <?php wp_reset_postdata(); ?>
+            
+    </div>
+    <div class="collection-options">
+    <?php 
+//     if (has_tag("standard-hinges")){
+//     	get_template_part('options-hardware-hinges');
+//     }
+//     if (has_tag("hardware-clamps-1")){
+//     	get_template_part('options-hardware-clamps');
+//     }
+    ?>
     </div>

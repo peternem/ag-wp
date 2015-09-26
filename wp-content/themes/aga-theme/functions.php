@@ -318,6 +318,72 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require get_template_directory() . '/inc/navwalker.php';
 
+
+
+/*******************
+ *
+ * News Custom Post Type
+ *
+ ********************/
+
+
+function my_custom_post_news() {
+	$labels = array(
+			'name'               => _x( 'News', 'post type general name' ),
+			'singular_name'      => _x( 'News', 'post type singular name' ),
+			'add_new'            => _x( 'Add New', 'News' ),
+			'add_new_item'       => __( 'Add New News' ),
+			'edit_item'          => __( 'Edit News' ),
+			'new_item'           => __( 'New News' ),
+			'all_items'          => __( 'All News' ),
+			'view_item'          => __( 'View News' ),
+			'search_items'       => __( 'Search News' ),
+			'not_found'          => __( 'No News found' ),
+			'not_found_in_trash' => __( 'No News found in the Trash' ),
+			'parent_item_colon'  => '',
+			'menu_name'          => 'News'
+	);
+	$args = array(
+			'labels'        => $labels,
+			'description'   => 'Holds our products and product specific data',
+			'public'        => true,
+			'menu_position' => 6,
+			'supports'      => array( 'title', 'editor', 'thumbnail', 'excerpt', 'comments' ),
+			'has_archive'   => true,
+			'taxonomies'        => array('post_tag') // this is IMPORTANT
+	);
+	register_post_type( 'news', $args );
+}
+add_action( 'init', 'my_custom_post_news' );
+
+
+function my_taxonomies_news() {
+	$labels = array(
+			'name'              => _x( 'News Categories', 'taxonomy general name' ),
+			'singular_name'     => _x( 'News', 'taxonomy singular name' ),
+			'search_items'      => __( 'Search News Categories' ),
+			'all_items'         => __( 'All News Categories' ),
+			'parent_item'       => __( 'Parent News Category' ),
+			'parent_item_colon' => __( 'Parent News Category:' ),
+			'edit_item'         => __( 'Edit News Category' ),
+			'update_item'       => __( 'Update News Category' ),
+			'add_new_item'      => __( 'Add New News Category' ),
+			'new_item_name'     => __( 'New News Category' ),
+			'menu_name'         => __( 'News Categories' ),
+	);
+	$args = array(
+			'labels' => $labels,
+			'hierarchical' => true,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+
+	);
+	register_taxonomy( 'news_category', 'news', $args );
+}
+add_action( 'init', 'my_taxonomies_news', 0 );
+
+
+
 /**
  * upbootwp_breadcrumbs function.
  * Edit the standart breadcrumbs to fit the bootstrap style without producing more css

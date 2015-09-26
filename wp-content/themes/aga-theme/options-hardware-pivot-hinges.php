@@ -1,18 +1,22 @@
-<?php if( have_rows('panel_clamp_options') ): ?>
+<?php
+$acf_option = 'pg_pvt_hinge_options';
+$acf_label = 'pg_pvt_hinge_label';
+if( have_rows($acf_option) ): ?>
     <div class="post-inner-content aga-row row options">
-		<!-- Panel Clamp Options -->
-		<div id="panelClamps" class="col-md-12 type">
+		<!-- pg_pvt_hinge_options -->
+		<div id="<?php echo $acf_option; ?>" class="col-md-12 type">
 			<div class="row">
 				<div class="col-md-12">
 					<?php
-					if(get_field('panel_clamp_option_label')) {
-						echo '<header class="entry-header page-header"><h2>' . get_field('panel_clamp_option_label') . '</h2></header>';
+					
+					if(get_field($acf_label)) {
+						echo '<header class="entry-header page-header"><h2>' . get_field($acf_label) . '</h2></header>';
 					}
 					?>
 				</div>
 			</div>
 			<div class="row">
-			<?php while( have_rows('panel_clamp_options') ): the_row(); 
+			<?php while( have_rows($acf_option) ): the_row(); 
 			$image = get_sub_field('image');
 			$label = get_sub_field('label');
 			$description = get_sub_field('description');
@@ -24,6 +28,15 @@
 			    <div class="acf-desc"><?php echo $description; ?></div>
 			</div>
 			<?php endwhile; ?>
+			<div class="col-md-4">
+					<?php
+					
+					if(get_field('pg_pvt_hinge_copy')) {
+						echo '<p class="lead">' . get_field('pg_pvt_hinge_copy') . '</p>';
+					}
+					?>
+				</div>
 		</div>
    	</div>
-<?php endif; ?> 
+ </div>
+<?php endif; ?>

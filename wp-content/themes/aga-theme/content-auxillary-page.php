@@ -7,7 +7,7 @@
 ?>
 <div class="post-inner-content aga-row row">
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="entry-content col-md-8">
+	<div class="entry-content col-md-7">
 		<header class="entry-header page-header">
 			<h1 class="entry-title"><?php the_title(); ?></h1>
 			<?php if(function_exists('the_subtitle')) {
@@ -23,7 +23,7 @@
 			) );
 		?>
 	</div><!-- .entry-content -->
-	<div class="col-md-4 aga-box">
+	<div class="col-md-5 aga-box">
 	    <?php
         if (is_page('company-news')) {
             ?>

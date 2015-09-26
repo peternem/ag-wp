@@ -65,6 +65,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .entry-meta .fa.fa-pencil-square-o {
   margin: 0 5px 0 0;
 }
+.aga-features .wp-post-image {
+  margin: 0 auto;
+}
 /* Main Nav xx
 ----------------------------------------------------
 */
@@ -99,6 +102,10 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 .navbar .container-fluid {
   max-width: 1366px;
+}
+.navbar .description {
+  font-size: 12px;
+  margin-left: 10px;
 }
 .aglogo {
   display: block;
@@ -223,6 +230,30 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 /***************************************************
  * Content Area
  ****************************************************/
+.entry-content a {
+  color: #337ab7;
+  font-weight: 700;
+}
+.entry-content a:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
+.textwidget a {
+  font-weight: 700;
+}
+.textwidget a:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
+.post-edit-link {
+  color: #337ab7;
+  font-weight: 700;
+  padding-left: 5px;
+}
+.post-edit-link:hover {
+  color: #23527c;
+  text-decoration: underline;
+}
 .collections > h1 {
   text-align: center;
 }
@@ -237,21 +268,23 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   min-height: 322px;
   overflow: hidden;
 }
-.options.designer .acf-label {
-  font-size: 14px;
-}
 .options.designer .slides {
-  max-height: 262px;
   min-height: 262px;
   overflow: hidden;
+}
+.options.designer .slides:nth-child(6n+1) {
+  clear: both;
 }
 .options.treatments .acf-desc {
   font-size: 16px;
 }
 .options .acf-label {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   margin: 1.5% 0;
+}
+.options .acf-desc {
+  font-size: 14px;
 }
 .options .slides {
   padding-bottom: 20px;
@@ -284,6 +317,13 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .white {
   padding-bottom: 5%;
   padding-top: 5%;
+}
+.news-list {
+  padding-top: 5%;
+}
+.news-list-last {
+  padding-top: 0;
+  padding-bottom: 5%;
 }
 .grey {
   background-color: #f5f4ef;
@@ -429,6 +469,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .footer-nav li a {
   font-weight: 700;
 }
+.widget.widget_search {
+  margin-bottom: 15%;
+}
 .footer-widget-area {
   overflow: auto;
   padding-bottom: 5%;
@@ -538,6 +581,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 .fa-vimeo:before {
   content: "\f194";
+}
+.fa.fa-envelope-o {
+  margin-left: 5px;
 }
 /* scroll-to-top
 ----------------------------------------------------
@@ -732,9 +778,6 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   }
 }
 @media (max-width: 480px) {
-  .options .slides.zoom a.pop {
-    display: none;
-  }
   body {
     font-size: 14px;
   }
@@ -742,11 +785,30 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   .h1 {
     font-size: 31px;
   }
+  h2,
+  .h2 {
+    font-size: 21px;
+  }
+  p p {
+    font-size: 14px !important;
+  }
   .breadcrumb {
     font-size: 12px;
   }
+  .aga-row.row {
+    margin-bottom: 60px;
+  }
   .aga-row .aga-box h2 {
     padding: 0 0 2%;
+  }
+  .aga-box .subtitle {
+    max-height: inherit;
+    min-height: inherit;
+    overflow: auto;
+  }
+  .aga-box h2,
+  .aga-box h3 {
+    height: auto;
   }
   .jumbotron h1,
   .jumbotron .h1 {
@@ -787,6 +849,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   .collections .col-xs-6 {
     width: 100%;
   }
+  .collection-options .subtitle {
+    height: inherit;
+  }
   .footer-widget {
     min-height: inherit;
   }
@@ -799,6 +864,16 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   }
   .opt-jumpmenu .btn.btn-primary {
     margin: 0 0 10px;
+    width: 100%;
+  }
+  .options .slides.zoom a.pop {
+    display: none;
+  }
+  .options .acf-label {
+    font-size: 14px;
+  }
+  .aga-row .col-xs-6.aga-box,
+  .col-xs-4.slides.zoom {
     width: 100%;
   }
 }

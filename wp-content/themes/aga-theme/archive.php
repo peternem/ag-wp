@@ -88,7 +88,6 @@ get_header(); ?>
 						endif;
 					?>
             <div class="aga-row row">
-            		
                     <?php 
                     $cat_slug = get_category(get_query_var('cat'))->slug; 
                     $sticky = get_option( 'sticky_posts' );
@@ -102,9 +101,43 @@ get_header(); ?>
                     			'orderby'           => 'meta_value_num',
                     			'order'             => 'ASC'
                     	);
+                    } elseif ( $cat_slug == "silhouette-collection") {
+						$idObj1 = get_category_by_slug('silhouette-slider-collection'); 
+						$id1 = $idObj1->term_id;
+						$idObj2 = get_category_by_slug('silhouette-elite-collection');
+						$id2 = $idObj2->term_id;
+					          
+			            $sticky = get_option( 'sticky_posts' );
+			            $cat_namex = "silhouette-collection";
+			            $argsx = array(
+			                'post_type' => 'post',
+			                'category_name' => $cat_namex,
+			            	'category__in' => array ($id1,$id2),
+			            	'post_count'	=> -1, 
+			               	'post__in' => $sticky,
+			             	'meta_key'          => 'collection_rank',
+			             	'orderby'           => 'meta_value_num',
+			            	'order'             => 'ASC'
+			            );
+                    } elseif ( $cat_slug == "silhouette-collection") {
+						$idObj1 = get_category_by_slug('silhouette-slider-collection'); 
+						$id1 = $idObj1->term_id;
+						$idObj2 = get_category_by_slug('silhouette-elite-collection');
+						$id2 = $idObj2->term_id;
+					          
+			            $sticky = get_option( 'sticky_posts' );
+			            $cat_namex = "silhouette-collection";
+			            $argsx = array(
+			                'post_type' => 'post',
+			                'category_name' => $cat_namex,
+			            	'category__in' => array ($id1,$id2),
+			            	'post_count'	=> -1, 
+			               	'post__in' => $sticky,
+			             	'meta_key'          => 'collection_rank',
+			             	'orderby'           => 'meta_value_num',
+			            	'order'             => 'ASC'
+			            );
                     } else {
-                    	echo "<h3>Not A WP Sticky Post</h3>";
-                    	
                         $argsx= array(
                             'order'     => 'ASC',
                             'category_name' => $cat_slug,

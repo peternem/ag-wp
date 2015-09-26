@@ -1,7 +1,8 @@
- <div class="post-inner-content aga-row row options">
+<?php if( have_rows('slider_pull_options') ): ?>
+	<div class="post-inner-content aga-row row options">
         	<!-- Pulls -->
         	<div id="pullOptions" class="col-md-12 type">
-            	<?php if( have_rows('slider_pull_options') ): ?>
+
 					<div class="row">
 						<div class="col-md-12">
 							<?php
@@ -26,14 +27,14 @@
 					<?php endwhile; ?>
 				
 					</div>
-				
-				<?php endif; ?>
         	</div>
-</div>
+</div>				
+<?php endif; ?>
+<?php if( have_rows('slider_towel_bar_options') ): ?>
  <div class="post-inner-content aga-row row options">
  			<!-- Sliding Header -->
         	<div id="towelBar" class="col-md-12 type">
-				<?php if( have_rows('slider_towel_bar_options') ): ?>
+				
 				
 					<div class="row">
 						<div class="col-md-12">
@@ -58,7 +59,8 @@
 						</div>
 					<?php endwhile; ?>
 					</div>
-				<?php endif; ?> 
+				
         	</div>
 
-        </div>	
+        </div>
+<?php endif; ?> 
