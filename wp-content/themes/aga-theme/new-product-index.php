@@ -2,18 +2,28 @@
     <!-- <h2>The Collections</h2> -->
     <div class="aga-row row max-width"> 
             <section class="col-md-4 aga-box">
-                <?php $my_query = new WP_Query('name=new-products');
+                <?php 
+                $argsc = array(
+                		'post_type' 		=> 'post',
+                		'posts_per_page' 	=>1,
+                		'tag'				=> 'new-products',
+                		'order'             => 'DESC',
+                		'post_status' 		=> 'publish',
+                );
+                
+                $my_query = new WP_Query($argsc);
                     while($my_query->have_posts()){
                         $my_query->the_post();
                 ?>
-                <h2><?php the_title() ?></h2>
+                <h2>New Products</h2>
                 <div class="row">
                     <div class="col-md-12">
                         <?php the_post_thumbnail('tab-rectangle', array( 'class' => 'aga-img img-responsive' )); ?> 
                     </div>
                     <div class="col-md-12">
                        <?php if(function_exists('the_subtitle')) { ?>
-                        <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
+                       <h4><?php the_title() ?></h4>
+                        <p><strong><?php echo the_subtitle();?></strong></p>
                         <?php } ?> 
                         <?php the_excerpt(); ?>
                         <p><a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
@@ -29,7 +39,7 @@
                <?php 	
 		            $args = array( 
 						'post_type' 		=> 'news',
-						'posts_per_page' 	=>-1,
+						'posts_per_page' 	=>10,
 						'taxonomy'  	=> 'news_category',
 						'order'             => 'ASC',
 						'post_status' 		=> 'publish',

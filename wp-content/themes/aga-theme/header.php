@@ -55,13 +55,14 @@
         <div id="navbar" class="navbar-collapse collapse">
  			<?php sparkling_header_menu(); ?>
 			<div class="navbar-form navbar-right">
-				<form>
-				<div class="form-group">
-					<label for="zipSearch">Dealer Locator</label>
-					<input id="zipSearch" type="text" placeholder="Zip Code" class="form-control input-sm">
-				</div>
-				<button type="submit" class="btn btn-sm btn-primary">Search <i class="fa fa-angle-double-right"></i></button>
-				</form>
+<!-- 				<form> -->
+<!-- 				<div class="form-group"> -->
+<!-- 					<label for="zipSearch">Dealer Locator</label> -->
+<!-- 					<input id="zipSearch" type="text" placeholder="Zip Code" class="form-control input-sm"> -->
+<!-- 				</div> -->
+<!-- 				<button type="submit" class="btn btn-sm btn-primary">Search <i class="fa fa-angle-double-right"></i></button> -->
+<!-- 				</form> -->
+			<a class="btn btn-primary btn-sm" role="button" href="/dealer-locator/">Dealer Locator <i class="fa fa-angle-double-right"></i> </a>
 			</div>      
         </div>
 	</div>

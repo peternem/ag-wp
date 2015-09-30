@@ -32,7 +32,7 @@ get_header(); ?>
 		$paged = ( get_query_var('paged') ) ? get_query_var('paged') : 1;
 		query_posts( array( 
 			'post_type' => 'news',
-			'posts_per_page' => 2,
+			'posts_per_page' => 15,
 			'caller_get_posts' => 1,
 			'taxonomy' => 'news_category',
 			'paged' => $paged	
