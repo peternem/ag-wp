@@ -13,7 +13,8 @@ get_header(); ?>
  			<div class="post-inner-content aga-row row">
 				<div class="entry-content col-md-12">
 					<header class="page-header">
-						<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'sparkling' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+						<h1 class="page-title">
+						<?php printf( __( 'Search Results for: %s', 'sparkling' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
 					</header><!-- .page-header -->
 				</div>
 			</div>

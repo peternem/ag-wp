@@ -59,6 +59,10 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .fa .fa-angle-double-right {
   margin-left: 3px;
 }
+.pdf-icon {
+  height: auto;
+  width: 16px;
+}
 /***************************************************
  * WP ADMIN Styling
  **************************************************/
@@ -493,6 +497,24 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .copyright {
   padding: 1%;
   text-align: center;
+}
+.install > ul {
+  margin-bottom: 10%;
+}
+.doc-list {
+  padding: 0;
+}
+.doc-list > li {
+  list-style: outside none none;
+  margin: 0 0 10px;
+  padding: 0;
+}
+.doc-list .pdf-icon {
+  margin-right: 5px;
+}
+.doc-list .acf-desc {
+  font-style: italic;
+  margin-left: 5px;
 }
 /* =Social icons
 ----------------------------------------------- */

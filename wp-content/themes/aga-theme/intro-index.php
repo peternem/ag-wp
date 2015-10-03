@@ -36,7 +36,7 @@
             while($my_query->have_posts()){
                 $my_query->the_post();
         ?>
-        <h2>Promotions</h2>
+        <h2>Latest Promotions</h2>
         <div class="row">
             <div class="col-md-12">
                 <?php the_post_thumbnail('tab-rectangle', array( 'class' => 'aga-img img-responsive' )); ?> 
