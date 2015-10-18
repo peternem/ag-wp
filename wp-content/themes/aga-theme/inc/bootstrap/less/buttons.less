@@ -65,7 +65,20 @@
 }
 // Success appears as green
 .btn-success {
-  .button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+  //.button-variant(@btn-success-color; @btn-success-bg; @btn-success-border);
+  	background-color: @brand-success;
+  	border-color: @btn-success-border;
+  	color: #fff;
+  	&:hover,
+  	&:focus,
+  	&.focus,
+  	&:active,
+  	&.active,
+  	.open > .dropdown-toggle& {
+    	color:#fff;
+    	background-color: @btn-primary-bg;//darken(@background, 10%);
+    	//border-color: darken(@border, 12%);
+	}
 }
 // Info appears as blue-green
 .btn-info {

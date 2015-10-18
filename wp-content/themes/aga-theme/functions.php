@@ -86,7 +86,13 @@ function sparkling_setup() {
   	'primary' => __( 'Primary Menu', 'sparkling' ),
   	'footer-links' => __( 'Footer Links', 'sparkling' ) // secondary nav in footer
   ) );
-
+ 
+  // Add Class to All Excerpts in WordPress
+  add_filter( "the_excerpt", "add_class_to_excerpt" );
+  function add_class_to_excerpt( $excerpt ) {
+  	return str_replace('<p', '<p class="excerpt"', $excerpt);
+  }
+  
   // Enable support for Post Formats.
   add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
 
@@ -245,47 +251,20 @@ add_filter( 'gallery_style', 'sparkling_remove_gallery_css' );
  */
 function sparkling_scripts() {
 
-  // Add Bootstrap default CSS
-  wp_enqueue_style( 'sparkling-bootstrap', get_template_directory_uri() . '/inc/bootstrap/css/bootstrap.min.css' );
+  	// Add Bootstrap default CSS
+  	wp_enqueue_style( 'sparkling-bootstrap', get_template_directory_uri() . '/inc/bootstrap/css/bootstrap.min.css', false, filemtime(get_stylesheet_directory().'/inc/bootstrap/css/bootstrap.min.css'));
+  	// Add main theme stylesheet
+  	wp_enqueue_style('sparkling-style', get_template_directory_uri() . '/style.css', false, filemtime(get_stylesheet_directory(). '/style.css'));
+  	wp_enqueue_style( 'sparkling-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
+ 	wp_register_style( 'sparkling-fonts', '//fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700|Roboto+Slab:400,300,700');
+  	wp_enqueue_style( 'sparkling-fonts' );
 
-  // Add Font Awesome stylesheet
-  wp_enqueue_style( 'sparkling-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
-
-  // Add Google Fonts
-  wp_register_style( 'sparkling-fonts', '//fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700|Roboto+Slab:400,300,700');
-
-  wp_enqueue_style( 'sparkling-fonts' );
-
-  // Add slider CSS only if is front page ans slider is enabled
-  if( ( is_home() || is_front_page() ) && of_get_option('sparkling_slider_checkbox') == 1 ) {
-		wp_enqueue_style( 'flexslider-css', get_template_directory_uri().'/inc/css/flexslider.css' );
-  }
-
-  // Add main theme stylesheet
-	wp_enqueue_style( 'sparkling-style', get_stylesheet_uri() );
-
-  // Add Modernizr for better HTML5 and CSS3 support
-  wp_enqueue_script('sparkling-modernizr', get_template_directory_uri().'/inc/js/modernizr.min.js', array('jquery') );
-
-  // Add Bootstrap default JS
-	wp_enqueue_script('sparkling-bootstrapjs', get_template_directory_uri().'/inc/js/bootstrap.min.js', array('jquery') );
-
-  // Add slider JS only if is front page ans slider is enabled
-	if( ( is_home() || is_front_page() ) && of_get_option('sparkling_slider_checkbox') == 1 ) {
-		wp_enqueue_script( 'flexslider-js', get_template_directory_uri() . '/inc/js/flexslider.min.js', array('jquery'), '20140222', true );
-	}
-
-  // Flexslider customization
-  if( ( is_home() || is_front_page() ) && of_get_option('sparkling_slider_checkbox') == 1 ) {
-    wp_enqueue_script( 'flexslider-customization', get_template_directory_uri() . '/inc/js/flexslider-custom.js', array('jquery', 'flexslider-js'), '20140716', true );
-  }
-  
-  // Main theme related functions
-	//wp_enqueue_script( 'sparkling-functions', get_template_directory_uri() . '/inc/js/functions.min.js', array('jquery') );
-	wp_enqueue_script( 'sparkling-functions', get_template_directory_uri() . '/inc/js/dev/functions.js', array('jquery') );
-
+  	// Add Modernizr for better HTML5 and CSS3 support
+  	wp_enqueue_script('sparkling-modernizr', get_template_directory_uri().'/inc/js/modernizr.min.js', array('jquery'), filemtime(get_stylesheet_directory(). '/inc/js/modernizr.min.js'), true);
+	wp_enqueue_script('sparkling-bootstrapjs', get_template_directory_uri().'/inc/js/bootstrap.min.js', array('jquery'), filemtime(get_stylesheet_directory(). '/inc/js/bootstrap.min.js'), true);
+	wp_enqueue_script( 'sparkling-functions', get_template_directory_uri() . '/inc/js/dev/functions.js', array('jquery'), filemtime(get_stylesheet_directory(). '/inc/js/dev/functions.js'), true);
 	// This one is for accessibility
-  wp_enqueue_script( 'sparkling-skip-link-focus-fix', get_template_directory_uri() . '/inc/js/skip-link-focus-fix.js', array(), '20140222', true );
+  	wp_enqueue_script( 'sparkling-skip-link-focus-fix', get_template_directory_uri() . '/inc/js/skip-link-focus-fix.js', array(), '20140222', true );
 
   // Treaded comments
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -337,6 +316,44 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require get_template_directory() . '/inc/navwalker.php';
 
+// 
+
+/*******************
+ *
+ * Add a custom user role
+ *
+ ********************/
+ 
+$result = add_role( 'dealer', __('Dealer' ), 
+		array(	 
+				'read' => false, // true allows this capability
+				'edit_posts' => false, // Allows user to edit their own posts
+				'edit_pages' => false, // Allows user to edit pages
+				'edit_others_posts' => false, // Allows user to edit others posts not just their own
+				'create_posts' => false, // Allows user to create new posts
+				'manage_categories' => false, // Allows user to manage post categories
+				'publish_posts' => false, // Allows the user to publish, otherwise posts stays in draft mode
+				'edit_themes' => false, // false denies this capability. User can’t edit your theme
+				'install_plugins' => false, // User cant add new plugins
+				'update_plugin' => false, // User can’t update any plugins
+				'update_core' => false // user cant perform core updates	 
+		)
+		 
+);
+//add_action('after_setup_theme', 'remove_admin_bar');
+
+// function remove_admin_bar() {
+// 	if (!current_user_can('administrator') && !is_admin()) {
+// 		show_admin_bar(false);
+// 	}
+// }
+
+// function no_mo_dashboard() {
+// 	if (!current_user_can('manage_options' ) && !(defined('DOING_AJAX') && DOING_AJAX)) {
+// 		wp_redirect(home_url()); exit;
+// 	}
+// }
+// add_action('admin_init', 'no_mo_dashboard');
 
 
 /*******************

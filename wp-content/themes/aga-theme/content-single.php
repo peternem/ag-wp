@@ -3,13 +3,6 @@
  * @package sparkling
  */
 ?>
-   
-	<?php $cust_post_t = get_post_type( $post  ); ?>
-    <?php if ($cust_post_t !== 'news') { ?>
-    <nav id="breadCrumb" class="breadcrumb-container" role="breadcrumb">
-        <?php if(function_exists('upbootwp_breadcrumbs')) upbootwp_breadcrumbs(); ?>
-    </nav>
-    <?php } ?>
     
     <section id="post-<?php the_ID(); ?>" <?php post_class('container-fluid white'); ?>>
         <div class="post-inner-content aga-row row">
@@ -18,8 +11,7 @@
         			<h1 class="entry-title "><?php the_title(); ?></h1>
         			<?php if(function_exists('the_subtitle')) { ?>
 			        <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
-			        <?php } ?> 
-			                  
+			        <?php } ?>  
         		</header><!-- .entry-header -->
                 <div class="entry-content">
                 <?php the_content(); ?> 
@@ -63,35 +55,46 @@
                 </article>
         	
     	</div>
-    	<div class="collection-options">
+    	
         <?php 
         // Loads all options for each collection
         $cat_name = "";
-        if (is_single('estate-collection')) {
-            get_template_part('collection-options-estate');  
+        if (is_single('estate-swing-and-sliding-doors') || (is_single('estate-transcend-collection'))) {
+        	echo '<div class="collection-options">';
+        	get_template_part('collection-options-estate');
+        	echo "</div>";
         }
 
         if (is_single('accent-collection')) {
+        	echo '<div class="collection-options">';
         	get_template_part('collection-options-estate');
+        	echo "</div>";
         }
 
         if (is_single('silhouette-elite-collection') || (is_single('silhouette-slider-collection'))) {
+        	echo '<div class="collection-options">';
         	get_template_part('collection-options-estate');
-        
+        	echo "</div>";
         }
         if (is_single('fresco-collection')) {
+        	echo '<div class="collection-options">';
         	get_template_part('collection-options-estate');
+        	echo "</div>";
         }
         
         if (is_single('vision-collection')) {
+        	echo '<div class="collection-options">';
         	get_template_part('collection-options-estate');
+        	echo "</div>";
         }
         
         if (is_single('agalite-hardware')) {
+        	echo '<div class="collection-options">';
         	get_template_part('hardware-options');
+        	echo "</div>";
         }
         ?>
-        </div>
+        
         
     	<?php  
     	// Loads all idividual items for each collection option
@@ -134,7 +137,6 @@
     	if (has_tag("configs")){
     		get_template_part('options-configs');
     	}
-    	
     	//  Hardware Options
     	if (has_tag("hardware-clamps-1")){
     		get_template_part('options-hardware-clamps');
@@ -159,8 +161,7 @@
 	    }	    
 	    
     	?>
-    	<?php get_template_part('modal-popup'); ?>
+    	
+    </div>
 </section><!-- #post-## -->
-<nav id="breadCrumb" class="breadcrumb-container" role="breadcrumb">
-	<?php if(function_exists('upbootwp_breadcrumbs')) upbootwp_breadcrumbs(); ?>
-</nav>
+<?php get_template_part('modal-popup'); ?>

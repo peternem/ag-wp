@@ -14,8 +14,7 @@
 				<?php if(function_exists('the_subtitle')) {
 	       		echo '<p>'.the_subtitle().'</p>'; 
 	       		}
-	       		?> 
-	       		
+	       		?>
 			</header><!-- .entry-header -->	
 			<?php the_content(); ?>
 				<?php

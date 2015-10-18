@@ -32,6 +32,7 @@
 
 
 <div id="page" class="hfeed site">
+
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
         <div class="navbar-header">
@@ -62,7 +63,7 @@
 <!-- 				</div> -->
 <!-- 				<button type="submit" class="btn btn-sm btn-primary">Search <i class="fa fa-angle-double-right"></i></button> -->
 <!-- 				</form> -->
-			<a class="btn btn-primary btn-sm" role="button" href="/dealer-locator/">Dealer Locator <i class="fa fa-angle-double-right"></i> </a>
+			<a class="btn btn-default btn-sm" role="button" href="/dealer-locator/">Dealer Locator <i class="fa fa-angle-double-right"></i> </a>
 			</div>      
         </div>
 	</div>

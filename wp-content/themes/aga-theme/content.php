@@ -11,7 +11,6 @@
 			<header class="entry-header page-header">
 
 				<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
-
 				<?php if ( 'post' == get_post_type() ) : ?>
 				<div class="entry-meta">
 					<?php //sparkling_posted_on(); ?>

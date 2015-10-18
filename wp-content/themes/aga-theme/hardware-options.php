@@ -53,13 +53,3 @@
             <?php wp_reset_postdata(); ?>
             
     </div>
-    <div class="collection-options">
-    <?php 
-//     if (has_tag("standard-hinges")){
-//     	get_template_part('options-hardware-hinges');
-//     }
-//     if (has_tag("hardware-clamps-1")){
-//     	get_template_part('options-hardware-clamps');
-//     }
-    ?>
-    </div>

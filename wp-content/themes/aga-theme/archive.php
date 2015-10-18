@@ -14,10 +14,6 @@ get_header(); ?>
 					<?php
 						if ( is_category() ) :
                            ?>
-
-                            <nav id="breadCrumb" class="breadcrumb-container" role="breadcrumb">
-                                <?php if(function_exists('upbootwp_breadcrumbs')) upbootwp_breadcrumbs(); ?>
-                            </nav>
 <section class="content-area container-fluid white collections">
 	<div class="post-inner-content aga-row row">
 		<div class="col-sm-8 col-md-8 col-lg-6">
@@ -39,7 +35,6 @@ get_header(); ?>
 
 		</div>
 	</div>
-
 						<?php
 						elseif ( is_tag() ) :
 							single_tag_title();
@@ -171,8 +166,5 @@ get_header(); ?>
                 
             </div>
             </section>	
-            <nav id="breadCrumb" class="breadcrumb-container" role="breadcrumb">
-				<?php if(function_exists('upbootwp_breadcrumbs')) upbootwp_breadcrumbs(); ?>
-			</nav>
 <?php //get_sidebar(); ?>
 <?php get_footer(); ?>

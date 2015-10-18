@@ -1,7 +1,4 @@
         <div class="post-inner-content aga-row row glass options">
-        	<script>
-
-			</script>
         	<!-- Clear Glass -->
         	<div id="clearGlass" class="col-md-12 type">
 				<?php if( have_rows('clear_glass_options') ): ?>
@@ -37,7 +34,11 @@
             	<?php if( have_rows('tinted_glass_options') ): ?>
 					<div class="row">
 						<div class="col-md-12">
-							<header class="entry-header page-header"><h2>Tinted Glass</h2></header>
+							<?php
+							if(get_field('tinted_glass_label')) {
+								echo '<header class="entry-header page-header"><h2>' . get_field('tinted_glass_label') . '</h2></header>';
+							}
+							?>
 						</div>
 					</div>
 					<div class="row">
@@ -67,7 +68,11 @@
         	<?php if( have_rows('pattern_glass_options') ): ?>
 					<div class="row">
 						<div class="col-md-12">
-							<header class="entry-header page-header"><h2>Pattern Glass</h2></header>
+							<?php
+							if(get_field('pattern_glass_label')) {
+								echo '<header class="entry-header page-header"><h2>' . get_field('pattern_glass_label') . '</h2></header>';
+							}
+							?>
 						</div>
 					</div>
 					<div class="row">
@@ -95,7 +100,11 @@
 				 <?php if( have_rows('berman_glass_options') ): ?>
 				<div class="row">
 					<div class="col-md-12">
-						<header class="entry-header page-header"><h2>Berman Glass editions</h2></header>
+						<?php
+							if(get_field('berman_glass_label')) {
+								echo '<header class="entry-header page-header"><h2>' . get_field('berman_glass_label') . '</h2></header>';
+							}
+							?>
 					</div>
 				</div>
 				<div class="row">

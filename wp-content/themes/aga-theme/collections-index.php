@@ -24,25 +24,16 @@
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
    			<?php $postx_counter++; ?>
    			<?php //if ($postx_counter % 4 ==0) { echo "<div class=\"clearfix visible-xs-block visible-sm-block visible-md-block visible-lg-block\"></div>";}?>
-                <section class="col-xs-6 col-sm-6 col-md-4 col-lg-4 aga-box" data-post="<?php echo $postx_counter ?>">
-                     
+                <section class="col-xs-6 col-sm-6 col-md-4 col-lg-4 aga-box" data-post="<?php echo $postx_counter ?>">  
                     <h2><a class="" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h2>
-                   
-                 
-                            <a class="" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('tab-square', array( 'class' => 'aga-img img-responsive' )); ?></a> 
-                      
-                        
-                           <?php if(function_exists('the_subtitle')) { ?>
-                            <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
-                            <?php } ?> 
-                            <?php the_excerpt(); ?>
-                            <footer>
-                            	<a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a>
-                            	<?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<div><i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span></div>' ); ?>
-                            </footer>
-                            
-                  
-                    
+                    <a class="" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('tab-square', array( 'class' => 'aga-img img-responsive' )); ?></a> 
+                    <div class="collection-wp">
+                     <?php the_excerpt(); ?>
+	                    <footer>
+	                    	<a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a>
+	                        <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<div class="edit-link">', '<i class="fa fa-pencil-square-o"></i></div>' ); ?>
+	                    </footer>                     
+                     </div>
                 </section>
             <?php endwhile; endif;?>
             <!-- end of the loop -->

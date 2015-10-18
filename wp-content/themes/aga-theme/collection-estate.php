@@ -1,20 +1,20 @@
    <!-- Example row of columns -->
+
 <section id="post-<?php the_ID(); ?>" <?php post_class('container-fluid white'); ?>>
         <div class="post-inner-content aga-row row">
-    	    <article class="col-sm-6 col-md-6 col-lg-6">
+    	    <article class="col-sm-12 col-md-12 col-lg-6">
         		<header class="entry-header page-header">
         			<h1 class="entry-title "><?php the_title(); ?></h1>
         			<?php if(function_exists('the_subtitle')) { ?>
 			        <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
 			        <?php } ?> 
-			      
         		</header><!-- .entry-header -->
                 <div class="entry-content">
                 <?php the_content(); ?> 
                               
                 </div>
                  <footer class="entry-meta">
-                <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span>' ); ?>
+                <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<span class="edit-link">', '<i class="fa fa-pencil-square-o"></i></span>' ); ?>
                 </footer><!-- .entry-meta -->
                 <?php if( have_rows('options_jump_menu') ): ?>
 					<div class="opt-jumpmenu">
@@ -46,20 +46,20 @@
                 ?>
                 
     		</article>
-    		<article class="col-sm-6 col-md-6 col-lg-6 aga-features">
+    		<article class="hidden-xs hidden-sm col-md-6 col-lg-6 aga-features">
     		    <?php the_post_thumbnail( 'tab-square', array( 'class' => 'single-featured img-responsive aga-img' )); ?>  		
                 </article>
         	
     	</div>
-    <div id="options" class="aga-row row"> 
+    	<div id="options" class="aga-row row">
 			<?php 
-			$idObj1 = get_category_by_slug('silhouette-slider-collection'); 
+			$idObj1 = get_category_by_slug('estate-transcend'); 
 			$id1 = $idObj1->term_id;
-			$idObj2 = get_category_by_slug('silhouette-elite-collection');
+			$idObj2 = get_category_by_slug('estate-sd-and-se-doors');
 			$id2 = $idObj2->term_id;
 		          
             $sticky = get_option( 'sticky_posts' );
-            $cat_namex = "silhouette-collection";
+            $cat_namex = "estate-collection";
             $args = array(
                 'post_type' => 'post',
                 'category_name' => $cat_namex,
@@ -81,7 +81,7 @@
             <?php $postx_counter = -1; ?>
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
                 <?php $postx_counter++;  ?>
-                <article class="col-md-4 aga-box " data-post="<?php echo $postx_counter ?>" id="<?php echo $post->post_name;?>">
+                <article class="col-xs-6 col-sm-6 col-md-4 col-lg-4 aga-box" data-post="<?php echo $postx_counter ?>" id="<?php echo $post->post_name;?>">
                     
                     <h3><a class="" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h3>
                     <div class="row">
@@ -106,11 +106,5 @@
             
             <?php wp_reset_postdata(); ?>
             
-    </div>
-    	<div id="learnMore" class="aga-row row"> 
-	    	<div class="col-md-12 text-center collection-cta">
-	    		<h2>Want to Learn More About Our <?php echo the_field('collection_cta_tagline'); ?>?</h2>
-	    		<a class="btn btn-primary btn-lg btn-block" href="<?php echo the_field('collection_hot_link'); ?>"><?php echo the_field('collection_hot_link_label'); ?></a>    		
-	    	</div>
-	    </div>
+    	</div>
 </section>

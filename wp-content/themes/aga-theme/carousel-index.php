@@ -18,7 +18,7 @@
             <div class="carousel-caption">
               <h1>Elegance, Style, Quality</h1>
               <p>Welcome to Agalite. Agalite Shower Doors Are The Focal Point Of Bathroom Design.</p>
-              <p><a class="btn btn-sm btn-primary" href="#welcome" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
+              <p><a class="btn btn-md btn-primary" href="#welcome" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@
             <div class="carousel-caption">
               <h1>The Collections.</h1>
               <p>Agalite Offers Five Different Collections To Complement Any Bathroom Design</p>
-              <p><a class="btn btn-sm btn-primary" href="#collections" role="button">Learn more <i class="fa fa-angle-double-right"></i></a></p>
+              <p><a class="btn btn-md btn-primary" href="#collections" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@
             <div class="carousel-caption">
               <h1>Heavy Glass Hardware</h1>
               <p>Featuring 1/2" or 3/8" Frameless Heavy Glass Shower Doors Hardware</p>
-              <p><a class="btn btn-sm btn-primary" href="#hardware" role="button">Browse gallery <i class="fa fa-angle-double-right"></i></a></p>
+              <p><a class="btn btn-md btn-primary" href="#hardware" role="button">Browse Gallery <i class="fa fa-angle-double-right"></i></a></p>
             </div>
           </div>
         </div>

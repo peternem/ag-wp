@@ -21,8 +21,10 @@
 					?>
 					<div class="col-xs-12 col-sm-6 col-md-6 slides">
 						<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
+						<div class="slide-wp">
 						<div class="acf-label"><?php echo $label; ?></div>
 					    <div class="acf-desc"><?php echo $description; ?></div>
+					    </div>
 					</div>
 					<?php endwhile; ?>
 				
@@ -54,8 +56,10 @@
 						?>
 						<div class="col-xs-12 col-sm-6 col-md-6 slides">
 							<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
+							<div class="slide-wp">
 							<div class="acf-label"><?php echo $label; ?></div>
 					    	<div class="acf-desc"><?php echo $description; ?></div>
+					    	</div>
 						</div>
 					<?php endwhile; ?>
 					</div>

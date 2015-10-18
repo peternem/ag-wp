@@ -5,18 +5,9 @@
 ?>
     <header class="entry-header page-header">
        <h1 class="entry-title"><?php $singleCat = single_cat_title(); ?></h1>
-        <div class="entry-meta">
-            <?php //sparkling_posted_on(); ?>
-            <?php
-                /* translators: used between list items, there is a space after the comma */
-                $categories_list = get_the_category_list( __( ', ', 'sparkling' ) );
-                if ( $categories_list && sparkling_categorized_blog() ) :
-            ?>
-            <span class="cat-links"><i class="fa fa-folder-open-o"></i>
-                <?php  printf( __( ' %1$s', 'sparkling' ), $categories_list ); ?>
-            </span>
-            <?php endif; // End if categories ?>
-        </div><!-- .entry-meta -->
+       <?php if(function_exists('the_subtitle')) { ?>
+			        <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
+			        <?php } ?> 
     </header><!-- .entry-header -->
     <div class="entry-content">
     <?php the_content(); ?>

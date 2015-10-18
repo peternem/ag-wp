@@ -1,7 +1,8 @@
-        <div class="post-inner-content aga-row row metal options">
+<?php if( have_rows('standard_sd_finishes_options') ): ?>        
+	<div class="post-inner-content aga-row row metal options">
         	<!-- standard_sd_finishes_options -->
         	<div id="standardSwingFinishes" class="col-md-12 type">
-				<?php if( have_rows('standard_sd_finishes_options') ): ?>
+
 					<div class="row">
 						<div class="col-md-12">
 							<?php
@@ -25,14 +26,16 @@
 						</div>
 					<?php endwhile; ?>
 					</div>
-				<?php endif; ?> 
+
         	</div>
         </div>
+<?php endif; ?> 
+<?php if( have_rows('special_order_swing_options') ): ?>
         <div class="post-inner-content aga-row row metal options">
         	<!-- special_order_swing_options -->
         	<div id="specialOrderSwingFinishes" class="col-md-12 type">
     			
-        	<?php if( have_rows('special_order_swing_options') ): ?>
+        	
 					<div class="row">
 						<div class="col-md-12">
 							<?php
@@ -67,13 +70,15 @@
 						</div>
 					</div>
 				
-				<?php endif; ?> 				
+								
         	</div>
         </div>
+<?php endif; ?> 
+<?php if( have_rows('standard_sliding_finish_options') ): ?>
         <div class="post-inner-content aga-row row metal options">
         	<!-- standard_sliding_finish_options -->
         	<div id="standardSlidingFinishes" class="col-md-12 type">
-            	<?php if( have_rows('standard_sliding_finish_options') ): ?>
+            	
 					<div class="row">
 						<div class="col-md-12">
 							<?php
@@ -99,15 +104,16 @@
 				
 					</div>
 				
-				<?php endif; ?>
+				
         	</div>
         </div>	
-        
+<?php endif; ?>   
+<?php if( have_rows('special_order_se_options') ): ?>     
         <div class="post-inner-content aga-row row metal options">
                 <!-- special_order_sliding_options -->
         	<div id="specialOrderSlidingFinishes" class="col-md-12 type">
     			
-        	<?php if( have_rows('special_order_se_options') ): ?>
+        	
 					<div class="row">
 						<div class="col-md-12">
 							<?php
@@ -142,6 +148,7 @@
 						</div>
 					</div>
 				
-				<?php endif; ?> 				
+								
         	</div>
         </div>
+<?php endif; ?> 

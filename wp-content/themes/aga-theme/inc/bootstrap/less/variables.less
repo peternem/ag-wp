@@ -14,12 +14,11 @@
 @gray-light:             lighten(@gray-base, 46.7%); // #777
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-@brand-primary:         #fbd356;  //lighten(#FCE088, 0%); //#428bca #337ab7
-@brand-success:         #5cb85c;
+@brand-primary:         #55a32a;//#e6e6e6;  //lighten(#FCE088, 0%); //#428bca #337ab7
+@brand-success:         #333333;
 @brand-info:            #5bc0de;
 @brand-warning:         #f0ad4e;
 @brand-danger:          #d9534f;
-
 
 //== Scaffolding
 //
@@ -31,7 +30,7 @@
 @text-color:            @gray-base;//@gray-dark;
 
 //** Global textual link color.
-@link-color:            #000; //@brand-primary;
+@link-color:            #337ab7; //#000; //@brand-primary;
 //** Link hover color set via `darken()` function.
 @link-hover-color:      lighten(@link-color, 25%);
 //** Link hover decoration.
@@ -102,14 +101,14 @@
 @line-height-large:         1.3333333; // extra decimals for Win 8.1 Chrome
 @line-height-small:         1.5;
 
-@border-radius-base:        4px;
-@border-radius-large:       6px;
-@border-radius-small:       3px;
+@border-radius-base:        2px;
+@border-radius-large:       2px;
+@border-radius-small:       2px;
 
 //** Global color for active items (e.g., navs or dropdowns).
-@component-active-color:    #fff;
+@component-active-color:     lighten(#000000, 25%);
 //** Global background color for active items (e.g., navs or dropdowns).
-@component-active-bg:       @brand-primary;
+@component-active-bg:       lighten(#000000, 85%);
 
 //** Width of the `border` for generating carets that indicator dropdowns.
 @caret-width-base:          4px;
@@ -142,18 +141,18 @@
 //
 //## For each of Bootstrap's buttons, define text, background and border color.
 
-@btn-font-weight:                bold;
-@btn-default-color:              #333;
+@btn-font-weight:                500;
+@btn-default-color:              #55a32a;//#333;
 @btn-default-bg:                 #fff;
-@btn-default-border:             #ccc;
+@btn-default-border:             #55a32a; //#ccc;
 
-@btn-primary-color:              #604C2C; //#000
+@btn-primary-color:              #fff; //#303030; //#604C2C; //#000
 @btn-primary-bg:                 @brand-primary;
-@btn-primary-border:             lighten(#a09168, 10%); //#a09168; //darken(@btn-primary-bg, 5%);
+@btn-primary-border:             #55a32a; //lighten(#303030, 50%); //darken(@btn-primary-bg, 5%);
 
 @btn-success-color:              #fff;
 @btn-success-bg:                 @brand-success;
-@btn-success-border:             darken(@btn-success-bg, 5%);
+@btn-success-border:             #000; //darken(@btn-success-bg, 5%);
 
 @btn-info-color:                 #fff;
 @btn-info-bg:                    @brand-info;
@@ -348,7 +347,6 @@
 
 //== Navbar
 //
-//##
 
 // Basics of a navbar
 @navbar-height:                    85px;
@@ -360,7 +358,7 @@
 
 @navbar-default-color:             #000;
 @navbar-default-bg:                #f8f8f8;
-@navbar-default-border:            #d9d3c2;//darken(@navbar-default-bg, 6.5%);
+@navbar-default-border:            #d3d3d3;//darken(@navbar-default-bg, 6.5%);
 
 // Navbar links
 @navbar-default-link-color:                #000;

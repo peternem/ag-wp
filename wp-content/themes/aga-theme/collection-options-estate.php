@@ -1,8 +1,18 @@
    <!-- Example row of columns -->
+
+   
     <div id="options" class="aga-row row"> 
             <?php 
-            if (is_single('estate-collection')) {
-                $cat_name = "estate-collection";
+//             if (is_single('estate-collection')) {
+//                 $cat_name = "estate-collection";
+//             }
+            if (is_single('estate-swing-and-sliding-doors')) {
+            	$cat_name = "estate-sd-and-se-doors";
+            	
+            }
+            
+            if (is_single('estate-transcend-collection')) {
+            	 $cat_name = "estate-transcend";
             }
            
             if (is_single('accent-collection')) {
@@ -51,7 +61,7 @@
             <?php $postx_counter = -1; ?>
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
                 <?php $postx_counter++;  ?>
-                <article class="col-xs-6 col-sm-6 col-md-4 col-lg-3 aga-box " data-post="<?php echo $postx_counter ?>">
+                <article class="col-xs-6 col-sm-6 col-md-4 col-lg-3 aga-box " data-post="<?php echo $postx_counter ?>" id="<?php echo $post->post_name;?>">
                     
                     <h3><a class="" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h3>
                     <div class="row">
@@ -64,7 +74,7 @@
                             <?php } ?> 
                             <?php //the_excerpt(); ?>
                             <p><a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
-                            <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<p><span class="edit-link"><i class="fa fa-pencil-square-o"></i>', '</span></p>' ); ?>
+                            <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<p><span class="edit-link">', '<i class="fa fa-pencil-square-o"></i></span></p>' ); ?>
                             <!-- <p>Rank: <?php the_field('start_date'); ?></p> -->
                         </div>
                     </div>
