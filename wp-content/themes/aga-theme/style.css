@@ -123,7 +123,8 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 .aglogo {
   display: block;
-  margin-top: 25.33333333px;
+  float: left;
+  margin: 25.33333333px 25.33333333px 0;
 }
 .hgi-links {
   margin: 0;
@@ -156,7 +157,7 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
  * 
  * ****************************/
 .opt-jumpmenu {
-  margin: 10% 0;
+  margin: 6rem auto 0;
   text-align: center;
 }
 .opt-jumpmenu h4 {
@@ -262,15 +263,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
   color: #23527c;
   text-decoration: underline;
 }
-.collection-cta h2 {
-  margin-bottom: 36px;
-}
-.collection-cta .btn-block {
-  margin: 0 auto;
-  max-width: 320px;
-}
-.collections > h1 {
-  text-align: center;
+.overview .aga-box h3,
+.overview .aga-box h4 {
+  height: inherit;
 }
 .options .slide-wp {
   height: 110px;
@@ -341,30 +336,40 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .options h2 {
   margin: 0 0 2%;
 }
-.aga-row.row:last-child {
-  margin-bottom: 0;
+.collection-cta {
+  padding-bottom: 6rem;
+  padding-top: 6rem;
 }
-#news {
-  margin-bottom: 6%;
+.collection-cta > h1 {
+  text-align: center;
+}
+.collection-cta h2 {
+  margin-bottom: 36px;
+  margin-top: 0;
+}
+.collection-cta .btn-block {
+  margin: 0 auto;
+  max-width: 320px;
 }
 .white {
-  padding-top: 5%;
+  padding-bottom: 6rem;
+  padding-top: 6rem;
 }
 .news-list {
-  padding-top: 5%;
+  padding-top: 6rem;
 }
 .news-list {
-  padding-top: 5%;
-  padding-bottom: 1%;
+  padding-bottom: 6rem;
+  padding-top: 6rem;
 }
 .news-list-last {
   padding-top: 0;
-  padding-bottom: 5%;
+  padding-bottom: 6rem;
 }
 .grey {
   background-color: #f0f0f0;
-  padding-bottom: 5%;
-  padding-top: 5%;
+  padding-bottom: 6rem;
+  padding-top: 6rem;
 }
 .content-area > h2,
 .content-area h1 {
@@ -394,24 +399,11 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .table .tbody {
   margin-top: 1%;
 }
-.table .aga-row.row {
-  margin-bottom: 1%;
-}
 .post-navigation {
   padding-bottom: 2%;
 }
 .post-navigation .nav-next a {
   float: right;
-}
-.collection-cta {
-  margin-bottom: 6%;
-  margin-top: 6%;
-}
-.aga-row.row {
-  margin-bottom: 5%;
-}
-.aga-row.row:last-child {
-  margin-bottom: 0;
 }
 .aga-features h2 {
   border-bottom: 2px solid #d3d3d3;
@@ -521,6 +513,7 @@ ul.news-list {
   border-top: 2px solid #444444;
   background-color: #232323;
   color: #999;
+  padding-top: 6rem;
 }
 .site-footer a {
   color: #999;
@@ -742,12 +735,6 @@ ul.news-list {
     width: 100%;
     margin: 0px auto;
   }
-  .aglogo {
-    margin: 20px;
-  }
-  .breadcrumb {
-    padding: 8px 30px;
-  }
   form.navbar-form.navbar-right {
     display: none;
   }
@@ -766,10 +753,10 @@ ul.news-list {
     font-size: 41px;
   }
   .aga-row .aga-box {
-    margin-bottom: 5%;
+    margin-bottom: 6rem;
   }
   .aga-row .aga-box .col-md-5 {
-    margin-bottom: 5%;
+    margin-bottom: 6rem;
   }
   .aga-row .aga-box h2 {
     font-size: 20px;
@@ -779,19 +766,19 @@ ul.news-list {
     padding: 2% 0;
   }
   .aga-row .entry-content {
-    margin-bottom: 5%;
+    margin-bottom: 6rem;
   }
   .aga-row .type {
-    margin-bottom: 5%;
+    margin-bottom: 6rem;
   }
   .aga-row .type:last-child {
     margin-bottom: 0;
   }
   .post-area.col-md-8 {
-    padding-bottom: 5%;
+    padding-bottom: 6rem;
   }
   .footer-widget {
-    margin-bottom: 5%;
+    margin-bottom: 6rem;
     min-height: inherit;
   }
   .col-xs-1,
@@ -845,10 +832,6 @@ ul.news-list {
     padding-left: 15px;
     padding-right: 15px;
   }
-  .container-fluid {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
 }
 @media (max-width: 480px) {
   body {
@@ -869,8 +852,15 @@ ul.news-list {
   p {
     font-size: 14px !important;
   }
-  .breadcrumb {
-    font-size: 12px;
+  .navbar {
+    min-height: 65px;
+  }
+  .navbar-toggle,
+  .aglogo {
+    margin: 15px;
+  }
+  .aglogo img {
+    width: 175px;
   }
   .aga-row .aga-box h2 {
     padding: 0 0 2%;

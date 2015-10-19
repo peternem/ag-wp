@@ -59,7 +59,8 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 @global-hover-link: #404040;
 
 @global-text-shadow: 4px 3px 10px #000000;
-@global-margin-bottom: 5%;
+@global-margin-bottom: 6rem;
+@global-margin-top: 6rem;
 @global-max-width: 1366px;
 
 // Opacity Mixin
@@ -128,16 +129,6 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 ----------------------------------------------------
 */
 
-.admin-bar .navbar {
-    //margin-top: 32px;
-}
-
-.nav-left {
-    // float: left;
-    // margin-left: 2%;
-    // overflow: visible;
-}
-
 .navbar-collapse.collapse {
 	.nav-left {
 		float: left;
@@ -190,7 +181,8 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 
 .aglogo {
     display: block;
-    margin-top: ((@navbar-height - @line-height-computed) / 2.25);
+    float: left;
+    margin: ((@navbar-height - @line-height-computed) / 2.25) ((@navbar-height - @line-height-computed) / 2.25) 0;
 }
 
 
@@ -229,7 +221,7 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
  * 
  * ****************************/
 .opt-jumpmenu {
-	margin: 10% 0;
+	margin: @global-margin-top auto 0;
 	text-align: center;
 	h4 {
 	    padding-bottom: 2%;
@@ -343,17 +335,10 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	}
 }
 
-.collection-cta h2 {
-    margin-bottom: 36px;
-}
-.collection-cta .btn-block {
-    margin: 0 auto;
-    max-width: 320px;
+.overview .aga-box h3, .overview .aga-box h4 {
+    height: inherit;
 }
 
-.collections > h1 {
-    text-align: center;
-}
 .options {
 	.slide-wp {
 		//background-color: #f4f4f4;
@@ -435,24 +420,33 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	}
 }
 
-.aga-row.row:last-child {
-    margin-bottom: 0;
+.collection-cta {
+	padding-bottom: @global-margin-bottom;
+	padding-top: @global-margin-top;
+	> h1 {
+	    text-align: center;
+	}
+	h2 {
+	    margin-bottom: 36px;
+	    margin-top: 0;
+	}
+	.btn-block {
+	    margin: 0 auto;
+	    max-width: 320px;
+	}
 }
 
-#news {
-    margin-bottom: 6%;
-}
 .white {
-	//padding-bottom: @global-margin-bottom;
-	padding-top: @global-margin-bottom;
+	padding-bottom: @global-margin-bottom;
+	padding-top: @global-margin-top;
 }
 
 .news-list {
 	padding-top: @global-margin-bottom;
 }
 .news-list {
-   padding-top: @global-margin-bottom;
-    padding-bottom: 1%;
+	padding-bottom: @global-margin-bottom;
+	padding-top: @global-margin-top;
 }
 .news-list-last {
 		padding-top: 0;
@@ -464,6 +458,7 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	padding-bottom: @global-margin-bottom;
 	padding-top: @global-margin-bottom;
 }
+
 .content-area {
     > h2, h1 {
         margin: 0 0 2%;
@@ -507,9 +502,9 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	.tbody {
 	    margin-top: 1%;
 	}
-	.aga-row.row {
-	    margin-bottom: 1%;
-	}	
+	// .aga-row.row {
+	    // margin-bottom: 1%;
+	// }	
 }
 
 .post-navigation {
@@ -519,17 +514,10 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
     }
 }
 
-.collection-cta {
-    margin-bottom: 6%;
-    margin-top: 6%;
-}
-.aga-row.row {
-    margin-bottom: @global-margin-bottom;
-}
 
-.aga-row.row:last-child {
-    margin-bottom: 0;
-}
+// .aga-row.row {
+    // margin-bottom: @global-margin-bottom;
+// }
 
 .aga-features {
 	h2 {
@@ -661,6 +649,7 @@ ul.news-list {
     border-top: @global-border-size solid #444;
     background-color: #232323;
     color:#999;
+	padding-top: @global-margin-top;
 	a {
 		color:#999;
 		&:hover {
@@ -955,13 +944,6 @@ ul.news-list {
     	width: 100%;
    	 	margin: 0px auto;
 	}
-	.aglogo {
-      margin: 20px;
-    }
-   	
-   	.breadcrumb {
-		padding: 8px 30px;
-	}
 
     form.navbar-form.navbar-right {
       display: none;
@@ -1036,10 +1018,6 @@ ul.news-list {
 		padding-left: 15px;
 		padding-right: 15px;
 	}
-	.container-fluid {
-		padding-left: 15px;
-		padding-right: 15px;
-	}
 }
 
 @media (max-width: 480px) {
@@ -1059,8 +1037,15 @@ ul.news-list {
 	p {
 		font-size: 14px !important;
 	}
-	.breadcrumb {
-		font-size: 12px;
+	
+	.navbar {
+	    min-height: 65px;
+	}
+	.navbar-toggle, .aglogo {
+		margin:15px;
+	}
+	.aglogo img {
+	    width: 175px;
 	}
     .aga-row {
     	.aga-box {

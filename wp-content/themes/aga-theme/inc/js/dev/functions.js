@@ -1,5 +1,3 @@
-
-
 // Bootstrap specific functions and styling
 jQuery(document).ready(function(){
 	
@@ -19,15 +17,9 @@ jQuery(document).ready(function(){
 	jQuery( 'table#wp-calendar' ).addClass( 'table table-striped');
 
 	jQuery( '#submit, .tagcloud, button[type=submit], .comment-reply-link, .widget_rss ul, .postform, table#wp-calendar' ).show( "fast" );
-
-});
-
-
-jQuery(document).ready(function() {	
 	
 	jQuery(function() {
 		jQuery('.pop').click(function (e) {
-	
 			jQuery('#imagemodal .imagepreview').attr('src', jQuery(this).attr('data-img-url'));
 			jQuery('#imagemodal .modal-title').html(jQuery(this).attr('data-img-alt'));
 			jQuery('#imagemodal').modal('show');  
@@ -48,6 +40,7 @@ jQuery(document).ready(function() {
 		jQuery('html, body').animate({scrollTop : 0},800);
 		return false;
 	});
+	
 	jQuery(function() {
 		jQuery('.carousel-caption a[href*=#]:not([href=#]), .jumbo-caption a[href*=#]:not([href=#])').click(function() {
 		    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -75,5 +68,3 @@ jQuery(document).ready(function() {
 		});
 	});
 });
-
-

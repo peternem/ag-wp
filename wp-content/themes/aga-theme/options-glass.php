@@ -20,7 +20,7 @@
 						$description = get_sub_field('description');
 						?>
 						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 slides zoom">
-							<a href="#" class="pop" title="Popup" data-img-alt="<?php echo $label; ?>" data-img-url="<?php echo $image['url']; ?>" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-expand" alt="Popup"></i></a>
+							<a href="#" class="pop" title="Popup" data-img-alt="<?php echo $label; ?>" data-img-url="<?php echo $image['url']; ?>" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-expand"></i></a>
 							<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $label; ?>" />
 							<div class="acf-label"><?php echo $label; ?></div>
 					    	<div class="acf-desc"><?php echo $description; ?></div>
@@ -49,7 +49,7 @@
 					$description = get_sub_field('description');
 					?>
 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 slides zoom">
-						<a href="#" class="pop" title="Popup" data-img-alt="<?php echo $label; ?>" data-img-url="<?php echo $image['url']; ?>" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-expand" alt="Popup"></i></a>
+						<a href="#" class="pop" title="Popup" data-img-alt="<?php echo $label; ?>" data-img-url="<?php echo $image['url']; ?>" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-expand"></i></a>
 						<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
 						<div class="acf-label"><?php echo $label; ?></div>
 					    <div class="acf-desc"><?php echo $description; ?></div>
@@ -83,7 +83,7 @@
 					$description = get_sub_field('description');
 					?>
 					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 slides zoom">
-						<a href="#" class="pop" title="Popup" data-img-alt="<?php echo $label; ?>" data-img-url="<?php echo $image['url']; ?>" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-expand" alt="Popup"></i></a>
+						<a href="#" class="pop" title="Popup" data-img-alt="<?php echo $label; ?>" data-img-url="<?php echo $image['url']; ?>" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-expand"></i></a>
 						<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
 						<div class="acf-label"><?php echo $label; ?></div>
 					    <div class="acf-desc"><?php echo $description; ?></div>
@@ -115,7 +115,7 @@
 				$description = get_sub_field('description');
 				?>
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 slides zoom">
-					<a href="#" class="pop" title="Popup" data-img-alt="<?php echo $label; ?>" data-img-url="<?php echo $image['url']; ?>" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-expand" alt="Popup"></i></a>
+					<a href="#" class="pop" title="Popup" data-img-alt="<?php echo $label; ?>" data-img-url="<?php echo $image['url']; ?>" data-toggle="modal" data-target=".bs-example-modal-lg"><i class="fa fa-expand"></i></a>
 					<img class="img-responsive aga-img" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />
 					<div class="acf-label"><?php echo $label; ?></div>
 					<div class="acf-desc"><?php echo $description; ?></div>
@@ -127,6 +127,5 @@
 			<?php endif; ?>   
 			</div>
         </div>
-        <!-- Modal -->
 
         

@@ -14,7 +14,7 @@
 	// If we made it this far we must have widgets.
 	?>
 
-	<div class="footer-widget-area">
+<!-- 	<div class="footer-widget-area"></div> -->
 	    <nav role="navigation" class="col-md-3 footer-widget">
 	        <h3 class="widgettitle">Agalite Quick Links</h3>
             <?php sparkling_footer_links(); ?>
@@ -36,4 +36,4 @@
 			<?php dynamic_sidebar( 'footer-widget-3' ); ?>
 		</div><!-- .widget-area .third -->
 		<?php endif; ?>
-	</div>
+	

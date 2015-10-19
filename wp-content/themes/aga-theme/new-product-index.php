@@ -1,7 +1,7 @@
-<!-- Example row of columns -->
-    <!-- <h2>The Collections</h2> -->
-    <div class="aga-row row max-width"> 
-            <section class="col-md-4 aga-box">
+<!-- new-product -->
+<h1 class="text-center">News and Promotions</h1>
+<div class="aga-row row max-width"> 
+	<article class="col-md-4 aga-box">
                 <?php 
                 $argsc = array(
                 		'post_type' 		=> 'post',
@@ -10,7 +10,6 @@
                 		'order'             => 'DESC',
                 		'post_status' 		=> 'publish',
                 );
-                
                 $my_query = new WP_Query($argsc);
                     while($my_query->have_posts()){
                         $my_query->the_post();
@@ -28,8 +27,8 @@
                 </div>
                     <?php   } ?>
                     <?php wp_reset_postdata(); ?>
-            </section>
-            <section class="col-sm-4 col-md-4 aga-box">
+            </article>
+            <article class="col-sm-4 col-md-4 aga-box">
                 <h2>News</h2>
                 <ul class="news-list">
                
@@ -41,14 +40,10 @@
 						'order'             => 'ASC',
 						'post_status' 		=> 'publish',
 	            	);
-		          
-		            
 		            $my_query = new WP_Query($args);
-		            
 		            while($my_query->have_posts()) : $my_query->the_post(); ?>
 						<li>
 							<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-		        				<?php //the_date('F Y', '<span class="post-date">', '</span><br/>'); ?>
 		        				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 		        				
 							<?php  
@@ -58,12 +53,11 @@
 	       					</article>
 	       				</li>
 					<?php endwhile; ?>
-					 
                 </ul>		
 					<?php  wp_reset_postdata(); ?>
 					 <p><a class="btn btn-primary btn-sm" href="/ag-news/" role="button">More News <i class="fa fa-angle-double-right"></i></a></p>
-            </section>
-            <section class="col-md-4 aga-box">
+            </article>
+            <article class="col-md-4 aga-box">
                      <?php 
 			$argsy = array(
 				'post_type' 		=> 'post',
@@ -89,5 +83,6 @@
         </div>
             <?php   } ?>
             <?php wp_reset_postdata(); ?>
-            </section>  
+            </article>  
     </div>
+<!-- end new-product -->

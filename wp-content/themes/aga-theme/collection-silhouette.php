@@ -1,39 +1,34 @@
    <!-- Example row of columns -->
 <section id="post-<?php the_ID(); ?>" <?php post_class('container-fluid white'); ?>>
-        <div class="post-inner-content aga-row row">
-    	    <article class="col-sm-6 col-md-6 col-lg-6">
-        		<header class="entry-header page-header">
-        			<h1 class="entry-title "><?php the_title(); ?></h1>
-        			<?php if(function_exists('the_subtitle')) { ?>
-			        <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
-			        <?php } ?> 
-			      
-        		</header><!-- .entry-header -->
-                <div class="entry-content">
-                <?php the_content(); ?> 
-                              
-                </div>
-                 <footer class="entry-meta">
+	<div class="post-inner-content aga-row row">
+		<article class="col-sm-12 col-md-12 col-lg-6">
+			<header class="entry-header page-header">
+				<h1 class="entry-title"><?php the_title(); ?></h1>
+				<?php if(function_exists('the_subtitle')) { ?>
+        		<p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
+				<?php } ?> 
+        	</header>
+			<div class="entry-content">
+				<?php the_content(); ?> 
+			</div>
+			<footer class="entry-meta">
                 <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span>' ); ?>
-                </footer><!-- .entry-meta -->
-                <?php if( have_rows('options_jump_menu') ): ?>
-					<div class="opt-jumpmenu">
-					<?php
-							if(get_field('options_menu_label')) {
-								echo '<header><h4>' . get_field('options_menu_label') . '</h4></header>';
-							}
-							?>	
-					<?php while( have_rows('options_jump_menu') ): the_row(); 
-						// vars
-						$button_link = get_sub_field('button_link');
-						$button_name = get_sub_field('button_name');
-						//$description = get_sub_field('description');
-						?>
-
-							<a href="<?php echo $button_link; ?>" class="btn btn-primary"><?php echo $button_name; ?></a>
-					<?php endwhile; ?>
-					</div>
-				<?php endif; ?> 
+			</footer>
+			<?php if( have_rows('options_jump_menu') ): ?>
+			<div class="opt-jumpmenu">
+			<?php
+			if(get_field('options_menu_label')) {
+				echo '<header><h4>' . get_field('options_menu_label') . '</h4></header>';
+			}
+			?>	
+			<?php while( have_rows('options_jump_menu') ): the_row(); 
+			$button_link = get_sub_field('button_link');
+			$button_name = get_sub_field('button_name');
+			?>
+				<a href="<?php echo $button_link; ?>" class="btn btn-primary"><?php echo $button_name; ?></a>
+			<?php endwhile; ?>
+			</div>
+			<?php endif; ?> 
                 <?php
                     wp_link_pages( array(
                         'before'            => '<div class="page-links">'.__( 'Pages:', 'sparkling' ),
@@ -44,13 +39,13 @@
                         'echo'              => 1
                     ) );
                 ?>
-                
-    		</article>
-    		<article class="col-sm-6 col-md-6 col-lg-6 aga-features">
-    		    <?php the_post_thumbnail( 'tab-square', array( 'class' => 'single-featured img-responsive aga-img' )); ?>  		
-                </article>
-        	
-    	</div>
+		</article>
+		<article class="hidden-xs hidden-sm hidden-md col-lg-6 aga-features">
+			<?php the_post_thumbnail( 'tab-square', array( 'class' => 'single-featured img-responsive aga-img' )); ?>  		
+		</article>	
+    </div>
+</section>
+<section class="container-fluid grey">
     <div id="options" class="aga-row row"> 
 			<?php 
 			$idObj1 = get_category_by_slug('silhouette-slider-collection'); 
@@ -74,9 +69,6 @@
             $the_query = new WP_Query( $args ); ?>
             
             <?php if ( $the_query->have_posts() ) : ?>
-            
-            <!-- pagination here -->
-            
             <!-- the loop -->
             <?php $postx_counter = -1; ?>
             <?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
@@ -88,29 +80,21 @@
                         <div class="col-md-12">
                             <a class="" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('tab-square', array( 'class' => 'aga-img img-responsive' )); ?></a> 
                         </div>
-                        <div class="col-md-12">
-                           <?php if(function_exists('the_subtitle')) { ?>
-                            <p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
-                            <?php } ?> 
-                            <?php //the_excerpt(); ?>
-                            <p><a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
-                            <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<p><span class="edit-link"><i class="fa fa-pencil-square-o"></i>', '</span></p>' ); ?>
-                            <!-- <p>Rank: <?php the_field('start_date'); ?></p> -->
-                        </div>
+						<div class="col-md-12">		
+							<div class="collection-wp">	
+								<?php if(function_exists('the_subtitle')) { ?>
+								<p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
+								<?php } ?>
+								<footer>
+									<a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a>
+									<?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<div class="edit-link">', '<i class="fa fa-pencil-square-o"></i></div>' ); ?>
+								</footer>
+							</div>
+						</div>
                     </div>
                 </article>
             <?php endwhile; endif;?>
             <!-- end of the loop -->
-            
-            <!-- pagination here -->
-            
             <?php wp_reset_postdata(); ?>
-            
     </div>
-    	<div id="learnMore" class="aga-row row"> 
-	    	<div class="col-md-12 text-center collection-cta">
-	    		<h2>Want to Learn More About Our <?php echo the_field('collection_cta_tagline'); ?>?</h2>
-	    		<a class="btn btn-primary btn-lg btn-block" href="<?php echo the_field('collection_hot_link'); ?>"><?php echo the_field('collection_hot_link_label'); ?></a>    		
-	    	</div>
-	    </div>
 </section>

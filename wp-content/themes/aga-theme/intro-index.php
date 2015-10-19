@@ -1,7 +1,6 @@
-<!-- Example row of columns -->
-<!-- <h2>The Collections</h2> -->
+<!-- intro-index -->
 <div class="aga-row row"> 
-    <section class="col-sm-8 col-md-8 col-lg-8 aga-box">
+    <article class="col-sm-8 col-md-8 col-lg-8 aga-box">
         <?php $my_query = new WP_Query('name=welcome-to-agalite');
             while($my_query->have_posts()){
                 $my_query->the_post();
@@ -22,8 +21,8 @@
             </footer><!-- .entry-meta -->
         </div>
             <?php   } ?>
-    </section>        
-    <section class="col-sm-4 col-md-4 col-lg-4 aga-box">
+    </article>        
+    <article class="col-sm-4 col-md-4 col-lg-4 aga-box">
                 <?php $my_query = new WP_Query('name=product-gallery');
                     while($my_query->have_posts()){
                         $my_query->the_post();
@@ -40,5 +39,6 @@
                 </div>
                     <?php   } ?>
                     <?php wp_reset_postdata(); ?>       
-    </section>          
+    </article>          
 </div>
+<!-- end intro-index -->

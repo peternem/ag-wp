@@ -1,5 +1,5 @@
    <!-- Example row of columns -->
-    <h1>The Collections</h1>
+    <h1 class="text-center">The Collections</h1>
     <div class="aga-row row"> 
 			<?php 
 			$category_id = get_cat_ID('collections');
