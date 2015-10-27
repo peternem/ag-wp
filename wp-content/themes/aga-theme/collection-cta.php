@@ -3,7 +3,7 @@
 <section class="container-fluid collection-cta">
 	<div id="learnMore" class="aga-row row">
 		<div class="col-md-12 text-center">
- 			<h2>Want to Learn More About Our <?php echo the_field('collection_cta_tagline'); ?>?</h2>
+ 			<h2><?php echo the_field('collection_cta_tagline'); ?>?</h2>
 			<a class="btn btn-primary btn-lg btn-block" href="<?php echo the_field('collection_hot_link'); ?>"><?php echo the_field('collection_hot_link_label'); ?></a>    		
 		</div>
 	</div>		

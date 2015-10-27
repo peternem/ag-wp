@@ -318,29 +318,6 @@ require get_template_directory() . '/inc/navwalker.php';
 
 // 
 
-/*******************
- *
- * Add a custom user role
- *
- ********************/
- 
-$result = add_role( 'dealer', __('Dealer' ), 
-		array(	 
-				'read' => false, // true allows this capability
-				'edit_posts' => false, // Allows user to edit their own posts
-				'edit_pages' => false, // Allows user to edit pages
-				'edit_others_posts' => false, // Allows user to edit others posts not just their own
-				'create_posts' => false, // Allows user to create new posts
-				'manage_categories' => false, // Allows user to manage post categories
-				'publish_posts' => false, // Allows the user to publish, otherwise posts stays in draft mode
-				'edit_themes' => false, // false denies this capability. User can’t edit your theme
-				'install_plugins' => false, // User cant add new plugins
-				'update_plugin' => false, // User can’t update any plugins
-				'update_core' => false // user cant perform core updates	 
-		)
-		 
-);
-
 
 /*******************
  *
@@ -403,3 +380,20 @@ function my_taxonomies_news() {
 	register_taxonomy( 'news_category', 'news', $args );
 }
 add_action( 'init', 'my_taxonomies_news', 0 );
+
+/**
+ * WordPress function for redirecting users on login based on user role
+ */
+function my_login_redirect( $url, $request, $user ){
+	if( $user && is_object( $user ) && is_a( $user, 'WP_User' ) ) {
+		if( $user->has_cap( 'administrator' ) ) {
+			$url = admin_url();
+		} elseif ( $user->has_cap('dealer') ) {
+			$url = home_url('agalite-dealer-tools');
+		} else {
+			$url = home_url('/');
+		}
+	}
+	return $url;
+}
+add_filter('login_redirect', 'my_login_redirect', 10, 3 );

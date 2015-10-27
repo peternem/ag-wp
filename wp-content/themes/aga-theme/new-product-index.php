@@ -37,7 +37,7 @@
 						'post_type' 		=> 'news',
 						'posts_per_page' 	=>10,
 						'taxonomy'  	=> 'news_category',
-						'order'             => 'ASC',
+						'order'             => 'DESC',
 						'post_status' 		=> 'publish',
 	            	);
 		            $my_query = new WP_Query($args);
@@ -55,7 +55,7 @@
 					<?php endwhile; ?>
                 </ul>		
 					<?php  wp_reset_postdata(); ?>
-					 <p><a class="btn btn-primary btn-sm" href="/ag-news/" role="button">More News <i class="fa fa-angle-double-right"></i></a></p>
+					 <p><a class="btn btn-primary btn-sm" href="/agalite-news/" role="button">More News <i class="fa fa-angle-double-right"></i></a></p>
             </article>
             <article class="col-md-4 aga-box">
                      <?php 
@@ -70,7 +70,7 @@
             while($my_query->have_posts()){
                 $my_query->the_post();
         ?>
-        <h2>Latest Promotions</h2>
+        <h2>Featured Products</h2>
         <div class="row">
             <div class="col-md-12">
                 <?php the_post_thumbnail('tab-rectangle', array( 'class' => 'aga-img img-responsive' )); ?> 

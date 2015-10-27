@@ -14,10 +14,10 @@ get_header(); ?>
 	<?php
 global $current_user; 
 get_currentuserinfo(); 
-if ( user_can( $current_user, "dealer_tools" ) || user_can( $current_user, "administrator") ){  ?>
+if ( user_can( $current_user, "dealer" ) || user_can( $current_user, "administrator") ){  ?>
 <section id="primary" class="container-fluid news-list">
 	<div class="post-inner-content aga-row row">
-	<article class="col-lg-7">
+	<article class="col-lg-7 aga-content">
 	<header class="entry-header page-header">
 	<h1 class="entry-title"><?php the_title(); ?></h1>
        		<?php if(function_exists('the_subtitle')) {	?>
@@ -210,10 +210,20 @@ if ( user_can( $current_user, "dealer_tools" ) || user_can( $current_user, "admi
 				<p class="subtitle"><strong>You Need To Be Logged into the site inorder to gain access.</strong></p>
 			</header>
 			<div class="">
-				<p>To enter, please login by clicking on the login button below.</p>
+				<p>Returning users please login below. First time users, skip to Dealer Request Form.</p>
 				<p><a class="btn btn-primary btn-sm" href="<?php echo wp_login_url( get_permalink() ); ?>" role="button">Login <i class="fa fa-angle-double-right"></i></a>
-				<p>Interested in becoming a distributor, gain access to the Agalite dealer tools page(s) or don't see your listing on the dealer locator?</p>
-				<p>Contact Your Sales Rep!</p>
+				<br/><br/><br/>
+				<h3>Dealer Request Form</h3>
+				<p>Please fill-out this quick request form for:</p>
+				<ul>
+					<li>Account setup to gain access to Dealers Tools Login</li>
+					<li>Information on becoming an Agalite dealer</li>
+					<li>Additional information that you have not found on this site</li>
+					<li>Recommending changes to this site or Agalite products</li>
+					<li>Giving general feedback</li>
+				</ul>
+				<br/>
+				<p><a href="/dealer-request-form/" class="btn btn-primary btn-sm">Dealer Request Form <i class="fa fa-angle-double-right"></i></a></p>
 			</div>
 		</article>
 		<div class="col-md-5 aga-box">

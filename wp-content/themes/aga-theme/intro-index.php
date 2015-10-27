@@ -23,22 +23,22 @@
             <?php   } ?>
     </article>        
     <article class="col-sm-4 col-md-4 col-lg-4 aga-box">
-                <?php $my_query = new WP_Query('name=product-gallery');
+                <?php $my_query = new WP_Query('name=product-image-gallery');
                     while($my_query->have_posts()){
                         $my_query->the_post();
                 ?>
-                <h2><?php the_title() ?></h2>
+                <h2><a href="/product-gallery/" role="button"><?php the_title() ?></a></h2>
                 <div class="row">
                     <div class="col-md-12">
-                        <?php the_post_thumbnail('tab-rectangle', array( 'class' => 'aga-img img-responsive' )); ?> 
+                        <a href="/product-gallery/" role="button"><?php the_post_thumbnail('tab-rectangle', array( 'class' => 'aga-img img-responsive' )); ?></a> 
                     </div>
                     <div class="col-md-12">
                         <?php the_excerpt(); ?>
-                        <p><a class="btn btn-primary btn-sm" href="<?php the_permalink(); ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
+                        <p><a class="btn btn-primary btn-sm" href="/product-gallery/" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
                     </div>
                 </div>
                     <?php   } ?>
-                    <?php wp_reset_postdata(); ?>       
+                    <?php wp_reset_postdata(); ?> 
     </article>          
 </div>
 <!-- end intro-index -->

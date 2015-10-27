@@ -1,7 +1,50 @@
 // Bootstrap specific functions and styling
 jQuery(document).ready(function(){
+	function wpex_staticheader() {
+		var header_height = jQuery('.navbar').outerHeight();
+		jQuery('#page').css({
+			paddingTop: header_height
+		});	
+		
+		if (jQuery('#wpadminbar').length) {
+			var admin_height = jQuery('#wpadminbar').outerHeight();
+			jQuery('.navbar').css({
+				position: 'fixed',
+				top: admin_height
+			});
+	
+		}
+	}
+	
+	wpex_staticheader();
+	
+	jQuery(window).resize(function () {
+		wpex_staticheader();
+	});
+	
+	jQuery(window).bind('orientationchange', function(event) {
+		var header_height = jQuery('.navbar').outerHeight();
+		jQuery('#page').css({
+			paddingTop: header_height
+		});
+		
+		if (jQuery('#wpadminbar').length) {
+			var admin_height = jQuery('#wpadminbar').outerHeight();
+			jQuery('.navbar').css({
+				position: 'fixed',
+				top: admin_height
+			});
+	
+		}
+	});
+		
 	
 	// here for each comment reply link of WordPress
+	jQuery( '.fscf-div-clear .fscf-div-field-left' ).addClass( 'form-group' );
+	jQuery( '.fscf-div-field .fscf-input-text' ).addClass( 'form-control' );
+	jQuery( '.fscf-div-field .fscf-input-textarea' ).addClass( 'form-control' );
+	
+	
 	jQuery( '.comment-reply-link' ).addClass( 'btn btn-sm btn-default' );
 
 	// here for the submit button of the comment reply form

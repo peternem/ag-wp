@@ -52,48 +52,67 @@
 </section>
 <!-- end -content-single top -->
 <!-- Door Options content-single -->
-<section class="container-fluid grey">
+
         <?php 
         // Loads all options for each collection
         $cat_name = "";
         if (is_single('estate-swing-and-sliding-doors') || (is_single('estate-transcend-collection'))) {
+        	echo '<section class="container-fluid grey">';
+        	echo '<h2 class="text-center section-hdr">Estate Collection Options</h2>';
         	echo '<div class="collection-options">';
         	get_template_part('collection-options-estate');
         	echo "</div>";
+        	echo "</section>";
         }
 
         if (is_single('accent-collection')) {
+        	echo '<section class="container-fluid grey">';
+        	echo '<h2 class="text-center section-hdr">Accent Collection Options</h2>';
         	echo '<div class="collection-options">';
         	get_template_part('collection-options-estate');
         	echo "</div>";
+        	echo "</section>";
         }
 
         if (is_single('silhouette-elite-collection') || (is_single('silhouette-slider-collection'))) {
+        	echo '<section class="container-fluid grey">';
+        	echo '<h2 class="text-center section-hdr">Silhouette Collection Options</h2>';
         	echo '<div class="collection-options">';
         	get_template_part('collection-options-estate');
         	echo "</div>";
+        	echo "</section>";
         }
         if (is_single('fresco-collection')) {
+        	echo '<section class="container-fluid grey">';
+        	echo '<h2 class="text-center section-hdr">Fresco Collection Options</h2>';
         	echo '<div class="collection-options">';
         	get_template_part('collection-options-estate');
         	echo "</div>";
+        	echo "</section>";
         }
         
         if (is_single('vision-collection')) {
+        	echo '<section class="container-fluid grey">';
+        	echo '<h2 class="text-center section-hdr">Vision Collection Options</h2>';
         	echo '<div class="collection-options">';
         	get_template_part('collection-options-estate');
         	echo "</div>";
+        	echo "</section>";
         }
         
         if (is_single('agalite-hardware')) {
+        	echo '<section class="container-fluid grey">';
+        	echo '<h2 class="text-center section-hdr">Hardware Collection Options</h2>';
         	echo '<div class="collection-options">';
         	get_template_part('hardware-options');
         	echo "</div>";
+        	echo "</section>";
         }
         ?>
     	<?php  
     	// Loads all idividual items for each collection option
-    	if (has_tag("hinges")){
+    	echo '<section class="container-fluid grey">';
+    	if (has_tag("hinges")){    		
     		get_template_part('options-hinge');
     	}
     	if (has_tag("handle-pull")){
@@ -151,8 +170,9 @@
 	    if (has_tag("hardware-kpct")){
 	    	get_template_part('options-hardware-kpct');
 	    }
-	    if (has_tag("light-duty-hinges")){
+	    if (has_tag("light-duty-hinges")){;
 	    	get_template_part('options-hardware-lt-hinges');
+	    	
 	    }	    
+	    echo "</section>";
     	?>
-</section>
