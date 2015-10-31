@@ -85,6 +85,28 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 .entry-content .slickr-flickr-gallery img.hover {
     background-color:  #d3d3d3;
 }
+
+.entry-content .slickr-flickr-gallery { padding:0;}
+
+body #lightGallery-action a {
+    font-size: 26px;
+    height: 32px;
+    left: auto;
+    line-height: 26px;
+    margin: 0 15px 0 0 !important;
+    width: 32px;
+}
+body #lightGallery-action a#lightGallery-prev::before, body #lightGallery-action a#lightGallery-next::after {
+    bottom: 3px;
+    left: 2px;
+    position: absolute;
+    right: 2px;
+}
+body #lightGallery-action a.cLthumb::after {
+    bottom: 3px;
+    font-size: 26px;
+    left: 3px;
+}
 .install h2 {
     border-bottom: 2px solid @global-border-color;
     padding-bottom: 17px;
@@ -136,32 +158,12 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 ----------------------------------------------------
 */
 
-.admin-bar .navbar-fixed-top {
-   // padding-top: 31px;
-}
-
-.navbar-collapse.collapse {
-	.nav-left {
-		float: left;
-	    margin-left: 2%;
-	    overflow: visible;
-	}
-}
-
 .navbar-form {
 	border: none;
 }
 
-.navbar-collapse.collapse.in{
-	.navbar-nav {
-	  margin: 14.25px -15px;
-	}
-	.nav-left {
-		width: 100%;
-		float: left;
-	    margin: 0;
-	    overflow: visible;
-	}
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+    max-height: 380px;
 }
 
 .navbar-collapse.collapse.in {
@@ -250,6 +252,13 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 	}
 	.btn.btn-primary {
 	    margin: 0 10px 10px;
+	}
+	&.glass {
+		.btn {
+		    max-width: 240px;
+		    min-width: 240px;
+		    overflow: hidden;
+		}
 	}	
 }
 
@@ -331,6 +340,58 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
     background-color: @global-ag-color-3;
 }
 
+
+// .carousel-fade .carousel-inner .item {
+	// opacity: 0;
+	// transition-property: opacity;
+// }
+// 
+// .carousel-fade .carousel-inner .active {
+	// opacity: 1;
+// }
+// 
+// .carousel-fade .carousel-inner .active.left,
+// .carousel-fade .carousel-inner .active.right {
+	// left: 0;
+	// opacity: 0;
+	// z-index: 1;
+// }
+// 
+// .carousel-fade .carousel-inner .next.left,
+// .carousel-fade .carousel-inner .prev.right {
+  	// opacity: 1;
+// }
+// 
+// .carousel-fade .carousel-control {
+  	// z-index: 2;
+// }
+
+/*
+WHAT IS NEW IN 3.3: "Added transforms to improve carousel performance in modern browsers."
+now override the 3.3 new styles for modern browsers & apply opacity
+*/
+// @media all and (transform-3d), (-webkit-transform-3d) {
+    // .carousel-fade .carousel-inner > .item.next,
+    // .carousel-fade .carousel-inner > .item.active.right {
+      // opacity: 0;
+      // -webkit-transform: translate3d(0, 0, 0);
+              // transform: translate3d(0, 0, 0);
+    // }
+    // .carousel-fade .carousel-inner > .item.prev,
+    // .carousel-fade .carousel-inner > .item.active.left {
+      // opacity: 0;
+      // -webkit-transform: translate3d(0, 0, 0);
+              // transform: translate3d(0, 0, 0);
+    // }
+    // .carousel-fade .carousel-inner > .item.next.left,
+    // .carousel-fade .carousel-inner > .item.prev.right,
+    // .carousel-fade .carousel-inner > .item.active {
+      // opacity: 1;
+      // -webkit-transform: translate3d(0, 0, 0);
+              // transform: translate3d(0, 0, 0);
+    // }
+// }
+
 /***************************************************
  * Content Area
  ****************************************************/ 
@@ -368,6 +429,12 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 }
 
 .options {
+	.col-md-12.type {
+	    margin-bottom: 5rem;
+	    &:last-child {
+		    margin-bottom: 0;
+		}
+	}
 	.slide-wp {
 		//background-color: #f4f4f4;
 	    height: 110px;
@@ -546,11 +613,6 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
     }
 }
 
-
-// .aga-row.row {
-    // margin-bottom: @global-margin-bottom;
-// }
-
 .aga-features {
 	h2 {
 	    border-bottom: @global-border-size solid @global-border-color;
@@ -706,7 +768,9 @@ ul.news-list {
         }
     }
 }
-
+.search .aga-row.row {
+    margin-bottom: 7rem;
+}
 .widget.widget_search {
     margin-bottom: 15%;
 }
@@ -1018,18 +1082,6 @@ ul.news-list {
 		}    	
     }
    
-    .collections {
-    	.aga-box {
-    		//min-height: 550px;
-    		&:nth-child(2n+1){
-    			//clear:both;
-    		}
-    		&:nth-child(3n+1){
-    			//clear:inherit;
-    		}
-    		
-    	}
-    }
 	.aga-row {
 	    .aga-box {
 	        margin-bottom: @global-margin-bottom;
@@ -1070,16 +1122,34 @@ ul.news-list {
 	}
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 690px) {
 	#wpadminbar {
 	    position: fixed;
-	}	
+	}
+	.search .post-inner-content {
+	    margin-bottom: 5rem;
+	}
+	.opt-jumpmenu {
+	    margin: 6rem auto;
+	}
+	p.excerpt {
+	    font-size: 14px;
+	}
 }
+
+@media (max-width: 600px) and (orientation: portrait)  {
+	.aga-box .collection-wp {
+	    p.excerpt {
+		    line-height: 22px;
+		}
+	}
+}
+
 
 
 @media (max-width: 480px) {
 	
-	body {
+	body, .dropdown-menu>li>a   {
 		font-size: 14px !important;
 	}
 	h1, .h1 {
@@ -1095,6 +1165,10 @@ ul.news-list {
 		font-size: 14px !important;
 	}
 	
+	.navbar .description {
+	    font-size: 10px;
+	    margin-left: 10px;
+	}
 	.navbar {
 	    min-height: 65px;
 	}
@@ -1103,6 +1177,9 @@ ul.news-list {
 	}
 	.aglogo img {
 	    width: 175px;
+	}
+	.aga-box:last-child {
+	    margin-bottom: 0;
 	}
     .aga-row {
     	.aga-box {
@@ -1200,6 +1277,15 @@ ul.news-list {
 	.aga-row .col-xs-6.aga-box, .col-xs-4.slides.zoom {
 	    width: 100%;
 	}
-
+	
+	body #lightGallery-slider .info {
+    	padding: 10px 15px;
+	}
+	body #lightGallery-slider .info .title {
+	    font-size: 10px;
+	}
+	body #lightGallery-slider .info .desc {
+	    font-size: 10px;
+	}
 }
 

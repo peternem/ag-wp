@@ -4,7 +4,7 @@
 ?>
     <!-- Carousel
     ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+    <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
       <!-- Indicators -->
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="item">
-          <img class="second-slide" src="/wp-content/uploads/2015/06/2A-Photo-SSE-3767.jpg" alt="Second slide">
+          <img class="second-slide" src="/wp-content/uploads/2015/10/ASD-5182-1920x1080.jpg" alt="Second slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>The Collections</h1>
@@ -32,26 +32,27 @@
             </div>
           </div>
         </div>
-         <div class="item">
-          <img class="third-slide" src="/wp-content/uploads/2015/10/ASD-5182-1920x1080.jpg" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>The Collections</h1>
-              <p>Agalite Offers Five Different Collections To Complement Any Bathroom Design</p>
-              <p><a class="btn btn-md btn-primary" href="#collections" role="button">Browse Gallery <i class="fa fa-angle-double-right"></i></a></p>
-            </div>
-          </div>
-        </div>
         <div class="item">
-          <img class="fourth-slide" src="/wp-content/uploads/2015/06/2B-Photo-SESD180-4564.jpg" alt="Forth slide">
+          <img class="fourth-slide" src="/wp-content/uploads/2015/06/2B-Photo-SESD180-4564.jpg" alt="Third slide">
           <div class="container">
             <div class="carousel-caption">
               <h1>Heavy Glass Hardware</h1>
               <p>Featuring 1/2" or 3/8" Frameless Heavy Glass Shower Doors Hardware</p>
-              <p><a class="btn btn-md btn-primary" href="#hardware" role="button">Browse Gallery <i class="fa fa-angle-double-right"></i></a></p>
+              <p><a class="btn btn-md btn-primary" href="/agalite-hardware/" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
             </div>
           </div>
         </div>
+         <div class="item">
+          <img class="third-slide" src="/wp-content/uploads/2015/06/2A-Photo-SSE-3767.jpg" alt="Fourth slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>The Collections</h1>
+              <p>Agalite Offers Five Different Collections To Complement Any Bathroom Design</p>
+              <p><a class="btn btn-md btn-primary" href="#collections" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
+            </div>
+          </div>
+        </div>
+        
       </div>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

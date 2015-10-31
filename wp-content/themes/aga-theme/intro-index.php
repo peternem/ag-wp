@@ -16,9 +16,8 @@
                 <?php } ?> 
                 <?php the_content(); ?>
             </div>
-            <footer class="col-md-12 aga-box entry-meta">
-                <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<i class="fa fa-pencil-square-o"></i><span class="edit-link">', '</span>' ); ?>
-            </footer><!-- .entry-meta -->
+            <?php edit_post_link( __( 'Edit Post', 'sparkling' ), '<p><span class="edit-link">', ' <i class="fa fa-pencil-square-o"></i></span></p>' ); ?>
+           
         </div>
             <?php   } ?>
     </article>        

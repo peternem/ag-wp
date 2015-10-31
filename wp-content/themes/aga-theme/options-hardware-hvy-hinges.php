@@ -1,7 +1,7 @@
 <?php if( have_rows('cozza_hvy_hinge_options') ): ?>
     <div class="post-inner-content aga-row row options">
 		<!-- cozza_hvy_hinge_options -->
-		<div id="cozza_hvy_hinge_options " class="col-md-12 type">
+		<div id="cozza_hvy_hinge_options" class="col-md-12 type">
 			<div class="row">
 				<div class="col-md-12">
 					<?php

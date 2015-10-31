@@ -25,13 +25,14 @@
 				if(get_field('options_menu_label')) {
 					echo '<header><h4>' . get_field('options_menu_label') . '</h4></header>';
 				}
-				?>	
-				<?php while( have_rows('options_jump_menu') ): the_row(); 
-				$button_link = get_sub_field('button_link');
-				$button_name = get_sub_field('button_name');
-				?>
-					<a href="<?php echo $button_link; ?>" class="btn btn-primary"><?php echo $button_name; ?></a>
-				<?php endwhile; ?>
+				
+				if(get_field('options_jump_menu')) {
+					while( have_rows('options_jump_menu') ): the_row(); 
+						$button_link = get_sub_field('button_link');
+						$button_name = get_sub_field('button_name'); ?>
+						<a href="<?php echo $button_link; ?>" class="btn btn-primary"><?php echo $button_name; ?></a>
+				<?php endwhile;
+				} ?>
 			</div>
 			<?php endif; ?> 
                 <?php

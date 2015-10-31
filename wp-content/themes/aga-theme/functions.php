@@ -237,6 +237,18 @@ require_once(get_template_directory() . '/inc/widgets/widget-popular-posts.php')
 
 add_filter( 'get_search_form', 'sparkling_wpsearch' );
 
+function my_login_logo_one() {
+	$imgUrl = "/wp-content/uploads/2015/10/agalite-logo-cs3.svg";
+	?>
+<style type="text/css"> 
+body.login div#login h1 a {
+	background-image: url("<?php echo $imgUrl; ?>");
+	background-size: 100% auto;
+    width: 275px;
+} 
+</style>
+ <?php 
+} add_action( 'login_enqueue_scripts', 'my_login_logo_one' );
 /**
  * This function removes inline styles set by WordPress gallery.
  */
@@ -260,8 +272,8 @@ function sparkling_scripts() {
   	wp_enqueue_style( 'sparkling-fonts' );
 
   	// Add Modernizr for better HTML5 and CSS3 support
-  	wp_enqueue_script('sparkling-modernizr', get_template_directory_uri().'/inc/js/modernizr.min.js', array('jquery'), $ver , true);
-	wp_enqueue_script('sparkling-bootstrapjs', get_template_directory_uri().'/inc/js/bootstrap.min.js', array('jquery'), $ver, true);
+  	wp_enqueue_script('sparkling-modernizr', get_template_directory_uri().'/inc/js/modernizr.min.js', array('jquery'), $ver , false);
+	wp_enqueue_script('sparkling-bootstrapjs', get_template_directory_uri().'/inc/js/bootstrap.min.js', array('jquery'), $ver, false);
 	wp_enqueue_script( 'sparkling-functions', get_template_directory_uri() . '/inc/js/dev/functions.js', array('jquery'), $ver, true);
 	// This one is for accessibility
   	//wp_enqueue_script( 'sparkling-skip-link-focus-fix', get_template_directory_uri() . '/inc/js/skip-link-focus-fix.js', array(), '20140222', true );

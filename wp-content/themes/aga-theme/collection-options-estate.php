@@ -28,6 +28,7 @@ $args = array(
 	'post_type' => 'post',
 	'post_count' => -1,
 	'category_name' => $cat_name,
+	'post__not_in' => $sticky,
 	'meta_key'          => 'option_rank',
 	'orderby'           => 'meta_value_num',
 	'order'             => 'ASC'

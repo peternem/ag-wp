@@ -25,7 +25,7 @@ get_header(); ?>
 			</div>
 			<?php endwhile; ?>
 
-			<?php sparkling_paging_nav(); ?>
+			<?php //sparkling_paging_nav(); ?>
 
 		<?php else : ?>
 

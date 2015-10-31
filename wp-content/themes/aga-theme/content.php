@@ -5,7 +5,7 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="blog-item-wrap col-md-8">
+	<div class="blog-item-wrap col-sm-8 col-md-8">
 				
 		<div class="post-inner-content">
 			<header class="entry-header page-header">
@@ -42,7 +42,7 @@
 		</div>
 		
 	</div>
-	<div class="col-md-4">
+	<div class="col-sm-4" col-md-4">
 		<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>" >
 			 	<?php the_post_thumbnail( 'tab-rectangle', array( 'class' => 'img-responsive single-featured aga-img' )); ?>
 			</a>

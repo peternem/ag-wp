@@ -28,9 +28,12 @@
 </head>
 
 <body <?php body_class(); ?>>
-
-
-
+<?php 
+$host = "agalite.com"; // Your Sub domain
+if ($_SERVER['HTTP_HOST'] == $host) {
+	include_once("analyticstracking.php");
+}
+?>
 <div id="page" class="hfeed site">
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
