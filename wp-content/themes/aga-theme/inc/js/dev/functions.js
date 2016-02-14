@@ -43,6 +43,7 @@ jQuery(document).ready(function(){
 	jQuery( '.fscf-div-clear .fscf-div-field-left' ).addClass( 'form-group' );
 	jQuery( '.fscf-div-field .fscf-input-text' ).addClass( 'form-control' );
 	jQuery( '.fscf-div-field .fscf-input-textarea' ).addClass( 'form-control' );
+	//jQuery( '.fscf-div-field .fscf-div-submit' ).addClass( 'btn btn-primary' );
 	
 	
 	jQuery( '.comment-reply-link' ).addClass( 'btn btn-sm btn-default' );

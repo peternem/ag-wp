@@ -144,15 +144,15 @@ get_header(); ?>
 							<?php
 							$acf_option = 'silhouette_sd_install_docs';
 							$acf_label_si = 'silhouette_sd_label';
-							if( have_rows($acf_option) ): ?>
+							if( have_rows('silhouette_sd_install_docs') ): ?>
 									<!-- hardware_panel_clamp_options -->
 										<?php
-										if(get_field($acf_label_si)) {
-											echo '<h3>' . get_field($acf_label_si) . '</h3>';
+										if(get_field('silhouette_sd_label')) {
+											echo '<h3>' . get_field('silhouette_sd_label') . '</h3>';
 										}
 										?>
 										<ul class="doc-list">
-										<?php while( have_rows($acf_option) ): the_row(); 
+										<?php while( have_rows('silhouette_sd_install_docs') ): the_row(); 
 										$file_url = get_sub_field('file');
 										$label = get_sub_field('label');
 										$description = get_sub_field('description');
@@ -168,27 +168,25 @@ get_header(); ?>
 							<?php endif; ?>
 				</article>
 				<article class="col-lg-6"> 
-							<!-- ilhouette_se_install_docs -->
+							<!-- silhouette_se_install_docs -->
 							<?php
-							$acf_option_s = 'silhouette_se_install_docs';
-							$acf_label_s = 'silhouette_se_label';
-							if( have_rows($acf_option_s) ): ?>
+							if( have_rows('silhouette_se_install_docs') ): ?>
 									<!-- hardware_panel_clamp_options -->
 										<?php
-										if(get_field($acf_label_s)) {
-											echo '<h3>' . get_field($acf_label_s) . '</h3>';
+										if(get_field('silhouette_se_label')) {
+											echo '<h3>' . get_field('silhouette_se_label') . '</h3>';
 										}
 										?>
 										<ul class="doc-list">
-										<?php while( have_rows($acf_option_s) ): the_row(); 
-										$file_url_s = get_sub_field('file');
-										$label_s = get_sub_field('label');
-										$description_s = get_sub_field('description');
+										<?php while( have_rows('silhouette_se_install_docs') ): the_row(); 
+										$file_url = get_sub_field('file');
+										$label = get_sub_field('label');
+										$description = get_sub_field('description');
 										?>
 										<li>
-											<img class="pdf-icon" src="<?php echo $file_url_s['icon']; ?>" alt="" />
-											<a href="<?php echo $file_url['url']; ?>" title="<?php echo $file_url_s['url'];?>" target="blank"><?php echo $label; ?></a>
-											<span class="acf-desc"><?php echo $description_s; ?></span>
+											<img class="pdf-icon" src="<?php echo $file_url['icon']; ?>" alt="" />
+											<a href="<?php echo $file_url['url']; ?>" title="<?php echo $file_url['url'];?>" target="blank"><?php echo $label; ?></a>
+											<span class="acf-desc"><?php echo $description; ?></span>
 											<?php //echo $label; ?>
 										</li>
 										<?php endwhile; ?>
