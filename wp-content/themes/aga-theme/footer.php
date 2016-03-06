@@ -13,7 +13,7 @@
 <!-- Footer Area -->
 <footer id="footer-area" class="container-fluid site-footer" role="contentinfo">
 	<div class="aga-row row">
-		<?php get_sidebar( 'mp-footer' ); ?>
+		<?php get_sidebar( 'footer' ); ?>
 	</div>
 	<div class="row copyright">
 		<?php echo of_get_option( 'custom_footer_text', 'xxxx' ); ?>

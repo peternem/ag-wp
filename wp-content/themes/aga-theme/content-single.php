@@ -26,7 +26,7 @@
 					echo '<header><h4>' . get_field('options_menu_label') . '</h4></header>';
 				}
 				
-				if(get_field('options_jump_menu')) {
+				if(get_field('options_menu_label')) {
 					while( have_rows('options_jump_menu') ): the_row(); 
 						$button_link = get_sub_field('button_link');
 						$button_name = get_sub_field('button_name'); ?>

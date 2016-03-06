@@ -401,7 +401,7 @@ function my_login_redirect( $url, $request, $user ){
 		if( $user->has_cap( 'administrator' ) ) {
 			$url = admin_url();
 		} elseif ( $user->has_cap('dealer') ) {
-			$url = home_url('http://agalite.com/agalite-dealer-tools');
+			$url = home_url('agalite-dealer-tools');
 		} else {
 			$url = home_url('/');
 		}
