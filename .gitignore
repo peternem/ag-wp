@@ -15,7 +15,7 @@ wp-content/upgrade/
 wp-content/uploads/
 wp-content/wp-cache-config.php
 
-
+nbproject/
 #################################################
 # IIS
 #################################################
@@ -262,3 +262,4 @@ FakesAssemblies/
 *.opt
 
 web.config
+/nbproject/private/
