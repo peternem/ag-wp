@@ -276,7 +276,7 @@ body #lightGallery-action a.cLthumb::after {
   margin: 0 auto;
 }
 .carousel-inner {
-  background-color: #3e3c36;
+  background-color: #3E3C36;
 }
 /*
 WHAT IS NEW IN 3.3: "Added transforms to improve carousel performance in modern browsers."
@@ -565,7 +565,7 @@ ul.news-list {
 */
 .site-footer {
   min-height: 135px;
-  border-top: 2px solid #444444;
+  border-top: 2px solid #444;
   background-color: #232323;
   color: #999;
   padding-top: 6rem;
@@ -613,8 +613,13 @@ ul.news-list {
 }
 .footer-widget h4,
 .footer-widget h3 {
-  margin-top: 0;
   color: #ccc;
+}
+.footer-widget .btn.btn-default.btn-sm {
+  color: #55a32a;
+}
+.footer-widget .btn.btn-default.btn-sm:hover {
+  background-color: #e6e6e6;
 }
 .copyright {
   background-color: #232323;
