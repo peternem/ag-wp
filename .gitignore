@@ -14,8 +14,8 @@ wp-content/cache/
 wp-content/upgrade/
 wp-content/uploads/
 wp-content/plugins/
-wp-content/uploads/gallery/
-wp-content/uploads/ngg/
+wp-content/gallery/
+wp-content/ngg/
 wp-content/wp-cache-config.php
 
 
