@@ -16,6 +16,7 @@ wp-content/uploads/
 wp-content/wp-cache-config.php
 
 wp-admin/
+wp-include/
 nbproject/
 #################################################
 # IIS
