@@ -28,7 +28,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php 
+<?php
 $host = "agalite.com"; // Your Sub domain
 
 if ($_SERVER['HTTP_HOST'] == $host) {
@@ -48,7 +48,7 @@ if ($_SERVER['HTTP_HOST'] == $host) {
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
-			</button>       
+			</button>
 			<?php if( get_header_image() != '' ) : ?>
 			<div id="logo">
 				<a class="aglogo" href="<?php echo esc_url( home_url( '/' ) ); ?>"><img src="<?php header_image(); ?>"  height="<?php echo get_custom_header()->height; ?>" width="<?php echo get_custom_header()->width; ?>" alt="<?php bloginfo( 'name' ); ?>"/></a>
@@ -58,7 +58,7 @@ if ($_SERVER['HTTP_HOST'] == $host) {
 			<div id="logo">
 				<span class="site-name"><a class="navbar-brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
 			</div><!-- end of #logo -->
-			<?php endif; // header image was removed (again) ?>        
+			<?php endif; // header image was removed (again) ?>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
  			<?php sparkling_header_menu(); ?>
@@ -71,7 +71,7 @@ if ($_SERVER['HTTP_HOST'] == $host) {
 <!-- 				<button type="submit" class="btn btn-sm btn-primary">Search <i class="fa fa-angle-double-right"></i></button> -->
 <!-- 				</form> -->
 			<a class="btn btn-default btn-sm" role="button" href="/dealer-locator/">Dealer Locator <i class="fa fa-angle-double-right"></i> </a>
-			</div>      
+			</div>
         </div>
 	</div>
 </nav>

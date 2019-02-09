@@ -1,8 +1,8 @@
 /*
 Theme Name: aga-theme
-Theme URI: 
+Theme URI:
 Author: Mpeternell
-Author URI: 
+Author URI:
 Description: Aga-Theme is a clean minimal and responsive WordPress theme well suited for travel, health, business, finance, portfolio, design, art, photography, personal and any other creative websites and blogs. Developed using Bootstrap 3 that makes it mobile and tablets friendly. Theme comes with full-screen slider, social icon integration, author bio, popular posts widget and improved category widget. Sparkling incorporates latest web standards such as HTML5 and CSS3 and is SEO friendly thanks to its clean structure and codebase. It has dozens of Theme Options to change theme layout, colors, fonts, slider settings and much more. Theme is also translation and multilingual ready, compatible with WPML and is available in Spanish, French, Dutch, Polish, Russian, German, Brazilian Portuguese, Portuguese (Portugal), Persian (Iranian language), Romanian, Turkish, Bulgarian, Japanese, Lithuanian and Italian. Sparkling is a free WordPress theme with premium functionality and design. Now theme is optimized to work with bbPress, Contact Form 7, Jetpack and other popular free and premium plugins.
 Version: 1.8.1
 License: GNU General Public License v2 or later
@@ -66,7 +66,7 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 // Opacity Mixin
 .opacity (@opacity) {
     opacity: @opacity;
-    -ms-filter: ~`"progid:DXImageTransform.Microsoft.Alpha(opacity=(" + "@{opacity}" * 100 + "))"`; 
+    -ms-filter: ~`"progid:DXImageTransform.Microsoft.Alpha(opacity=(" + "@{opacity}" * 100 + "))"`;
     filter: ~`"alpha(opacity = (" + "@{opacity}" * 100 + "))"`;
 }
 
@@ -77,6 +77,17 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 /* Global
 ----------------------------------------------------
 */
+
+.page-header.collection-header {
+    margin-bottom: 0;
+}
+
+
+.white {
+    padding-bottom: 6rem;
+    padding-top: 6rem;
+}
+
 
 .entry-content .slickr-flickr-gallery li {
     margin-bottom: 1%;
@@ -122,13 +133,13 @@ body #lightGallery-action a.cLthumb::after {
 }
 
 /***************************************************
- * Font Awesome Styling 
- ***************************************************/
+* Font Awesome Styling
+***************************************************/
 
 .fa {
     .fa-angle-double-right {
         margin-left: 3px;
-    }	
+    }
 }
 
 .pdf-icon {
@@ -137,8 +148,8 @@ body #lightGallery-action a.cLthumb::after {
 }
 
 /***************************************************
- * WP ADMIN Styling
- **************************************************/
+* WP ADMIN Styling
+**************************************************/
 
 .entry-meta {
     .fa.fa-pencil-square-o {
@@ -173,7 +184,7 @@ body #lightGallery-action a.cLthumb::after {
         float: none;
         clear: left;
         width: 100%;
-    }	
+    }
 }
 
 .navbar-form {
@@ -240,10 +251,48 @@ body #lightGallery-action a.cLthumb::after {
 }
 
 /*******************************
- * 
- * Options Nav Menu Styling
- * 
- * ****************************/
+*
+* Options Nav Menu Styling
+*
+* ****************************/
+.opt-jumpmenu {
+    .two-column {
+        display: flex;
+        justify-content: flex-start;
+        flex-flow: row;
+        flex-wrap: wrap;
+        margin-bottom: 2em;
+        .lft-col {
+            width: 33.333%;
+            @media (max-width: 990px) {
+                width: 50%;
+            }
+            @media (max-width: 768px) {
+                width: 100%;
+            }
+        }
+        .rt-col {
+            width: 65%;
+            text-align: left;
+            font-size: 14px;
+            @media (max-width: 990px) {
+                width: 50%;
+            }
+            @media (max-width: 768px) {
+                width: 100%;
+                margin: 0.25em 0 1em;
+                text-align: center;
+            }
+        }
+        .btn.btn-primary {
+            margin: 0 1em 0 0;
+            display: block;
+            @media (max-width: 768px) {
+                margin: 0;
+            }
+        }
+    }
+}
 .opt-jumpmenu {
     margin: @global-margin-top auto 0;
     text-align: center;
@@ -259,13 +308,13 @@ body #lightGallery-action a.cLthumb::after {
             min-width: 240px;
             overflow: hidden;
         }
-    }	
+    }
 }
 
 
 /*******************************
- * Breadcrumb Nav Styling
- ****************************************************************/
+* Breadcrumb Nav Styling
+****************************************************************/
 
 .breadcrumb-container {
     background-color: #fcfcfc;
@@ -283,8 +332,8 @@ body #lightGallery-action a.cLthumb::after {
 }
 
 /*******************************
- * Hero Section Styling
- ****************************************************************/
+* Hero Section Styling
+****************************************************************/
 
 
 .jumbotron, .carousel {
@@ -345,23 +394,23 @@ body #lightGallery-action a.cLthumb::after {
 // opacity: 0;
 // transition-property: opacity;
 // }
-// 
+//
 // .carousel-fade .carousel-inner .active {
 // opacity: 1;
 // }
-// 
+//
 // .carousel-fade .carousel-inner .active.left,
 // .carousel-fade .carousel-inner .active.right {
 // left: 0;
 // opacity: 0;
 // z-index: 1;
 // }
-// 
+//
 // .carousel-fade .carousel-inner .next.left,
 // .carousel-fade .carousel-inner .prev.right {
 // opacity: 1;
 // }
-// 
+//
 // .carousel-fade .carousel-control {
 // z-index: 2;
 // }
@@ -393,8 +442,8 @@ now override the 3.3 new styles for modern browsers & apply opacity
 // }
 
 /***************************************************
- * Content Area
- ****************************************************/ 
+* Content Area
+****************************************************/
 
 .entry-content {
     a {
@@ -603,7 +652,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
     }
     // .aga-row.row {
     // margin-bottom: 1%;
-    // }	
+    // }
 }
 
 .post-navigation {
@@ -628,7 +677,7 @@ now override the 3.3 new styles for modern browsers & apply opacity
                 text-decoration: none;
             }
         }
-    }	
+    }
 }
 
 
@@ -706,8 +755,8 @@ now override the 3.3 new styles for modern browsers & apply opacity
 }
 
 /*************************************************
- * Taxonomy Styling
- *************************************************/
+* Taxonomy Styling
+*************************************************/
 
 .cat-links a {
     margin: 0 0 0 5px;
@@ -731,7 +780,7 @@ ul.news-list {
         &:last-child {
             margin-bottom: 0;
         }
-    } 
+    }
 }
 
 
@@ -1027,7 +1076,7 @@ ul.news-list {
     .carousel {
         .carousel-caption {
             bottom: 20%;
-        }    	
+        }
     }
     .collections {
         .aga-box {
@@ -1046,7 +1095,7 @@ ul.news-list {
                 font-size: 20px;
                 padding: 2% 0;
             }
-        }		
+        }
     }
     .content-area > h2, .content-area > h1 {
         margin: 0 0 6%;
@@ -1077,7 +1126,7 @@ ul.news-list {
         }
         p {
             font-size: 20px;
-        }    	
+        }
     }
 
     .carousel {
@@ -1086,7 +1135,7 @@ ul.news-list {
             h1 {
                 font-size: 41px;
             }
-        }    	
+        }
     }
 
     .aga-row {
@@ -1113,7 +1162,7 @@ ul.news-list {
             &:last-child {
                 margin-bottom: 0;
             }
-        }		
+        }
     }
 
     .post-area.col-md-8 {
@@ -1158,7 +1207,9 @@ ul.news-list {
 
 
 @media (max-width: 480px) {
-
+    section.collection-overview {
+        padding-bottom: 0;
+    }
     body, .dropdown-menu>li>a   {
         font-size: 14px !important;
     }
@@ -1249,12 +1300,12 @@ ul.news-list {
             h1 {
                 font-size: 25px;
             }
-        }    	
+        }
     }
     .collections {
         .aga-box {
             min-height: inherit;
-            margin-bottom: 10%;	
+            margin-bottom: 10%;
         }
         .col-xs-6 {
             width: 100%;
@@ -1298,4 +1349,3 @@ ul.news-list {
         font-size: 10px;
     }
 }
-

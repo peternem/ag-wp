@@ -1,41 +1,41 @@
 <!-- collection-options -->
-<div id="options" class="aga-row row"> 
-<?php 
-if (is_single('estate-swing-and-sliding-doors')) {
-	$cat_name = "estate-sd-and-se-doors";
+<?php
+
+// get the top level cat id of a single post
+$category = get_the_category($post->ID);
+$catid = $category[0]->cat_ID;
+$top_level_cat = smart_category_top_parent_id ($catid);
+
+// get the child level cat id of a single post
+foreach((get_the_category()) as $childcat) {
+	if (cat_is_ancestor_of($top_level_cat, $childcat)) {
+		$my_child_cat_id = $childcat->cat_ID;
+ 		$my_cat_name = $childcat->cat_name;
+	}
 }
-if (is_single('estate-transcend-collection')) {
-	$cat_name = "estate-transcend";
-}
-if (is_single('accent-collection')) {
-	$cat_name = "accent-collection";              
-}
-if (is_single('silhouette-elite-collection')) {
-	$cat_name = "silhouette-elite-collection";
-}
-if (is_single('silhouette-slider-collection')) {
-	$cat_name = "silhouette-slider-collection";
-}
-if (is_single('fresco-collection')) {
-	$cat_name = "fresco-collection";
-}
-if (is_single('vision-collection')) {
-	$cat_name = "vision-collection";
-}
-            
-$sticky = get_option( 'sticky_posts' );  
+
+echo '<h2 class="text-center section-hdr">'.$my_cat_name.' Options</h2>';
+
+?>
+<div id="options" class="aga-row row">
+<?php
+$sticky = get_option( 'sticky_posts' );
+
+$categories = wp_get_post_categories( get_the_ID(), array('fields' => 'ids') );
+
+
 $args = array(
 	'post_type' => 'post',
 	'post_count' => -1,
-	'category_name' => $cat_name,
-	'post__not_in' => $sticky,
+	'cat' => $my_child_cat_id,
+	//'post__not_in' => $sticky,
 	'meta_key'          => 'option_rank',
 	'orderby'           => 'meta_value_num',
 	'order'             => 'ASC'
 );
 
 $the_query = new WP_Query( $args ); ?>
-            
+
 <?php if ( $the_query->have_posts() ) : ?>
 	<!-- the loop -->
 	<?php $postx_counter = -1; ?>
@@ -45,10 +45,10 @@ $the_query = new WP_Query( $args ); ?>
 			<h3><a class="" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h3>
 			<div class="row">
 				<div class="col-md-12">
-					<a class="" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('tab-square', array( 'class' => 'aga-img img-responsive' )); ?></a> 
+					<a class="" href="<?php the_permalink(); ?>"><?php the_post_thumbnail('tab-square', array( 'class' => 'aga-img img-responsive' )); ?></a>
 				</div>
-				<div class="col-md-12">		
-				<div class="collection-wp">	
+				<div class="col-md-12">
+				<div class="collection-wp">
 					<?php if(function_exists('the_subtitle')) { ?>
 					<p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
 					<?php } ?>

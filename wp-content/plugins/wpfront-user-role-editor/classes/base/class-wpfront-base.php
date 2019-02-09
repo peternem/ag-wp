@@ -173,7 +173,7 @@ if (!class_exists('WPFront_Base_URE')) {
             echo '<h2>' . $title . '</h2>';
             echo '<div id="' . $this->options_page_slug . '-options" class="inside">';
             echo '<form method="post" action="options.php">';
-            @settings_fields($optionsGroupName);
+            //@settings_fields($optionsGroupName);
             @do_settings_sections($this->options_page_slug);
 
             if ((isset($_GET['settings-updated']) && $_GET['settings-updated'] == 'true') || (isset($_GET['updated']) && $_GET['updated'] == 'true')) {

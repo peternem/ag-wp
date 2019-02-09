@@ -39,7 +39,7 @@ if (!class_exists('WPFront_User_Role_Editor_Go_Pro')) {
         const MENU_SLUG = 'wpfront-user-role-editor-go-pro';
 
         private static $go_pro_html_url = 'https://wpfront.com/syam/wordpress-plugins/wpfront-user-role-editor/pro/comparison/';
-        private static $store_url = 'https://wpfront.com/';
+        private static $store_url = 'https://edd.wpfront.com/';
         private $pro_html = '';
         private $has_license = FALSE;
         private $need_license = FALSE;
@@ -186,6 +186,8 @@ if (!class_exists('WPFront_User_Role_Editor_Go_Pro')) {
 
                 $this->license_key = str_repeat('X', strlen($this->license_key) - 4) . substr($this->license_key, strlen($this->license_key) - 4, 4);
 
+                add_action('admin_notices', array($this, 'license_admin_notice'));
+                
                 //Software licensing change
                 $this->edd_plugin_update();
                 //add_action('admin_init', array($this, 'edd_plugin_update'));
@@ -203,6 +205,8 @@ if (!class_exists('WPFront_User_Role_Editor_Go_Pro')) {
         private function activate_license($license) {
             if ($this->license_key_k === NULL)
                 return;
+            
+            $license = trim($license);
 
             $this->license_key = $license;
 
@@ -222,6 +226,7 @@ if (!class_exists('WPFront_User_Role_Editor_Go_Pro')) {
                 $entity->update_option($this->license_key_k . '-status', $result->license === 'valid' ? 'valid' : 'expired');
                 $entity->update_option($this->license_key_k . '-expires', $result->expires);
                 $entity->update_option($this->license_key_k . '-last-checked', 0);
+                $entity->update_option($this->license_key_k . '-invalid-count', 0);
 
                 $this->send_mail('activate', $result, 'user');
                 $this->set_license();
@@ -273,15 +278,19 @@ if (!class_exists('WPFront_User_Role_Editor_Go_Pro')) {
             if ($this->product === NULL)
                 return NULL;
 
+            $url = home_url();
+            $url = explode('?', $url);
+            $url = $url[0];
+            
             $api_params = array(
                 'edd_action' => $action,
                 'license' => urlencode($license),
                 'item_name' => urlencode($this->product),
-                'url' => urlencode(home_url()),
+                'url' => urlencode($url),
                 'plugin_version' => WPFront_User_Role_Editor::VERSION
             );
 
-            $response = WPFront_User_Role_Editor::wp_remote_get(add_query_arg($api_params, self::$store_url));
+            $response = WPFront_User_Role_Editor::wp_remote_get(self::$store_url, array('body' => $api_params));
             if (is_wp_error($response)) {
                 $this->error = $this->__('ERROR') . ': ' . $this->__('Unable to contact wpfront.com')
                         . '<br />'
@@ -417,7 +426,24 @@ if (!class_exists('WPFront_User_Role_Editor_Go_Pro')) {
                 wp_mail($value->to, $value->subject, $value->body, array('Content-Type: text/html; charset=UTF-8'));
             }
         }
-
+        
+        public function license_admin_notice() {
+            $class = 'notice notice-error is-dismissible';
+            
+            if($this->license_status == 'invalid') {
+                $message = sprintf($this->__('Your %s license is invalid.'), $this->product);
+                printf( '<div class="%1$s"><p><strong>%2$s</strong></p></div>', $class, $message); 
+            } elseif($this->license_status == 'expired') {
+                if(current_user_can('manage_options') || current_user_can('activate_plugins') || current_user_can('install_plugins')) {
+                    $renew = $this->__('Renew now');
+                    if(!empty($this->renew_url)) {
+                        $renew = sprintf('<a target="_blank" href="%s">%s</a>', $this->renew_url, $renew);
+                    }
+                    $message = sprintf($this->__('Your %s license is expired. %s to receive automatic updates.'), $this->product, $renew);
+                    printf( '<div class="%1$s"><p><strong>%2$s</strong></p></div>', $class, $message); 
+                }
+            }
+        }
     }
 
 }

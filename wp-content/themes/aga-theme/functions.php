@@ -51,7 +51,7 @@ if ( ! function_exists( 'sparkling_setup' ) ) :
  * as indicating support for post thumbnails.
  */
 function sparkling_setup() {
-    
+
     // Add a Custom CSS file to WP Admin Area
 
 
@@ -74,7 +74,7 @@ function sparkling_setup() {
   add_image_size( 'sparkling-full-page-half' , 1920, 540, true);
   add_image_size( 'sparkling-full-width' , 1920, 1080, true); //Full Width Thumbnail
   add_image_size( 'sparkling-featured', 1920, 1080, true );
-  
+
   //add_image_size( 'sparkling-featured', 750, 410, true );
   add_image_size( 'tab-square', 800, 800 , true); // Small Thumbnail
   add_image_size( 'tab-rectangle', 800, 700 , true); // Small Thumbnail
@@ -86,13 +86,13 @@ function sparkling_setup() {
   	'primary' => __( 'Primary Menu', 'sparkling' ),
   	'footer-links' => __( 'Footer Links', 'sparkling' ) // secondary nav in footer
   ) );
- 
+
   // Add Class to All Excerpts in WordPress
   add_filter( "the_excerpt", "add_class_to_excerpt" );
   function add_class_to_excerpt( $excerpt ) {
   	return str_replace('<p', '<p class="excerpt"', $excerpt);
   }
-  
+
   // Enable support for Post Formats.
   add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
 
@@ -215,7 +215,7 @@ function sparkling_widgets_init() {
       'after_title' => '</h3>',
     ));
 
-    register_widget( 'sparkling_social_widget' );
+	register_widget( 'sparkling_social_widget' );
     register_widget( 'sparkling_popular_posts' );
     register_widget( 'sparkling_categories' );
 
@@ -240,14 +240,14 @@ add_filter( 'get_search_form', 'sparkling_wpsearch' );
 function my_login_logo_one() {
 	$imgUrl = "/wp-content/uploads/2015/10/agalite-logo-cs3.svg";
 	?>
-<style type="text/css"> 
+<style type="text/css">
 body.login div#login h1 a {
 	background-image: url("<?php echo $imgUrl; ?>");
 	background-size: 100% auto;
     width: 275px;
-} 
+}
 </style>
- <?php 
+ <?php
 } add_action( 'login_enqueue_scripts', 'my_login_logo_one' );
 /**
  * This function removes inline styles set by WordPress gallery.
@@ -328,7 +328,7 @@ require get_template_directory() . '/inc/jetpack.php';
  */
 require get_template_directory() . '/inc/navwalker.php';
 
-// 
+//
 
 
 /*******************
@@ -409,3 +409,73 @@ function my_login_redirect( $url, $request, $user ){
 	return $url;
 }
 add_filter('login_redirect', 'my_login_redirect', 10, 3 );
+
+/**
+* Returns ID of top-level parent category, or current category if you are viewing a top-level
+*
+* @param    string      $catid      Category ID to be checked
+* @return   string      $catParent  ID of top-level parent category
+*/
+function smart_category_top_parent_id ($catid) {
+    while ($catid) {
+        $cat = get_category($catid); // get the object for the catid
+        $catid = $cat->category_parent; // assign parent ID (if exists) to $catid
+          // the while loop will continue whilst there is a $catid
+          // when there is no longer a parent $catid will be NULL so we can assign our $catParent
+        $catParent = $cat->cat_ID;
+    }
+    return $catParent;
+}
+
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme General Settings',
+		'menu_title'	=> 'Theme Settings',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false
+	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Home Page Hero Carousel',
+		'menu_title'	=> 'Home Page Hero Carousel',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+
+	// acf_add_options_sub_page(array(
+	// 	'page_title' 	=> 'Theme Footer Settings',
+	// 	'menu_title'	=> 'Footer',
+	// 	'parent_slug'	=> 'theme-general-settings',
+	// ));
+
+}
+
+function removeHeadLinks() {
+	remove_action('wp_head', 'rsd_link');
+	remove_action('wp_head', 'wlwmanifest_link');
+}
+add_action('init', 'removeHeadLinks');
+
+add_filter( 'rest_authentication_errors', function( $result ) {
+    if ( ! empty( $result ) ) {
+        return $result;
+    }
+    if ( ! is_user_logged_in() ) {
+        return new WP_Error( 'rest_not_logged_in', 'You are not currently logged in.', array( 'status' => 401 ) );
+    }
+    return $result;
+});
+
+// disable RSS/Atom feeds
+function itsme_disable_feed() {
+ wp_die( __( 'No feed available, please visit the <a href="'. esc_url( home_url( '/' ) ) .'">homepage</a>!' ) );
+}
+
+add_action('do_feed', 'itsme_disable_feed', 1);
+add_action('do_feed_rdf', 'itsme_disable_feed', 1);
+add_action('do_feed_rss', 'itsme_disable_feed', 1);
+add_action('do_feed_rss2', 'itsme_disable_feed', 1);
+add_action('do_feed_atom', 'itsme_disable_feed', 1);
+add_action('do_feed_rss2_comments', 'itsme_disable_feed', 1);
+add_action('do_feed_atom_comments', 'itsme_disable_feed', 1);

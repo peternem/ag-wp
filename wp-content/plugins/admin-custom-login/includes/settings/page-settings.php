@@ -1,4 +1,8 @@
-<!-- Dashboard Settings panel content --->
+<!-- Logo Settings --->
+<?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+?>
 <Script>
 //logo Image preview
 function Acl_show_Image_3() {
@@ -43,7 +47,7 @@ jQuery(function() {
 					<div class="post-social post-social-xs" id="post-social-5">
 						<div class="text-center padding-all text-center">
 							<div class="textbox text-white   margin-bottom settings-title">
-								<?php _e('Logo Settings','WEBLIZAR_ACL')?>
+								<?php _e('Logo Settings',WEBLIZAR_ACL)?>
 							</div>
 						</div>
 					</div>
@@ -55,15 +59,15 @@ jQuery(function() {
 		<div class="panel-body">
 			<table class="form-table">
 				<tr>
-					<th scope="row" ><?php _e('Logo','WEBLIZAR_ACL')?></th>
+					<th scope="row" ><?php _e('Logo Image',WEBLIZAR_ACL)?></th>
 					<td></td>
 				</tr>
 				<tr class="radio-span" style="border-bottom:none;">
 					<td>
-						<input type="text" class="pro_text" id="logo-image" placeholder="<?php _e('No media selected!','WEBLIZAR_ACL')?>" name="upload_image" disabled="disabled"  value="<?php echo $logo_image; ?>"/>
-						<input type="button" value="<?php _e('Upload','WEBLIZAR_ACL')?>" id="upload-logo" class="button-primary rcsp_media_upload"/>
+						<input type="text" class="pro_text" id="logo-image" placeholder="<?php _e('No media selected!',WEBLIZAR_ACL)?>" name="upload_image" disabled="disabled"  value="<?php echo $logo_image; ?>"/>
+						<input type="button" value="<?php _e('Upload',WEBLIZAR_ACL)?>" id="upload-logo" class="button-primary rcsp_media_upload"/>
 						
-						<input type="button" id="display-logo" value="<?php _e('preview','WEBLIZAR_ACL')?>" data-toggle="modal" data-target="#logo_about_us_image_builder" class="button " onclick="Acl_show_Image_3()"/>
+						<input type="button" id="display-logo" value="<?php _e('Preview',WEBLIZAR_ACL)?>" data-toggle="modal" data-target="#logo_about_us_image_builder" class="button " onclick="Acl_show_Image_3()"/>
 						
 						<!-- Modal -->
 						<div class="modal " id="logo_about_us_image_builder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -71,13 +75,13 @@ jQuery(function() {
 								<div class="modal-content">
 									<div class="modal-header">
 										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h4 class="modal-title" id="myModalLabel"><?php _e('Login Background Image','WEBLIZAR_ACL')?></h4>
+										<h4 class="modal-title" id="myModalLabel"><?php _e('Login Background Image',WEBLIZAR_ACL)?></h4>
 									</div>
 									<div class="modal-body">
 										<img class="show_prev_img" src="" style="width:100%; height:50%" id="logo_img_prev"/>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal"><?php _e('Close','WEBLIZAR_ACL')?></button>
+										<button type="button" class="btn btn-default" data-dismiss="modal"><?php _e('Close',WEBLIZAR_ACL)?></button>
 									</div>
 								</div>
 							</div>
@@ -91,7 +95,7 @@ jQuery(function() {
 		<div class="panel-body">
 			<table class="form-table">
 				<tr>
-					<th scope="row" ><?php _e('Logo Width','WEBLIZAR_ACL')?></th>
+					<th scope="row" ><?php _e('Logo Image Width',WEBLIZAR_ACL)?></th>
 					<td></td>
 				</tr>
 				<tr  style="border-bottom:none;">
@@ -108,7 +112,7 @@ jQuery(function() {
 		<div class="panel-body">
 			<table class="form-table">
 				<tr>
-					<th scope="row" ><?php _e('Logo Height','WEBLIZAR_ACL')?></th>
+					<th scope="row" ><?php _e('Logo Image Height',WEBLIZAR_ACL)?></th>
 					<td></td>
 				</tr>
 				<tr  style="border-bottom:none;">
@@ -125,12 +129,12 @@ jQuery(function() {
 		<div class="panel-body">
 			<table class="form-table">
 				<tr>
-					<th scope="row" ><?php _e('Logo URL','WEBLIZAR_ACL')?></th>
+					<th scope="row" ><?php _e('Logo Link URL',WEBLIZAR_ACL)?></th>
 					<td></td>
 				</tr>
 				<tr class="radio-span" style="border-bottom:none;">
 					<td>
-						<input type="text" class="pro_text" id="log-url" name="log-url" placeholder="<?php _e('Logo URL','WEBLIZAR_ACL')?>" size="56" value="<?php echo $logo_url; ?>"/>
+						<input type="text" class="pro_text" id="log-url" name="log-url" placeholder="<?php _e('Logo Link URL',WEBLIZAR_ACL); ?>" size="56" value="<?php echo $logo_url; ?>"/>
 					</td>
 				</tr>
 			</table>
@@ -140,12 +144,12 @@ jQuery(function() {
 		<div class="panel-body">
 			<table class="form-table">
 				<tr>
-					<th scope="row" ><?php _e('Logo URL Title','WEBLIZAR_ACL')?></th>
+					<th scope="row" ><?php _e('Logo Image Title',WEBLIZAR_ACL)?></th>
 					<td></td>
 				</tr>
 				<tr class="radio-span" style="border-bottom:none;">
 					<td>
-						<input type="text" class="pro_text" id="log-url-title" name="log-url-title" placeholder="<?php _e('Logo URL Title','WEBLIZAR_ACL')?>" size="56" value="<?php echo $logo_url_title; ?>"/>
+						<input type="text" class="pro_text" id="log-url-title" name="log-url-title" placeholder="<?php _e('Logo Image Title', WEBLIZAR_ACL); ?>" size="56" value="<?php echo $logo_url_title; ?>"/>
 					</td>
 				</tr>
 			</table>
@@ -161,7 +165,7 @@ jQuery(function() {
 				</svg>
 			</div>
 			<div class="dialog-inner">
-				<h2><strong><?php _e('Logo ','WEBLIZAR_ACL')?></strong><?php _e('Setting Save Successfully','WEBLIZAR_ACL')?></h2><div><button class="action dialog-button-close" data-dialog-close id="dialog-close-button4"><?php _e('Close','WEBLIZAR_ACL')?></button></div>
+				<h2><strong><?php _e('Logo',WEBLIZAR_ACL)?></strong> <?php _e('Setting Save Successfully',WEBLIZAR_ACL)?></h2><div><button class="action dialog-button-close" data-dialog-close id="dialog-close-button4"><?php _e('Close',WEBLIZAR_ACL)?></button></div>
 			</div>
 		</div>
 	</div>
@@ -175,22 +179,21 @@ jQuery(function() {
 				</svg>
 			</div>
 			<div class="dialog-inner">
-				<h2><strong><?php _e('Logo ','WEBLIZAR_ACL')?></strong><?php _e('Setting Reset Successfully','WEBLIZAR_ACL')?></h2><div><button class="action dialog-button-close" data-dialog-close id="dialog-close-button10"><?php _e('Close','WEBLIZAR_ACL')?></button></div>
+				<h2><strong><?php _e('Logo',WEBLIZAR_ACL)?></strong> <?php _e('Setting Reset Successfully',WEBLIZAR_ACL)?></h2><div><button class="action dialog-button-close" data-dialog-close id="dialog-close-button10"><?php _e('Close',WEBLIZAR_ACL)?></button></div>
 			</div>
 		</div>
 	</div>
 	<div class="panel panel-primary save-button-block">
 		<div class="panel-body">
 			<div class="pull-left">
-				<button type="button" onclick="return Custom_login_logo('logoSave', '');" class="btn btn-info btn-lg"><?php _e('Save Changes','WEBLIZAR_ACL')?></button>
+				<button type="button" onclick="return Custom_login_logo('logoSave', '');" class="btn btn-info btn-lg"><?php _e('Save Changes',WEBLIZAR_ACL)?></button>
 			</div>
 			<div class="pull-right">
-				<button type="button" onclick="return Custom_login_logo('logoReset', '');" class="btn btn-primary btn-lg"><?php _e('Reset Default','WEBLIZAR_ACL')?></button>
+				<button type="button" onclick="return Custom_login_logo('logoReset', '');" class="btn btn-primary btn-lg"><?php _e('Reset Default',WEBLIZAR_ACL)?></button>
 			</div>
 		</div>
 	</div>
 </div>
-<!-- /row -->
 <script>
 function Custom_login_logo(Action, id){
 	if(Action == "logoSave") {
@@ -243,23 +246,22 @@ function Custom_login_logo(Action, id){
 			}
 		});
 	}
+	
 	// Save Message box Close On Mouse Hover
 	document.getElementById('dialog-close-button4').disabled = false;
-	 jQuery('#dialog-close-button4').hover(function () {
-		   jQuery("#dialog-close-button4").click();
-		   document.getElementById('dialog-close-button4').disabled = true; 
-		 }
-	 );
+	jQuery('#dialog-close-button4').hover(function () {
+		jQuery("#dialog-close-button4").click();
+		document.getElementById('dialog-close-button4').disabled = true; 
+	});
 	 
 	// Reset Message box Close On Mouse Hover
 	document.getElementById('dialog-close-button10').disabled = false;
-	 jQuery('#dialog-close-button10').hover(function () {
-		   jQuery("#dialog-close-button10").click();
-		   document.getElementById('dialog-close-button10').disabled = true; 
-		 }
-	 );
-	if(Action == "logoReset") {
-		
+	jQuery('#dialog-close-button10').hover(function () {
+	   jQuery("#dialog-close-button10").click();
+	   document.getElementById('dialog-close-button10').disabled = true; 
+	});
+	
+	if(Action == "logoReset") {		
 		(function(){
 			var dlgtrigger = document.querySelector( '[data-dialog10]' ),
 				somedialog = document.getElementById( dlgtrigger.getAttribute( 'data-dialog10' ) ),
@@ -322,12 +324,12 @@ if(isset($_POST['Action'])) {
 	$Action = $_POST['Action'];	
 	//Save Page Values
 	if($Action == "logoSave") {
-		$logo_image = $_POST['logo_image'];
-		$logo_width = $_POST['logo_width'];
-		$logo_height = $_POST['logo_height'];
-		$logo_url = $_POST['logo_url'];
-		$logo_url_title = $_POST['logo_url_title'];
-
+		$logo_image = sanitize_option('logo_image', $_POST['logo_image']);
+		$logo_width = sanitize_option('logo_width', $_POST['logo_width']);
+		$logo_height = sanitize_option('logo_height', $_POST['logo_height']);
+		$logo_url = sanitize_text_field($_POST['logo_url']);
+		$logo_url_title = sanitize_text_field($_POST['logo_url_title']);
+	
 		// save values in option table
 		$logo_page= serialize(array(
 			'logo_image' => $logo_image,

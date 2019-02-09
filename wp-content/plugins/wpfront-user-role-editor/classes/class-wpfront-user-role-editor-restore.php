@@ -167,7 +167,7 @@ if (!class_exists('WPFront_User_Role_Editor_Restore')) {
                     'id' => 'overview',
                     'title' => $this->__('Overview'),
                     'content' => '<p>'
-                    . $this->__('This screen allow you to restore WordPress built-in roles to its standard capability settings.')
+                    . $this->__('This screen allows you to restore WordPress built-in roles to its standard capability settings.')
                     . '</p>'
                     . '<p>'
                     . $this->__('To restore a role, click the Restore button then Confirm.')

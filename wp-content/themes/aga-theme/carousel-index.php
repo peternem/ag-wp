@@ -6,54 +6,77 @@
     ================================================== -->
     <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="10000">
       <!-- Indicators -->
+     <?php if( have_rows('carousel_repeater', 'options') ):
+         $ind_count = -1;
+         ?>
+
       <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
+          <?php
+          while( have_rows('carousel_repeater', 'options') ): the_row();
+                $ind_count++;
+                if( $ind_count == 0):
+                    $ind_class = "active";
+                else:
+                    $ind_class = "";
+                endif;
+          ?>
+              <li data-target="#myCarousel" data-slide-to="<?php echo $ind_count; ?>" class="<?php echo $ind_class; ?>"></li>
+            <?php endwhile; ?>
       </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img class="first-slide" src="/wp-content/uploads/2015/06/ESD290-4609.jpg" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Elegance, Style, Quality</h1>
-              <p>Welcome to Agalite. Agalite Shower Doors Are The Focal Point Of Bathroom Design.</p>
-              <p><a class="btn btn-md btn-primary" href="#welcome" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
-            </div>
-          </div>
+    <?php endif; ?>
+    <?php if( have_rows('carousel_repeater', 'options') ): ?>
+        <div class="carousel-inner" role="listbox">
+
+            <?php
+                $slide_count = 0;
+                while( have_rows('carousel_repeater', 'options') ): the_row();
+
+                // vars
+                $slide_count++;
+                $photo = get_sub_field('photo', 'options');
+                $title = get_sub_field('title', 'options');
+                $sub_title = get_sub_field('sub_title', 'options');
+                $link = get_sub_field('button_link', 'options');
+                $img_thumb_size = 'full'; // (thumbnail, medium, large, full or custom size)
+
+                if ($link) {
+                    $link_url = $link['url'];
+                } else {
+                    $link_url = "#";
+                }
+                if( $slide_count == 1):
+                    $active_class = "active";
+                else:
+                    $active_class = "";
+                endif;
+                ?>
+                <div class="item <?php echo $active_class; ?>" data-count="<?php echo "slide-count-".$slide_count; ?>">
+                	<?php if( $photo ): ?>
+                        <?php echo wp_get_attachment_image( $photo, $img_thumb_size,'', array( "class" => "img-responsive" )); ?>
+                	<?php endif; ?>
+                    <div class="container">
+                      <div class="carousel-caption">
+
+                        <?php if( $title ): ?>
+                            <h1><?php echo $title; ?></h1>
+                        <?php endif; ?>
+
+                        <?php if( $sub_title ): ?>
+                            <p><?php echo $sub_title; ?></p>
+                        <?php endif; ?>
+
+                        <?php if( $link ): ?>
+                        <p><a class="btn btn-md btn-primary" href="<?php echo $link_url; ?>" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
+                        <?php endif; ?>
+
+                      </div>
+                    </div>
+
+                </div>
+            <?php endwhile; ?>
+
         </div>
-        <div class="item">
-          <img class="second-slide" src="/wp-content/uploads/2015/10/ASD-5182-1920x1080.jpg" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>The Collections</h1>
-              <p>Agalite Offers Five Different Collections To Complement Any Bathroom Design</p>
-              <p><a class="btn btn-md btn-primary" href="#collections" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img class="fourth-slide" src="/wp-content/uploads/2015/06/2B-Photo-SESD180-4564.jpg" alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Heavy Glass Hardware</h1>
-              <p>Featuring 1/2" or 3/8" Frameless Heavy Glass Shower Doors Hardware</p>
-              <p><a class="btn btn-md btn-primary" href="/agalite-hardware/" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
-            </div>
-          </div>
-        </div>
-         <div class="item">
-          <img class="third-slide" src="/wp-content/uploads/2015/06/2A-Photo-SSE-3767.jpg" alt="Fourth slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>The Collections</h1>
-              <p>Agalite Offers Five Different Collections To Complement Any Bathroom Design</p>
-              <p><a class="btn btn-md btn-primary" href="#collections" role="button">Learn More <i class="fa fa-angle-double-right"></i></a></p>
-            </div>
-          </div>
-        </div>
-        
-      </div>
+    <?php endif; ?>
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>

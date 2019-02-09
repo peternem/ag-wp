@@ -1,15 +1,15 @@
 <?php
 class Slickr_Flickr_Api_Photo {
 
-  var $url;
-  var $width;
-  var $height;
-  var $orientation;
-  var $title;
-  var $description;
-  var $date;
-  var $link;
-  var $original;
+    private $url;
+    private $width;
+    private $height;
+    private $orientation;
+    private $title;
+    private $description;
+    private $date;
+    private $link;
+    private $original;
 
   function __construct($user_id, $item, $must_get_dims=false) {
     $farmid = $item['farm']; 
@@ -22,20 +22,20 @@ class Slickr_Flickr_Api_Photo {
     $this->original= array_key_exists('url_o',$item) ? $item['url_o'] : '' ;
     $this->date = array_key_exists('date_taken',$item) ? $item['date_taken'] : (array_key_exists('date_upload',$item) ? $item['date_upload'] :'') ;
     $this->title = $this->cleanup($item['title']);
-    $this->description = array_key_exists('description',$item) ? $this->set_description($item['description']) : '';
+        $this->description = array_key_exists('description',$item) ? $this->format_description($item['description']) : '';
     $this->height = array_key_exists('o_height',$item) ? $item['o_height'] : 0 ;
     $this->width = array_key_exists('o_width',$item) ? $item['o_width'] : 0 ;
     if ($must_get_dims && (($this->height==0) || ($this->width==0))) $this->get_dims();
     $this->orientation = $this->height > $this->width ? "portrait" : "landscape" ;
   }
 
-   function set_description($desc) {
+    function format_description($desc) {
    		if (is_array($desc)) 
    			if (array_key_exists('_content', $desc))
    				$desc = $desc['_content'];
    			else
    				$desc = $desc[0];
-    	$this->description = $this->cleanup($desc);
+    	return $this->cleanup($desc);
    }
 
 
@@ -57,7 +57,6 @@ class Slickr_Flickr_Api_Photo {
 
   /* Function that returns the correctly sized photo URL. */
   function resize($size) {
-
     $url_array = explode('/', $this->url);
     $photo = array_pop($url_array); //strip the filename
 
@@ -82,10 +81,15 @@ class Slickr_Flickr_Api_Photo {
 	    $curl = curl_init($this->url);
 	    curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        try {
 	    $data = curl_exec($curl);
 	    curl_close($curl);
 		$im = imagecreatefromstring($data);
 		$this->width = imagesx($im);
 		$this->height = imagesy($im);
+            
+        } catch (Exception $e) {
+            curl_close($curl);               
+        }
      }
 }

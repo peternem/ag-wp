@@ -3,13 +3,13 @@
 Plugin Name: KIA Subtitle
 Plugin URI: http://www.kathyisawesome.com/436/kia-subtitle/
 Description: Adds a subtitle field to WordPress' Post editor
-Version: 1.6.5
+Version: 1.6.8
 Author: Kathy Darling
 Author URI: http://www.kathyisawesome.com
 License: GPL2
 Text Domain: kia-subtitle
 
-Copyright 2015  Kathy Darling  (email: kathy.darling@gmail.com)
+Copyright 2017  Kathy Darling  (email: kathy@kathyisawesome.com)
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as
@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 
-// don't load directly
+// Don't load directly.
 if ( ! function_exists( 'is_admin' ) ) {
     header( 'Status: 403 Forbidden' );
     header( 'HTTP/1.1 403 Forbidden' );
@@ -48,7 +48,13 @@ class KIA_Subtitle {
 	 * @var KIA_Subtitle The single instance of the class
 	 * @since 1.6
 	 */
-	public $version = '1.6.5';
+	public $version = '1.6.8';
+
+	/**
+	* @constant string donate url
+	* @since 1.5
+	*/
+	CONST DONATE_URL = "https://www.paypal.me/usathwnt/25";
 
 	/**
 	 * Main KIA_Subtitle Instance
@@ -95,39 +101,43 @@ class KIA_Subtitle {
 
 		global $wp_version;
 
-		// Set-up Action and Filter Hooks
+		// Set-up uninstall action.
 		register_uninstall_hook( __FILE__, array( __CLASS__, 'delete_plugin_options' ) );
 
-		// load the textdomain
-		add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
+		// Load the textdomain.
+		add_action( 'init', array( $this, 'load_textdomain' ) );
 
-		//register settings
+		// Register settings.
 		add_action( 'admin_init', array( $this, 'admin_init' ));
 
-		//add plugin options page
+		// Add plugin options page.
 		add_action( 'admin_menu', array( $this, 'add_options_page' ) );
 
-		//add settings link to plugins page
-		add_filter( 'plugin_action_links', array( $this,'add_action_links' ), 10, 2 );
+		// Add settings link to plugins page.
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'add_action_links' ), 10, 2 );
 
-		// register the shortcode:
+		// Add Donate link to plugin.
+		add_filter( 'plugin_row_meta', array( $this, 'add_meta_links' ), 10, 2 );
+
+		// Register the shortcode.
 		add_shortcode( 'the-subtitle', array( $this, 'shortcode' ) );
 
-		// Backend functions
-		// load the subtitle script
+		// Backend functions.
+	
+		// Load the subtitle script.
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_scripts' ) );
 
-		// add the input field
+		// Add the input field.
 		add_action( 'edit_form_after_title', array( $this, 'add_input' ) );
 
-		// save the subtitle as post meta
+		// Save the subtitle as post meta.
 		add_action( 'save_post', array( $this, 'meta_save' ) );
 		add_action( 'edit_attachment', array( $this, 'meta_save' ) );
 
-		// Edit Columns + Quickedit:
+		// Edit Columns + Quickedit.
 		$options = get_option( 'kia_subtitle_options', false );
 
-		// only show input if the post type was enabled in options
+		// Only show input if the post type was enabled in options
 		if ( isset ( $options['post_types'] ) && is_array( $options[ 'post_types'] ) ) {
 
 			foreach( $options['post_types'] as $post_type ) {
@@ -137,9 +147,10 @@ class KIA_Subtitle {
 
 		}
 
+		// Quick edit support.
 		add_action( 'quick_edit_custom_box', array( $this, 'quick_edit_custom_box'), 10 );
 
-		//upgrade routine
+		// Upgrade routine.
 		add_action( 'admin_init', array( $this, 'upgrade_routine' ) );
 
 	}
@@ -182,24 +193,35 @@ class KIA_Subtitle {
 		add_options_page(__( 'KIA Subtitle Options Page', 'kia-subtitle' ), __( 'KIA Subtitle', 'kia-subtitle' ), 'manage_options', 'kia_subtitle', array( $this, 'render_form' ) );
 	}
 
-  /**
-   * Display a Settings link on the main Plugins page
-   * @param  array $links
-   * @param  string $file
-   * @return array
-   * @since  1.6.4
-   */
-  public function add_action_links( $links, $file ) {
+	/**
+	 * Display a Settings link on the main Plugins page
+	 * @param  array $links
+	 * @param  string $file
+	 * @return array
+	 * @since  1.6.4
+	 */
+	public function add_action_links( $links, $file ) {
 
-	if ( $file == plugin_basename( __FILE__ ) ) {
-	  $plugin_link = '<a href="'. add_query_arg( 'page', 'kia_subtitle', admin_url( 'options-general.php' ) ) . '">' . __( 'Settings', 'kia-subtitle' ) . '</a>';
-	  // make the 'Settings' link appear first
-	  array_unshift( $links, $plugin_link );
+		$plugin_link = '<a href="'. add_query_arg( 'page', 'kia_subtitle', admin_url( 'options-general.php' ) ) . '">' . __( 'Settings', 'kia-subtitle' ) . '</a>';
+	  	// make the 'Settings' link appear first
+	  	array_unshift( $links, $plugin_link );
+
+		return $links;
+		
+	  }
+
+	/**
+	 * Add donation link
+	 * @param array $plugin_meta
+	 * @param string $plugin_file
+	 * @since 1.6.7
+	 */
+	public function add_meta_links( $plugin_meta, $plugin_file ) {
+		if( $plugin_file == plugin_basename(__FILE__) ){
+			$plugin_meta[] = '<a class="dashicons-before dashicons-awards" href="' . self::DONATE_URL . '" target="_blank">' . __( 'Donate', 'kia-subtitle' ) . '</a>';
+		}
+		return $plugin_meta;
 	}
-
-	return $links;
-	
-  }
 
 	/**
 	 * Render the Plugin options form
@@ -220,7 +242,7 @@ class KIA_Subtitle {
 
 		$clean = array();
 
-		//probably overkill, but make sure that the post type actually exists and is one we're cool with modifying
+		// Probably overkill, but make sure that the post type actually exists and is one we're cool with modifying.
 		$args = ( array ) apply_filters( 'kia_subtitle_post_type_args', array( 'show_in_menu' => true ) );
 
 		$post_types = get_post_types( $args );
@@ -229,7 +251,7 @@ class KIA_Subtitle {
 			if( in_array( $post_type, $post_types ) ) $clean['post_types'][] = $post_type;
 		}
 
-		$clean['delete'] =  isset( $input['delete'] ) && $input['delete'] ? 1 : 0 ;  //checkbox
+		$clean['delete'] =  isset( $input['delete'] ) && $input['delete'] ? 1 : 0 ;  // Checkbox.
 
 		return $clean;
 	
@@ -290,16 +312,19 @@ class KIA_Subtitle {
 	 */
 	public function load_scripts( $hook ) {
 
-		// conditionally add the styles and scripts:
+		// Conditionally add the styles and scripts.
 		if( in_array( $hook, array ( 'post.php', 'post-new.php', 'edit.php' ) ) ) {
 
-			// only add style on post screens
+			// Only add style on post screens.
 			if( $hook == 'post.php' || $hook == 'post-new.php' ){
-				add_action('admin_head',array( $this,'inline_style' ) );
+				add_action( 'admin_head', array( $this, 'inline_style' ) );
+			} else if ( $hook == 'edit.php' ) {
+				add_action( 'admin_head', array( $this, 'subtitle_column_style' ) );
 			}
 
-			// load the script
-			wp_enqueue_script( 'kia_subtitle', plugins_url( '/js/subtitle.js', __FILE__ ), array( 'jquery' ), $this->version, true );
+			// Load the script.
+			$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+			wp_enqueue_script( 'kia_subtitle', plugins_url( 'js/subtitle'. $suffix . '.js', __FILE__ ), array( 'jquery' ), $this->version, true );
 
 			$translation_array = array( 'subtitle' => __( 'Subtitle', 'kia-subtitle' ) );
 			wp_localize_script( 'kia_subtitle', 'KIA_Subtitle', $translation_array );
@@ -321,7 +346,8 @@ class KIA_Subtitle {
 			color: #BBB;
 		}
 		</style>
-	<?php }
+	<?php 
+	}
 
 	/**
 	 * Add the text input on the post screen
@@ -333,16 +359,16 @@ class KIA_Subtitle {
 
 		$options = get_option( 'kia_subtitle_options' );
 
-		// only show input if the post type was not enabled in options
+		// Only show input if the post type was not enabled in options.
 		if ( isset ( $options['post_types'] ) && in_array( $post->post_type, $options[ 'post_types'] ) ) {
 
-			//create the meta field (don't use a metabox, we have our own styling):
+			// Create the meta field (don't use a metabox, we have our own styling).
 			wp_nonce_field( plugin_basename( __FILE__ ), 'kia_subnonce' );
 
-			//get the subtitle value (if set)
+			// Get the subtitle value (if set).
 			$sub = get_post_meta( get_the_ID(), 'kia_subtitle', true );
 
-			// echo the inputfield with the value.
+			// Echo the inputfield with the value.
 			printf( '<input type="text" class="widefat" name="subtitle" placeholder="%s" value="%s" id="the_subtitle" />',
 				__( 'Subtitle', 'kia-subtitle' ),
 				esc_attr($sub) );
@@ -358,7 +384,7 @@ class KIA_Subtitle {
 	 */
 	public function meta_save( $post_id ){
 
-		//check to see if this is an autosafe and if the nonce is verified:
+		// Check to see if this is an autosafe and if the nonce is verified.
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ){
 			return $post_id;
 		}
@@ -367,14 +393,14 @@ class KIA_Subtitle {
 			return $post_id;
 		}
 
-		// Check permissions
+		// Check permissions.
 		if ( 'page' == $_POST['post_type'] && ! current_user_can( 'edit_page', $post_id ) ){
 			return $post_id;
 		} else if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return $post_id;
 		}
 
-		//don't save if the subtitle equals the default text
+		// Don't save if the subtitle equals the default text.
 		if( in_array ( trim($_POST['subtitle'] ), array( __( 'Subtitle', 'kia-subtitle' ), '' ) ) ) {
 			delete_post_meta( $post_id, 'kia_subtitle' );
 		} else {
@@ -384,7 +410,19 @@ class KIA_Subtitle {
 		return $post_id;
 	}
 
-
+	/**
+	 * Style the Subtitle's column for WooCommerce products
+	 * @since 1.6.8
+	 */
+	public function subtitle_column_style(){ ?>
+		<style type="text/css">
+		.post-type-product .column-subtitle {
+			width: 20ch;
+		}
+		</style>
+	<?php 
+	}
+	
 	/**
 	 * Create the Subtitle Column
 	 * @since 1.1
@@ -393,17 +431,27 @@ class KIA_Subtitle {
 	 */
 	public function column_header( $columns ){
 
-		// reset the new columns
-		$new_columns = array();
+		// Insert after title column.
+		if( isset( $columns['title'] ) || isset( $columns['name'] ) ){
+		
+			// The subtitle as an array for subsequent array manip.
+			$subtitle = array( 'subtitle' => __( 'Subtitle', 'kia-subtitle' ) );
 
-		foreach( $columns as $key => $value ) {
-			$new_columns[ $key ] = $value;
-			if ( $key == 'title' ){
-				$new_columns['subtitle'] = __( 'Subtitle', 'kia-subtitle' );
-			}
+			// WooCommerce uses the "name" column for titles.
+			$needle = isset( $columns['title'] ) ? 'title' : 'name';
+			
+			// Find the "title" column.
+			$index =  array_search( $needle, array_keys( $columns) );
+
+			// Reform the array.
+			$columns = array_merge( array_slice( $columns, 0, $index + 1, true ), $subtitle, array_slice( $columns, $index, count( $columns ) - $index, true ) );
+		
+		// Or add to end.
+		} else {
+			$columns['subtitle'] = __( 'Subtitle', 'kia-subtitle' );
 		}
 
-		return $new_columns;
+		return $columns;
 	}
 
 	/**
@@ -434,7 +482,7 @@ class KIA_Subtitle {
 
 			$options = get_option( 'kia_subtitle_options' );
 
-			// only show input if the post type was enabled in options
+			// Only show input if the post type was enabled in options.
 			if ( isset ( $options['post_types'] ) && in_array( $post->post_type, $options[ 'post_types'] ) ) { ?>
 
 				<label class="kia-subtitle">
@@ -448,6 +496,7 @@ class KIA_Subtitle {
 		}
 	}
 
+
 	/**
 	 * Plugin Upgrade Routine
 	 * previously used options to *exclude* post types from having subtitle
@@ -460,24 +509,23 @@ class KIA_Subtitle {
 
 		if ( ! ( $db_version ) || version_compare( $db_version, '1.5', '<' ) ) {
 
-			// get any existing options
+			// Get any existing options.
 			$options = get_option( 'kia_subtitle_options' );
 
-			// get all post types showing up in the menu
+			// Get all post types showing up in the menu.
 			$args = array( 'show_in_menu' => true );
 			$post_types = get_post_types( $args );
 			ksort( $post_types );
 
-			// we're going to switch any checked to *disable* options from previous version
-			// into unchecked to disable
+			// We're going to switch any checked to *disable* options from previous version into unchecked to disable.
 			if( isset( $options['post_types'] ) && is_array( $options['post_types'] ) ){
 				$post_types = array_diff( $post_types, $options['post_types'] );
 			}
 
-			// merge the new options with any old options
+			// Merge the new options with any old options.
 			$update_options = array_merge( (array)$options, array ( 'post_types' => $post_types, 'db_version' => '1.5' ) );
 
-			// update the options
+			// Update the options.
 			update_option( 'kia_subtitle_options', $update_options );
 			
 		}
@@ -486,9 +534,9 @@ class KIA_Subtitle {
 
 	}
 
-} // end class
+} // End class.
 
-endif; // class_exists check
+endif; // End class_exists check.
 
 
 /**

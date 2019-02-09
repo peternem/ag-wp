@@ -19,6 +19,13 @@ jQuery(document).ready ( function () {
  	       	selectedTab.val(thisTab);
 				tabs.find('li.'+thisTab+' a').addClass('active');
 				content.children('div.'+thisTab).addClass('active').show();
+				boxes = jQuery('.postbox, .termbox');
+				jQuery.post(ajaxurl, {
+					action: 'slickr_flickr_tab',
+					box: tabs.closest(boxes).attr('id'),
+					tabselect: thisTab,
+					tabnonce: jQuery('#slickrflickrtabnonce').val()
+				});				
 				return false;
 			});
 	   	tabs.show();

@@ -2,9 +2,10 @@
 Contributors: syammohanm
 Donate link: https://wpfront.com/donate/
 Tags: WordPress user role editor, user role editor, role editor, user role, role, WordPress user roles, user roles, roles, user roles editor, roles editor, role manager, roles manager, manage roles, manage role, access, capability, editor, permission, role, security, user, capability editor, capability manager, custom post types, custom post type permissions, custom post type capabilities, post type permissions, post type capabilities, menu editor, role menu, role menu editor, multisite roles, multisite role editor, multisite user roles, import roles, export roles
-Requires at least: 3.5
-Tested up to: 4.4.1
-Stable tag: 2.12.4
+Requires at least: 4.4
+Tested up to: 4.9
+Requires PHP: 5.2.4
+Stable tag: 2.14.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -42,12 +43,8 @@ You can create, edit or delete user roles and manage role capabilities.
 
 Compare [User Role Editor Pro](https://wpfront.com/ppro)
 
-Localization Contributors:
-<li>[Mauro Mascarenhas](http://nintersoft.ml) (Portuguese) </li>
-<li>[Elger Lindgren](http://bilddigital.se) (Swedish) </li>
-
 Spanish tutorial
-https://www.youtube.com/watch?v=YRZdWH-uukI
+[youtube https://www.youtube.com/watch?v=YRZdWH-uukI ]
 
 == Installation ==
 
@@ -64,6 +61,10 @@ https://www.youtube.com/watch?v=YRZdWH-uukI
 == Frequently Asked Questions ==
 
 Please visit [WPFront User Role Editor FAQ](https://wpfront.com/user-role-editor-pro/faq/).
+
+= WPFront User Role Editor and GDPR compliance? =
+
+This plugin doesn’t collect any personal information. For more information please visit [GDPR compliance](https://wpfront.com/wpfront-and-gdpr-compliance/).
 
 == Screenshots ==
  
@@ -88,6 +89,32 @@ Please visit [WPFront User Role Editor FAQ](https://wpfront.com/user-role-editor
 19. Widget permissions
 
 == Changelog ==
+
+= 2.14.1 =
+* Logout redirect added.
+* Secondary roles on Add New User added.
+* Secondary role filters added. [Documentation](https://wpfront.com/user-role-editor-pro/actions-and-filters/).
+
+= 2.13.1 =
+* [Important]XSS fixes. Thanks to Burak @ security.nl & DefenseCode WebScanner.
+* Spelling corrections. Thanks to [Eclipse Creative](http://eclipsecreative.ca/).
+* Update fails on some hosts are now resolved.
+* UI improvements.
+* License validation fixes.
+
+= 2.13 =
+* Bulk edit extended permissions with single role. [Documentation](https://wpfront.com/user-role-editor-pro/bulk-edit/).
+* Override navigation menu permission setting. [Documentation](https://wpfront.com/user-role-editor-pro/settings/).
+* Disable extended permission setting. [Documentation](https://wpfront.com/user-role-editor-pro/settings/).
+* Widget permission bug fix.
+* Navigation menu permission bug fix.
+* Admin menu editor bug fix.
+* WP 4.6 compatibility fix.
+* PHP 7 compatibility.
+
+= 2.12.5 =
+* Bug fixes.
+* Danish translation.
 
 = 2.12.4 =
 * Plugin conflict fix.
@@ -215,6 +242,18 @@ Please visit [WPFront User Role Editor FAQ](https://wpfront.com/user-role-editor
 * Initial release.
 
 == Upgrade Notice ==
+
+= 2.14.1 =
+* New features added.
+
+= 2.13.1 =
+* This update is highly recommended because of security fixes.
+
+= 2.13 =
+* New features and bug fixes.
+
+= 2.12.5 =
+* Bug fixes.
 
 = 2.12.4 =
 * Plugin conflict fix.

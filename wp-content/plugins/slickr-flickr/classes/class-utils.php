@@ -1,15 +1,33 @@
 <?php
 class Slickr_Flickr_Utils {
 
-	static protected $is_html5 = null;
+	protected $is_html5 = null;
 
-	static function is_html5() {
-		if (self::$is_html5 == null)
-			self::$is_html5 = function_exists('current_theme_supports') && current_theme_supports('html5');		
-		return self::$is_html5;
+	function is_html5() {
+		if ($this->is_html5 == null)
+			$this->is_html5 = function_exists('current_theme_supports') && current_theme_supports('html5');		
+		return $this->is_html5;
 	}
 
-	static function get_post_id() {
+   function get_current_term() {
+		if (is_tax() || is_category() || is_tag()) {
+			if (is_category())
+				$term = get_term_by('slug',get_query_var('category_name'),'category') ;
+			elseif (is_tag())
+				$term = get_term_by('slug',get_query_var('tag'),'post_tag') ;
+			else {
+            if ($obj = get_queried_object())  
+				  $term = get_term_by('slug', $obj->slug, $obj->taxonomy) ;
+				else
+				  $term = false;
+         }
+		} else {
+			$term = false;         
+		} 
+      return $term; 
+	}
+
+	function get_post_id() {
 		global $post;
 
 		if (is_object($post) 
@@ -20,7 +38,24 @@ class Slickr_Flickr_Utils {
 			return false;
 	}
 
-	static function post_has_shortcode($shortcode, $attribute = false) {
+    function get_term_meta( $term_id, $key, $single = false, $result = false ) {
+        if (function_exists('get_term_meta'))
+            return get_term_meta( $term_id, $key, $single); 
+        else
+            return $result;
+    }
+
+	function get_meta ($post_id, $key) {
+		if ($post_id && $key
+		&& ($meta = get_post_meta($post_id, $key, true))
+		&& ($options = (is_serialized($meta) ? @unserialize($meta) : $meta))
+		&& (is_array($options) || is_string($options)))
+			return $options;
+		else
+			return false;
+	}
+
+	function post_has_shortcode($shortcode, $attribute = false) {
 		global $wp_query;
 		if (isset($wp_query)
 		&& isset($wp_query->post)
@@ -35,17 +70,7 @@ class Slickr_Flickr_Utils {
 			return false;
 	}
 
-	static function get_meta ($post_id, $key) {
-		if ($post_id && $key
-		&& ($meta = get_post_meta($post_id, $key, true))
-		&& ($options = (is_serialized($meta) ? @unserialize($meta) : $meta))
-		&& (is_array($options) || is_string($options)))
-			return $options;
-		else
-			return false;
-	}
-
-	static function json_encode($params) {
+	function json_encode($params) {
    		//fix numerics and booleans
 		$pat = '/(\")([0-9]+)(\")/';	
 		$rep = '\\2';
@@ -53,14 +78,14 @@ class Slickr_Flickr_Utils {
 			preg_replace($pat, $rep, json_encode($params)));
 	} 
    
-	static function is_mobile_device() {
+	function is_mobile_device() {
 		return  preg_match("/wap.|.wap/i", $_SERVER["HTTP_ACCEPT"])
     		|| preg_match("/iphone|ipad/i", $_SERVER["HTTP_USER_AGENT"]);
 	} 
 
-	static function is_landing_page($page_template='') {	
+	function is_landing_page($page_template='') {	
 		if (empty($page_template)
-		&& ($post_id = self::get_post_id()))
+		&& ($post_id = $this->get_post_id()))
 			$page_template = get_post_meta($post_id,'_wp_page_template',TRUE);
 		
 		if (empty($page_template)) return false;
@@ -69,24 +94,21 @@ class Slickr_Flickr_Utils {
 		return in_array($page_template, $landing_pages );
 	}
 
-	static function hide_widget($visibility ) {
-		$hide = false;
-		$is_landing = self::is_landing_page();
-		switch ($visibility) {
-			case 'hide_landing' : $hide = $is_landing; break; //hide only on landing pages
-			case 'show_landing' : $hide = ! $is_landing; break; //hide except on landing pages
+	function read_more_link($link_text='Read More', $class='', $prefix = '') {
+ 		$classes = empty($class) ? '' : (' ' . $class);
+ 		return sprintf('%1$s<a class="more-link%2$s" href="%3$s">%4$s</a>', $prefix, $classes, get_permalink(), $link_text);
 		}
-		return $hide;
+
+	function register_tooltip_styles() {
+		wp_register_style('diy-tooltip', plugins_url('styles/tooltip.css',dirname(__FILE__)), array(), null); 
 	}
 	
-    static function get_visibility_options(){
-		return array(
-			'' => 'Show on all pages', 
-			'hide_landing' => 'Hide on landing pages', 
-			'show_landing' => 'Show only on landing pages');
+	function enqueue_tooltip_styles() {
+         wp_enqueue_style('diy-tooltip');
+         wp_enqueue_style('dashicons');
 	}
 
-	static function selector($fld_id, $fld_name, $value, $options, $multiple = false) {
+	function selector($fld_id, $fld_name, $value, $options, $multiple = false) {
 		$input = '';
 		if (is_array($options)) {
 			foreach ($options as $optkey => $optlabel)
@@ -98,7 +120,7 @@ class Slickr_Flickr_Utils {
 		return sprintf('<select id="%1$s" name="%2$s"%4$s>%3$s</select>', $fld_id, $fld_name, $input, $multiple ? ' multiple':'');							
 	}
 
-	static function form_field($fld_id, $fld_name, $label, $value, $type, $options = array(), $args = array(), $wrap = false) {
+	function form_field($fld_id, $fld_name, $label, $value, $type, $options = array(), $args = array(), $wrap = false) {
 		if ($args) extract($args);
 		$input = '';
 		$label = sprintf('<label class="diy-label" for="%1$s">%2$s</label>', $fld_id, __($label));
@@ -127,7 +149,7 @@ class Slickr_Flickr_Utils {
 					isset($readonly) ? (' readonly="'.$readonly.'"') : '', 
 					isset($rows) ? (' rows="'.$rows.'"') : '', 
 					isset($cols) ? (' cols="'.$cols.'"') : '',
-					isset($class) ? (' class="'.$class.'"') : '', $value);
+					isset($class) ? (' class="'.$class.'"') : '', stripslashes($value));
 				break;
 			case 'checkbox':
 				if (is_array($options) && (count($options) > 0)) {
@@ -167,7 +189,12 @@ class Slickr_Flickr_Utils {
 				}
 				break;		
 			case 'select': 
-				$input =  self::selector($fld_id, $fld_name, $value, $options, isset($multiple));							
+				$input =  $this->selector($fld_id, $fld_name, $value, $options, isset($multiple));							
+				break;	
+            case 'page':
+                $args = array( 'id' => $fld_name, 'name' => $fld_name, 'selected' => $value, 'echo' => false,  'depth' => 0, 'option_none_value' => 0);
+                if (isset($show_option_none)) $args['show_option_none'] = $show_option_none;
+                $input = wp_dropdown_pages($args);
 				break;	
 			case 'hidden': return sprintf('<input type="hidden" name="%1$s" value="%2$s" />', $fld_name, $value);	
 			default: $input = $value;	
@@ -177,24 +204,22 @@ class Slickr_Flickr_Utils {
 			case 'tr': $format = '<tr class="diy-row"><th scope="row">%1$s</th><td>%2$s</td></tr>'; break;
 			case 'br': $format = 'checkbox'==$type ? '%2$s%1$s<br/>' : '%1$s%2$s<br/>'; break;
 			default: $format = strpos($input,'fieldset') !== FALSE ? 
-				'<div class="wrapfieldset">%1$s%2$s</div>' : ('<'.$wrap.'>%1$s%2$s</'.$wrap.'>');
+				'<div class="diy-row wrapfieldset">%1$s%2$s</div>' : ('<'.$wrap.' class="diy-row">%1$s%2$s</'.$wrap.'>');
 		}
 		return sprintf($format, $label, $input);
 	}
 
-    static function register_icons_font() {
-        global $wp_styles;
-        wp_enqueue_style( 'font-awesome', '//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css',array(),'4.3.0','all' );
-        wp_enqueue_style('font-awesome-ie7', plugins_url('styles/font-awesome-ie7.min.css', dirname(__FILE__)), array(), '4.3.0', 'all');
-        $wp_styles->add_data('font-awesome-ie7', 'conditional', 'lte IE 7');
-    }
+	function late_inline_styles($css) {
+		if (empty($css)) return;
+		print <<< SCRIPT
+<script type="text/javascript">
+//<![CDATA[
+jQuery(document).ready(function($) { 
+	$('<style type="text/css">{$css}</style>').appendTo('head');
+});	
+//]]>
+</script>
 	
-	static function register_tooltip_styles() {
-		wp_register_style('diy-tooltip', plugins_url('styles/tooltip.css',dirname(__FILE__)), array(), null); 
-	}
-
-	static function enqueue_tooltip_styles() {
-         wp_enqueue_style('diy-tooltip');
-         wp_enqueue_style('dashicons');
+SCRIPT;
     }
 }

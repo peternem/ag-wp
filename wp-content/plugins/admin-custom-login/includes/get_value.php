@@ -1,4 +1,7 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 	// Get value of Dashboard page
 	$dashboard_page = unserialize(get_option('Admin_custome_login_dashboard'));
 	$dashboard_status = $dashboard_page['dashboard_status'];
@@ -35,9 +38,34 @@
 	$login_bg_repeat =$login_page['login_bg_repeat'];
 	$login_bg_position= $login_page['login_bg_position'];
 	$login_enable_shadow=$login_page['login_enable_shadow'];
+
+	if(isset($login_page['login_redirect_force'])){
+		$login_redirect_force = $login_page['login_redirect_force'];
+	}else{
+		$login_redirect_force = 'no';
+	}
+	
 	$login_shadow_color=$login_page['login_shadow_color'];
 	$login_custom_css=$login_page['login_custom_css'];
+	$login_redirect_user=$login_page['login_redirect_user'];
+
+	if(isset($login_page['login_force_redirect_url'])){
+		$login_force_redirect_url = $login_page['login_force_redirect_url'];
+	}else{
+		$login_force_redirect_url = get_home_url()."/wp-login.php";
+	}
 	
+	$log_form_above_msg=$login_page['log_form_above_msg'];
+	$login_msg_fontsize= $login_page['login_msg_fontsize'];
+	$login_msg_font_color= $login_page['login_msg_font_color'];
+	$tagline_msg= $login_page['tagline_msg'];
+	if(isset($login_page['user_cust_lbl'])){ $user_cust_lbl= $login_page['user_cust_lbl']; } else { $user_cust_lbl = "Type Username or Email"; }
+	if(isset($login_page['pass_cust_lbl'])){ $pass_cust_lbl= $login_page['pass_cust_lbl']; } else { $pass_cust_lbl = "Type Password"; }
+	
+	if(isset($login_page['label_username'])){ $label_username= $login_page['label_username']; } else { $label_username = "Username or Email"; }	
+	if(isset($login_page['label_password'])){ $label_password= $login_page['label_password']; } else { $label_password = "Password"; }	
+	if(isset($login_page['label_loginButton'])){ $label_loginButton= $login_page['label_loginButton']; } else { $label_loginButton = "Log In"; }
+		
 	// Get value of Text and Color page
 	$text_and_color_page = unserialize(get_option('Admin_custome_login_text'));
 	$heading_font_color = $text_and_color_page['heading_font_color'];
@@ -65,6 +93,13 @@
 	$logo_height = $logo_page['logo_height'];
 	$logo_url = $logo_page['logo_url'];
 	$logo_url_title = $logo_page['logo_url_title'];
+
+	// Get value of Gcaptcha page
+	$g_page = unserialize(get_option('Admin_custome_login_gcaptcha'));
+	$site_key = $g_page['site_key'];
+	$secret_key = $g_page['secret_key'];
+	$login_enable_gcaptcha = $g_page['login_enable_gcaptcha'];
+	if(isset($g_page['acl_gcaptcha_theme'])){ $acl_gcaptcha_theme = $g_page['acl_gcaptcha_theme']; } else { $acl_gcaptcha_theme="yes" ;}
 
 	// Get value of Slidshow image
 	$Slidshow_image = unserialize(get_option('Admin_custome_login_Slidshow'));
@@ -99,7 +134,8 @@
 	$social_youtube_link		=$Social_page['social_youtube_link'];
 	$social_flickr_link			=$Social_page['social_flickr_link'];
 	$social_tumblr_link			=$Social_page['social_tumblr_link'];
-	$social_vkontakte_link		=$Social_page['social_vkontakte_link'];
 	$social_skype_link			=$Social_page['social_skype_link'];
 	$social_instagram_link		=$Social_page['social_instagram_link'];
+	$social_telegram_link		=$Social_page['social_telegram_link'];
+	$social_whatsapp_link		=$Social_page['social_whatsapp_link'];
 ?>

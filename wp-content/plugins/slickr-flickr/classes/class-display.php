@@ -1,16 +1,20 @@
 <?php
-
-class Slickr_Flickr_Display {
+class Slickr_Flickr_Display  {
 
 	private $pages = 1;
 	private $id;
 	private $params;
+	private $public;
+	private $defaults;
 
-	function __construct() {}
+	function __construct($public) {
+        $this->public = $public;
+        $this->defaults = $this->public->get_defaults();
+	} 
 
 	function show($attr) {
-		Slickr_Flickr_Public::note_active();
-  		$this->params = shortcode_atts( Slickr_Flickr_Options::get_options(), $attr ); //apply plugin defaults    
+		$this->public->note_active();
+  		$this->params = shortcode_atts( $this->defaults, $attr ); //apply plugin defaults    
   		foreach ( $this->params as $k => $v ) if (($k != 'id') && ($k != 'options') && ($k != 'galleria_options') && ($k != 'attribution') && ($k != 'flickr_link_title')) $this->params[$k] = strtolower($v); //set all params as lower case
   		$this->params['tag'] = str_replace(' ','',$this->params['tag']);
 		if (strpos($this->params['tag'],',-') !==FALSE) $this->params['tagmode'] = 'bool';
@@ -80,7 +84,7 @@ NAV;
 			}
     	    $divstart = '<div class="slickr-flickr-galleria '.$this->params['orientation'].' '.$this->params['size'].' '.$this->params['align'].' '.$this->params['galleria_theme'].'"'.$style.'>'.$attribution.$nav_above;
     	    $divend = $divclear.$attribution.$nav_below.'</div>'.$this->set_options($this->galleria_options($data));
-			Slickr_Flickr_Public::add_galleria_theme($this->params['galleria_theme']); //add count of gallerias on page		
+			$this->public->add_galleria_theme($this->params['galleria_theme']); //add count of gallerias on page		
     	    break;
     	    }
    		default: {
@@ -190,6 +194,7 @@ NAV;
 	function set_api_required() {
 		$this->params['api_required'] = (($this->params['use_rss'] == 'n')
 			|| (! empty($this->params['license'])) || (! empty($this->params['text'])) || ($this->params['search'] == 'single')
+			|| (($this->params['search'] == 'sets') && $this->params['album_order'])
 			|| (! empty($this->params['date'])) || (! empty($this->params['before'])) || (! empty($this->params['after']))
 			|| (! empty($this->params['private'])) || ($this->params['page'] > 1) || ($this->params['search'] == 'galleries') 
 			|| ( !empty($this->params['tag']) && ($this->params["search"]=="groups"))) ? 'y' : 'n'; 
@@ -369,8 +374,8 @@ NAV;
 	function set_options($options) {
 	    if (count($options) > 0) {
 	    	$s = sprintf('jQuery("#%1$s").data("options",%2$s);', $this->id, json_encode($options) ); 
-			if ( Slickr_Flickr_Options::get_option('scripts_in_footer')) {
-	    		Slickr_Flickr_Public::add_jquery($s); //save for later
+			if ( $this->params['scripts_in_footer']) {
+	    		$this->public->add_jquery($s); //save for later
 			} else {
 				return sprintf('<script type="text/javascript">%1$s</script>', $s); //output it now
 			}

@@ -1,8 +1,10 @@
 <?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $login_Version = unserialize(get_option('Admin_custome_login_Version'));
 $Version = $login_Version['Version'];
 if(!isset($Version)){
-	
 	$login_Version= serialize(array(
 		'Version' => '1.0'
 	));
@@ -13,7 +15,7 @@ if(!isset($Version)){
 	));
 	add_option("Admin_custome_login_dashboard", $dashboard_page);
 	
-	$top_page= serialize(array(
+	$top_page = serialize(array(
 		'top_bg_type'=>'static-background-image',
 		'top_color' => '#f9fad2',
 		'top_image' =>   WEBLIZAR_NALF_PLUGIN_URL.'/images/3d-background.jpg',
@@ -26,18 +28,21 @@ if(!isset($Version)){
 	));
 	add_option("Admin_custome_login_top", $top_page);
 	
-	$login_page= serialize(array(
+	$login_page = serialize(array(
 		'login_form_position' => 'default',
 		'login_form_float' => 'center',
 		'login_form_left'=>'700',
 		'login_form_top'=>'300',
 		'login_custom_css'=>'',
+		'login_redirect_force' => 'no',
+		'login_redirect_user'=>'',
+		'login_force_redirect_url' => get_home_url()."/wp-login.php",
 		'login_bg_type'=>'static-background-image',
 		'login_bg_color' => '#1e73be',
 		'login_bg_effect' => 'pattern-1',
 		'login_bg_image' => WEBLIZAR_NALF_PLUGIN_URL.'/images/3d-background.jpg',
 		'login_form_opacity' => '10',
-		'login_form_width' => '520',
+		'login_form_width' => '358',
 		'login_form_radius' => '10',
 		'login_border_style' => 'solid',
 		'login_border_thikness' => '4',
@@ -45,10 +50,18 @@ if(!isset($Version)){
 		'login_bg_repeat' => 'repeat',
 		'login_bg_position' => 'left top',
 		'login_enable_shadow' => 'yes',
-		'login_shadow_color' => '#C8C8C8'
+		'login_shadow_color' => '#C8C8C8',
+		'log_form_above_msg' => '',
+		'login_msg_fontsize' => '16',
+		'login_msg_font_color' => '#000000',
+		'tagline_msg' => 'Login form is designed using <a href="https://wordpress.org/plugins/admin-custom-login/" target="_blank">ACL</a> plugin by <a href="https://www.weblizar.com" target="_blank">Weblizar</a>.',
+		'user_cust_lbl' => 'Type Username or Email',
+		'pass_cust_lbl' => 'Type Password',
+		'label_username' => 'Username / Email',
+		'label_password' => 'Password',
+		'label_loginButton' => 'Log In'
 	));
-	add_option("Admin_custome_login_login", $login_page);
-	
+	add_option("Admin_custome_login_login", $login_page);	
 	$text_and_color_page= serialize(array(
 		'heading_font_color'=>'#ffffff',
 		'input_font_color'=>'#000000',
@@ -60,13 +73,13 @@ if(!isset($Version)){
 		'button_font_size'=>'14',
 		'enable_link_shadow'=>'yes',
 		'link_shadow_color'=>'#ffffff',
-		'heading_font_style'=>'Arial',
-		'input_font_style'=>'Arial',
-		'link_font_style'=>'Arial',
-		'button_font_style'=>'Arial',
+		'heading_font_style'=>'Open Sans',
+		'input_font_style'=>'Open Sans',
+		'link_font_style'=>'Open Sans',
+		'button_font_style'=>'Open Sans',
 		'enable_inputbox_icon'=>'yes',
 		'user_input_icon'=>'fa-user',
-		'password_input_icon'=>'fa-key'
+		'password_input_icon'=>'fa-key',		
 	));
 	add_option("Admin_custome_login_text", $text_and_color_page);
 	
@@ -89,16 +102,18 @@ if(!isset($Version)){
 		'social_icon_bg_onhover'		=> '#ffffff' ,
 		'social_facebook_link'			=> 'http://facebook.com' ,
 		'social_twitter_link'			=> 'https://twitter.com/minimalmonkey',
-		'social_linkedin_link'			=> 'https://in.linkedin.com/' ,
+		'social_linkedin_link'			=> '' ,
 		'social_google_plus_link'		=> 'http://plus.google.com' ,
-		'social_pinterest_link'			=> 'https://in.pinterest.com/',
-		'social_digg_link'				=> 'https://digg.com',
+		'social_pinterest_link'			=> '',
+		'social_digg_link'				=> '',
 		'social_youtube_link'			=> 'https://youtube.com',	
 		'social_flickr_link'			=> 'https://flickr.com',
-		'social_tumblr_link'			=> 'https://tumblr.com',
-		'social_vkontakte_link'			=> 'https://vkontakte.com',
-		'social_skype_link'				=> 'https://skype.com',
+		'social_tumblr_link'			=> '',
+		'social_vkontakte_link'			=> '',
+		'social_skype_link'				=> '',
 		'social_instagram_link'			=> 'https://instagram.com',
+		'social_telegram_link'			=> '',
+		'social_whatsapp_link'			=> '',
 	));
 	add_option("Admin_custome_login_Social", $Social_page);
 
@@ -117,5 +132,12 @@ if(!isset($Version)){
 		'Slidshow_image_label_6'=> '' 
 	));
 	add_option("Admin_custome_login_Slidshow", $Slidshow_image);
+
+	$g_page= serialize(array(
+		'site_key'=> '',
+		'secret_key'=>'',
+		'login_enable_gcaptcha'=>'no'
+	));
+	add_option("Admin_custome_login_gcaptcha", $g_page);
 }
 ?>

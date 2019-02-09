@@ -1,8 +1,8 @@
 /*
 Theme Name: aga-theme
-Theme URI: 
+Theme URI:
 Author: Mpeternell
-Author URI: 
+Author URI:
 Description: Aga-Theme is a clean minimal and responsive WordPress theme well suited for travel, health, business, finance, portfolio, design, art, photography, personal and any other creative websites and blogs. Developed using Bootstrap 3 that makes it mobile and tablets friendly. Theme comes with full-screen slider, social icon integration, author bio, popular posts widget and improved category widget. Sparkling incorporates latest web standards such as HTML5 and CSS3 and is SEO friendly thanks to its clean structure and codebase. It has dozens of Theme Options to change theme layout, colors, fonts, slider settings and much more. Theme is also translation and multilingual ready, compatible with WPML and is available in Spanish, French, Dutch, Polish, Russian, German, Brazilian Portuguese, Portuguese (Portugal), Persian (Iranian language), Romanian, Turkish, Bulgarian, Japanese, Lithuanian and Italian. Sparkling is a free WordPress theme with premium functionality and design. Now theme is optimized to work with bbPress, Contact Form 7, Jetpack and other popular free and premium plugins.
 Version: 1.8.1
 License: GNU General Public License v2 or later
@@ -44,6 +44,13 @@ Aga-Theme is based on Underscores http://underscores.me/, (C) 2012-2015 Automatt
 /* Global
 ----------------------------------------------------
 */
+.page-header.collection-header {
+  margin-bottom: 0;
+}
+.white {
+  padding-bottom: 6rem;
+  padding-top: 6rem;
+}
 .entry-content .slickr-flickr-gallery li {
   margin-bottom: 1%;
   margin-right: 1%;
@@ -91,8 +98,8 @@ body #lightGallery-action a.cLthumb::after {
   width: 100%;
 }
 /***************************************************
- * Font Awesome Styling 
- ***************************************************/
+* Font Awesome Styling
+***************************************************/
 .fa .fa-angle-double-right {
   margin-left: 3px;
 }
@@ -101,8 +108,8 @@ body #lightGallery-action a.cLthumb::after {
   width: 16px;
 }
 /***************************************************
- * WP ADMIN Styling
- **************************************************/
+* WP ADMIN Styling
+**************************************************/
 .entry-meta .fa.fa-pencil-square-o {
   margin: 0 5px 0 0;
 }
@@ -183,10 +190,56 @@ body #lightGallery-action a.cLthumb::after {
   display: none;
 }
 /*******************************
- * 
- * Options Nav Menu Styling
- * 
- * ****************************/
+*
+* Options Nav Menu Styling
+*
+* ****************************/
+.opt-jumpmenu .two-column {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row;
+  flex-wrap: wrap;
+  margin-bottom: 2em;
+}
+.opt-jumpmenu .two-column .lft-col {
+  width: 33.333%;
+}
+@media (max-width: 990px) {
+  .opt-jumpmenu .two-column .lft-col {
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .opt-jumpmenu .two-column .lft-col {
+    width: 100%;
+  }
+}
+.opt-jumpmenu .two-column .rt-col {
+  width: 65%;
+  text-align: left;
+  font-size: 14px;
+}
+@media (max-width: 990px) {
+  .opt-jumpmenu .two-column .rt-col {
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .opt-jumpmenu .two-column .rt-col {
+    width: 100%;
+    margin: 0.25em 0 1em;
+    text-align: center;
+  }
+}
+.opt-jumpmenu .two-column .btn.btn-primary {
+  margin: 0 1em 0 0;
+  display: block;
+}
+@media (max-width: 768px) {
+  .opt-jumpmenu .two-column .btn.btn-primary {
+    margin: 0;
+  }
+}
 .opt-jumpmenu {
   margin: 6rem auto 0;
   text-align: center;
@@ -203,8 +256,8 @@ body #lightGallery-action a.cLthumb::after {
   overflow: hidden;
 }
 /*******************************
- * Breadcrumb Nav Styling
- ****************************************************************/
+* Breadcrumb Nav Styling
+****************************************************************/
 .breadcrumb-container {
   background-color: #fcfcfc;
 }
@@ -219,8 +272,8 @@ body #lightGallery-action a.cLthumb::after {
   padding: 0;
 }
 /*******************************
- * Hero Section Styling
- ****************************************************************/
+* Hero Section Styling
+****************************************************************/
 .jumbotron,
 .carousel {
   position: relative;
@@ -283,8 +336,8 @@ WHAT IS NEW IN 3.3: "Added transforms to improve carousel performance in modern 
 now override the 3.3 new styles for modern browsers & apply opacity
 */
 /***************************************************
- * Content Area
- ****************************************************/
+* Content Area
+****************************************************/
 .entry-content a {
   color: #337ab7;
   font-weight: 700;
@@ -540,8 +593,8 @@ now override the 3.3 new styles for modern browsers & apply opacity
   border: 2px solid #d3d3d3;
 }
 /*************************************************
- * Taxonomy Styling
- *************************************************/
+* Taxonomy Styling
+*************************************************/
 .cat-links a {
   margin: 0 0 0 5px;
 }
@@ -934,6 +987,9 @@ ul.news-list {
   }
 }
 @media (max-width: 480px) {
+  section.collection-overview {
+    padding-bottom: 0;
+  }
   body,
   .dropdown-menu > li > a {
     font-size: 14px !important;

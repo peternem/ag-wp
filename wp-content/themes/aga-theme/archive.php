@@ -19,19 +19,19 @@ get_header(); ?>
 		<div class="col-sm-8 col-md-8 col-lg-6">
 						 <?php
                     /*******     Collections Feature Post  - Tagged: Fetured Post     ************/
-                    $this_category = get_category($cat); //echo $this_category->cat_ID; 
+                    $this_category = get_category($cat); //echo $this_category->cat_ID;
                     query_posts("cat=$this_category->cat_ID&tag=featured-post&showposts=1"); ?>
                     <?php  while (have_posts()) : the_post(); ?>
-                    
+
                         <?php get_template_part('archive-single-feature'); ?>
                     <?php endwhile; ?>
-                    <?php wp_reset_query(); ?> 
+                    <?php wp_reset_query(); ?>
 		</div>
 		<div class="col-sm-4 col-md-4 col-lg-6 aga-features">
 			<?php if (function_exists('z_taxonomy_image')){
 			$attr = array('class' => 'single-featured img-responsive aga-img');
-			z_taxonomy_image(NULL, 'tab-square', $attr); 
-			} ?> 
+			z_taxonomy_image(NULL, 'tab-square', $attr);
+			} ?>
 
 		</div>
 	</div>
@@ -82,9 +82,12 @@ get_header(); ?>
 							_e( 'Archives', 'sparkling' );
 						endif;
 					?>
+					            </section>
+			<section class="container-fluid grey">
+			<h2 class="text-center section-hdr"><?php $singleCat = single_cat_title(); ?> Options</h2>
             <div class="aga-row row">
-                    <?php 
-                    $cat_slug = get_category(get_query_var('cat'))->slug; 
+                    <?php
+                    $cat_slug = get_category(get_query_var('cat'))->slug;
                     $sticky = get_option( 'sticky_posts' );
                     if ($cat_slug == "collections") {
                     	$category_id = get_cat_ID('collections');
@@ -97,36 +100,36 @@ get_header(); ?>
                     			'order'             => 'ASC'
                     	);
                     } elseif ( $cat_slug == "silhouette-collection") {
-						$idObj1 = get_category_by_slug('silhouette-slider-collection'); 
+						$idObj1 = get_category_by_slug('silhouette-slider-collection');
 						$id1 = $idObj1->term_id;
-						$idObj2 = get_category_by_slug('silhouette-elite-collection');
+						$idObj2 = get_category_by_slug('silhouette-swing-door-collection');
 						$id2 = $idObj2->term_id;
-					          
+
 			            $sticky = get_option( 'sticky_posts' );
 			            $cat_namex = "silhouette-collection";
 			            $argsx = array(
 			                'post_type' => 'post',
 			                'category_name' => $cat_namex,
 			            	'category__in' => array ($id1,$id2),
-			            	'post_count'	=> -1, 
+			            	'post_count'	=> -1,
 			               	'post__in' => $sticky,
 			             	'meta_key'          => 'collection_rank',
 			             	'orderby'           => 'meta_value_num',
 			            	'order'             => 'ASC'
 			            );
                     } elseif ( $cat_slug == "silhouette-collection") {
-						$idObj1 = get_category_by_slug('silhouette-slider-collection'); 
+						$idObj1 = get_category_by_slug('silhouette-slider-collection');
 						$id1 = $idObj1->term_id;
-						$idObj2 = get_category_by_slug('silhouette-elite-collection');
+						$idObj2 = get_category_by_slug('silhouette-swing-door-collection');
 						$id2 = $idObj2->term_id;
-					          
+
 			            $sticky = get_option( 'sticky_posts' );
 			            $cat_namex = "silhouette-collection";
 			            $argsx = array(
 			                'post_type' => 'post',
 			                'category_name' => $cat_namex,
 			            	'category__in' => array ($id1,$id2),
-			            	'post_count'	=> -1, 
+			            	'post_count'	=> -1,
 			               	'post__in' => $sticky,
 			             	'meta_key'          => 'collection_rank',
 			             	'orderby'           => 'meta_value_num',
@@ -145,7 +148,7 @@ get_header(); ?>
                     /*******     Collection options     ************/
                     $archive_query = new WP_Query( $argsx);
                     ?>
-                    
+
                     <?php while( $archive_query->have_posts() ) : $archive_query->the_post(); ?>
                         <?php $posty_counter++;  ?>
                        	<?php if ($cat_slug == "collections") { ?>
@@ -155,16 +158,16 @@ get_header(); ?>
                        <?php 	} ?>
                             <?php get_template_part( 'archive-single-option', get_post_format() ); ?>
                         </article>
-            		<?php endwhile; ?>    
+            		<?php endwhile; ?>
             		<?php wp_reset_postdata(); ?>
                 </div>
-
+			</section>
 			<?php //sparkling_paging_nav(); ?>
 		<?php else : ?>
 			<?php get_template_part( 'content', 'none' ); ?>
 		<?php endif; ?>
-                
+
             </div>
-            </section>	
+
 <?php //get_sidebar(); ?>
 <?php get_footer(); ?>

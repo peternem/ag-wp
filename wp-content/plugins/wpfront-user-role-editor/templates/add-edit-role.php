@@ -233,8 +233,8 @@ if (!defined('ABSPATH')) {
             var data = {
                 "action": "wpfront_user_role_editor_copy_capabilities",
                 "role": $(this).prev().val(),
-                "referer": <?php echo json_encode($_SERVER['REQUEST_URI']); ?>,
-                "nonce": <?php echo json_encode(wp_create_nonce($_SERVER['REQUEST_URI'])); ?>
+                "referer": <?php echo json_encode(esc_html($_SERVER['REQUEST_URI'])); ?>,
+                "nonce": <?php echo json_encode(wp_create_nonce(esc_html($_SERVER['REQUEST_URI']))); ?>
             };
 
             data["multisite"] = isMultisite;

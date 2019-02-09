@@ -1,14 +1,14 @@
 <?php
-class Slickr_Flickr_Feed{
+class Slickr_Flickr_Feed {
 
 	const FLICKR_REST_URL = 'https://api.flickr.com/services/rest/?method=%1$s&lang=en-us&format=feed-rss_200&api_key=%2$s%3$s';
-	const FLICKR_FEED_URL = 'http://api.flickr.com/services/feeds/%1$s?lang=en-us&format=feed-rss_200%2$s';
+	const FLICKR_FEED_URL = 'https://api.flickr.com/services/feeds/%1$s?lang=en-us&format=feed-rss_200%2$s';
 
 	var $args = array(); //arguments
-	var $method = ''; //access method
+	var $method = 'flickr.photos.search'; //access method
 	var $use_rss = true;  //use RSS feed
 	var $use_rest = false; //use REST access
-	var $extras = 'description,url_o,dims_o'; //extra params to fetch when using API
+	var $extras = 'description,url_o,o_dims,dims_o'; //extra params to fetch when using API
 	var $container = 'photos'; //XML container of photo elements
 	var $api_key = ''; //Flickr API Key
 	var $user_id = ''; //Flickr NS ID 
@@ -28,7 +28,7 @@ class Slickr_Flickr_Feed{
 	function is_error() { return $this->error; }  
 	function get_message() { return $this->message; }
  
-	function __construct($params) {
+	function init($params) {
 		$this->extras .= 'upload'==$params['date_type'] ? ',date_upload' : ',date_taken'; 
     	$this->build_command($params);  //set up method and args
 		if (!$this->use_rss) $this->set_php_flickr();
@@ -79,12 +79,13 @@ class Slickr_Flickr_Feed{
                 	$this->method = "flickr.photos.search";
                 	$id = $group=='y' ? 'group_id' : 'user_id'; 
                 	$this->args[$id] = $params['id'];
-                	if (!empty($params['license'])) $this->args["license"] = $params['license'];
+                	$this->args['extras'] = $this->extras;
+                	if (!empty($params['license'])) $this->args['license'] = $params['license'];
                 	$dates = $this->get_dates($params);
                 	if (count($dates)>0) $this->args = $this->args + $dates;
-                	if (!empty($params['tagmode'])) $this->args["tag_mode"] = $params['tagmode'];
+                	if (!empty($params['tagmode'])) $this->args['tag_mode'] = $params['tagmode'];
                 	if (!empty($tags)) $this->args['tags'] = $tags;
-					if (!empty($params['text'])) $this->args["text"] = trim($params['text']);  
+					if (!empty($params['text'])) $this->args['text'] = trim($params['text']);  
           		}
         	}
    		} else {
@@ -138,8 +139,8 @@ class Slickr_Flickr_Feed{
 				break;
 				
 			default: 
-				$this->flickr->enableCache ('custom', 
-					array( 'Slickr_Flickr_Cache::get_cache','Slickr_Flickr_Cache::set_cache'),  $this->cache_expiry); 			
+				$cache = new Slickr_Flickr_Cache();
+				$this->flickr->enableCache ('custom', array( array($cache, 'get_element'), array($cache, 'set_element')),  $this->cache_expiry); 			
 		}
 		return true; 
   	}
@@ -223,8 +224,7 @@ class Slickr_Flickr_Feed{
   	}
 
 	function fetch_feed() {
-		if ($this->cache_expiry != Slickr_Flickr_Options::get_default('cache_expiry')) 
- 	 		add_filter('wp_feed_cache_transient_lifetime', array(&$this,'feed_cache_expiry'),10,2);
+ 		add_filter('wp_feed_cache_transient_lifetime', array($this,'feed_cache_expiry'),10,2);
  		$rss = fetch_feed($this->get_feed_url());  //use WordPress simple pie feed handler 
         if ( is_wp_error($rss) ) {
         	$this->message = "<p>Error fetching Flickr photos: ".$rss->get_error_message()."</p>";  
@@ -256,8 +256,9 @@ class Slickr_Flickr_Feed{
     		   $this->available = array_key_exists('total', $results) ? $results['total'] : 0;
 			   $this->pages = array_key_exists('pages', $results) ? $results['pages'] : 0;
 			   if (array_key_exists('photo', $results) && is_array($results['photo'])) {
-				  foreach ($results['photo'] as $photo) 
+                    foreach ($results['photo'] as $photo) {
 				     $this->photos[] = new Slickr_Flickr_Api_Photo($this->user_id,$photo,$this->get_dims);
+                    }
 			   } else {
 				  $this->message = 'No photos found.';
 				  $this->error = true;
@@ -268,7 +269,6 @@ class Slickr_Flickr_Feed{
     		$this->error = true;
  		}
 	}
-	
 
 	function fetch_photos($page=0) {
 		$this->photos = array();

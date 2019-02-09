@@ -7,6 +7,10 @@ class Slickr_Flickr_Tooltip {
 	private $tabindex;
 		
 	function __construct($labels) {
+		$this->init($labels);
+	}
+
+	function init($labels) {
 		$this->labels = is_array($labels) ? $labels : array();
 		$this->tabindex = 100;
 	}

@@ -376,7 +376,7 @@ if (!class_exists('WPFront_User_Role_Editor_Add_Edit')) {
                     <div class="no-capability">
                         <?php
                         echo $this->__("Uses 'Posts' capabilities.");
-                        $upgrade_message = sprintf($this->__("%s to customize capabilites."), '<a href="https://wpfront.com/ureaddedit" target="_blank">' . $this->__('Upgrade to Pro') . '</a>');
+                        $upgrade_message = sprintf($this->__("%s to customize capabilities."), '<a href="https://wpfront.com/ureaddedit" target="_blank">' . $this->__('Upgrade to Pro') . '</a>');
                         $upgrade_message = apply_filters('wpfront_ure_custom_post_type_upgrade_message', $upgrade_message);
                         echo ' ' . $upgrade_message;
                         ?>
@@ -384,6 +384,7 @@ if (!class_exists('WPFront_User_Role_Editor_Add_Edit')) {
                     <?php
                 } else {
                     foreach ($value->caps as $cap) {
+                        $cap = esc_html($cap);
                         ?>
                         <div>
                             <input type="checkbox" id="<?php echo $cap; ?>" name="capabilities[<?php echo $cap; ?>]" <?php echo $value->disabled ? 'disabled' : '' ?> <?php echo $this->capability_checked($cap) ? 'checked' : '' ?> />

@@ -7,6 +7,7 @@ class Slickr_Flickr_Dashboard extends Slickr_Flickr_Admin {
 			'flickr_items' => array('heading' => 'Number Of Photos', 'tip' => 'Flickr recommend a maximum of 30 photos per page.'),
 			'flickr_type' => array('heading' => 'Type of Display', 'tip' => 'Choose the most common type of display for your photos.'),
 			'flickr_size' => array('heading' => 'Photo Size', 'tip' => 'Choose the default display size for your photos.'),
+			'flickr_album_order' => array('heading' => 'Album order', 'tip' => 'Show albums in the same order as Flickr.'),
 			'flickr_captions' => array('heading' => 'Captions', 'tip' => 'Enable captions if the majority of your photos have titles.'),
 			'flickr_autoplay' => array('heading' => 'Autoplay', 'tip' => 'Enable autoplay if you generally want slideshows to play automatically.'),
 			'flickr_delay' => array('heading' => 'Delay Between Images', 'tip' => 'Set a default for the delay between slideshow images. This is typically in the range of 3 to 7 seconds.'),
@@ -20,8 +21,10 @@ class Slickr_Flickr_Dashboard extends Slickr_Flickr_Admin {
 			'flickr_galleria_themes_folder' => array('heading' => 'Themes Folder', 'tip' => 'The recommended location is "galleria/themes". Prior to WordPress 3.3 you could put the themes under wp-content/plugins/slickr-flickr/galleria but this is no longer possible since WordPress now wipes the plugin folder of any extra files that are not part of the plugin.'),
 			'flickr_galleria_options' => array('heading' => 'Galleria Options', 'tip' => 'Here you can set default options for the Galleria.<br/>The correct format is like CSS with colons to separate the parameter name from the value and semi-colons to separate each pair: param1:value1;param2:value2;<br/>For example, transition:slide;transitionSpeed:1000; sets a one second slide transition.'),
 			'flickr_scripts_in_footer' => array('heading' => 'Load Script In Footer', 'tip' => 'This option allows you to load Javascript in the footer instead of the header. This can be useful as it may reduce potential jQuery conflicts with other plugins.<br/>However, it will not work for all WordPress themes, specifically those that do not support loading of scripts in the footer using standard WordPress hooks and filters.'),
+			'flickr_use_rss' => array('heading' => 'Default access method', 'tip' => 'Use Flickr RSS or Flickr API by default'),
 			'flickr_message' => array('heading' => 'Error Message', 'tip' => 'Any message you enter here will replace the default message that is displayed when no photos are available for whatever reason.'),
 			'flickr_silent' => array('heading' => 'Silent Mode', 'tip' => 'Click the checkbox to suppress any response at all when no photos are found.'),
+			'flickr_per_page' => array('heading' => 'Flickr API Batch Size', 'tip' => 'Change this figure if the Flickr API is either returning duplicate photos or there are missing photos. Typical range is 50 to 500.'),
 
 			);
 
@@ -73,11 +76,10 @@ class Slickr_Flickr_Dashboard extends Slickr_Flickr_Admin {
 		$this->set_tooltips($this->tips);
  		if (isset($_POST['options_update'])) $this->save() ;
 		if (isset($_GET['cache'])) $this->clear_cache();  		
-		add_action('admin_enqueue_scripts',array($this, 'enqueue_admin_styles'));
-		add_action('admin_enqueue_scripts',array($this, 'enqueue_metabox_scripts'));
-		add_action('admin_enqueue_scripts',array($this, 'enqueue_postbox_scripts'));
+		add_action('admin_enqueue_scripts', array($this, 'enqueue_admin'));
+
 		$this->add_meta_box('intro', 'Intro', 'intro_panel');
-		$this->add_meta_box('general', 'General Settings', 'general_panel',array ('options' => Slickr_Flickr_Options::get_options()), 'normal');
+		$this->add_meta_box('general', 'General Settings', 'general_panel',array ('options' => $this->plugin->get_options()->get_options()), 'normal');
 		$this->add_meta_box('extras', 'Extras', 'extras_panel', null,'advanced');
 		$this->add_meta_box('news', 'Slickr Flickr News', 'news_panel', null, 'advanced');
 		$this->add_meta_box('help', 'Free Tutorials', 'tutorials_panel', null, 'side');
@@ -93,7 +95,7 @@ class Slickr_Flickr_Dashboard extends Slickr_Flickr_Admin {
 
 	function general_panel($post,$metabox) {
       $options = $metabox['args']['options'];
-      $this->display_metabox( array(
+      print $this->tabbed_metabox( $metabox['id'], array(
          'Identity' => $this->id_panel($options),
          'Display' => $this->display_panel($options),
          'LightBox' => $this->lightbox_panel($options),
@@ -104,12 +106,12 @@ class Slickr_Flickr_Dashboard extends Slickr_Flickr_Admin {
    }
 
  	function extras_panel($post, $metabox) {
-      $this->display_metabox( array(
+      print $this->tabbed_metabox( $metabox['id'], array(
          'Getting Started' => $this->starting_panel(),
          'Useful Links' => $this->links_panel(),
          'LightBoxes' => $this->lightboxes_panel(),
          'Clear RSS Cache' => $this->cache_panel()
-		),2);
+		),3);
    }	
 	
 	function id_panel($options) {		
@@ -124,6 +126,7 @@ class Slickr_Flickr_Dashboard extends Slickr_Flickr_Admin {
 		$this->fetch_form_field ('flickr_items', $options['items'], 'text', array(), array('maxlength' => 4, 'size' => 4)).
 		$this->fetch_form_field ('flickr_type', $options['type'], 'select', $this->types).
 		$this->fetch_form_field ('flickr_size', $options['size'], 'select', $this->sizes).
+		$this->fetch_form_field ('flickr_album_order', $options['album_order'], 'checkbox').		
 		$this->fetch_form_field ('flickr_captions', $options['captions'], 'radio', array('on' => 'on','off' => 'off')).
 		$this->fetch_form_field ('flickr_autoplay', $options['autoplay'], 'radio', array('on' => 'on','off' => 'off')).
 		$this->fetch_form_field ('flickr_delay', $options['delay'], 'text', array(), array('maxlength' => 3, 'size' => 3, 'suffix' => 's')).
@@ -139,7 +142,8 @@ class Slickr_Flickr_Dashboard extends Slickr_Flickr_Admin {
 
 	function advanced_panel($options) {		
  		return	
-		$this->fetch_form_field ('flickr_scripts_in_footer', $options['scripts_in_footer'], 'checkbox');
+		$this->fetch_form_field ('flickr_scripts_in_footer', $options['scripts_in_footer'], 'checkbox').
+		$this->fetch_form_field ('flickr_use_rss', $options['use_rss'], 'select', array('y' => 'Flickr RSS', 'n' => 'Flickr API'));
 	}
 
 	function galleria_panel($options) {		
@@ -160,12 +164,12 @@ class Slickr_Flickr_Dashboard extends Slickr_Flickr_Admin {
 	function lightboxes_panel() {	 		
 		return <<< COMPAT_LIGHTBOX_PANEL
 <ul>
-<li><a href="http://s3.envato.com/files/1099520/index.html" rel="external" target="_blank">Evolution Lightbox</a></li>
-<li><a href="http://wordpress.org/extend/plugins/easy-fancybox/" rel="external" target="_blank">FancyBoxBox</a></li>
-<li><a href="http://wordpress.org/extend/plugins/lightbox-plus/" rel="external" target="_blank">Lightbox Plus (ColorBox) for WordPress</a></li>
-<li><a href="http://wordpress.org/extend/plugins/responsive-lightbox/" rel="external" target="_blank">Responsive Lightbox</a></li>
-<li><a href="http://wordpress.org/extend/plugins/shutter-reloaded/" rel="external" target="_blank">Shutter Lightbox for WordPress</a></li>
-<li><a href="http://wordpress.org/extend/plugins/slimbox/" rel="external" target="_blank">SlimBox</a></li>
+<li><a href="https://s3.envato.com/files/1099520/index.html" rel="external" target="_blank">Evolution Lightbox</a></li>
+<li><a href="https://wordpress.org/extend/plugins/easy-fancybox/" rel="external" target="_blank">FancyBoxBox</a></li>
+<li><a href="https://wordpress.org/extend/plugins/lightbox-plus/" rel="external" target="_blank">Lightbox Plus (ColorBox) for WordPress</a></li>
+<li><a href="https://wordpress.org/extend/plugins/responsive-lightbox/" rel="external" target="_blank">Responsive Lightbox</a></li>
+<li><a href="https://wordpress.org/extend/plugins/shutter-reloaded/" rel="external" target="_blank">Shutter Lightbox for WordPress</a></li>
+<li><a href="https://wordpress.org/extend/plugins/slimbox/" rel="external" target="_blank">SlimBox</a></li>
 </ul>
 COMPAT_LIGHTBOX_PANEL;
 	}
@@ -174,12 +178,13 @@ COMPAT_LIGHTBOX_PANEL;
 		$images_url = plugins_url('images/',dirname(__FILE__));	
 		$home = SLICKR_FLICKR_HOME;
 		print <<< HELP_PANEL
-<p><img src="{$images_url}free-video-tutorials-banner.png" alt="Slickr Flickr Tutorials Signup" /></p>
 <form id="slickr_flickr_signup" method="post" action="{$home}"
 onsubmit="return slickr_flickr_validate_form(this)">
+<img src="{$images_url}free-video-tutorials-banner.png" alt="Slickr Flickr Tutorials Signup" />
 <fieldset>
 <input type="hidden" name="form_storm" value="submit"/>
 <input type="hidden" name="destination" value="slickr-flickr"/>
+
 <label for="firstname">First Name
 <input id="firstname" name="firstname" type="text" value="" /></label><br/>
 <label for="email">Email
@@ -206,7 +211,6 @@ HELP_PANEL;
 STARTING_PANEL;
 	}	
 
-	
 	function links_panel() {	 
 		$home = SLICKR_FLICKR_HOME;				
       $pro = SLICKR_FLICKR_PRO;
@@ -243,7 +247,8 @@ CACHE_PANEL;
  
    function clear_cache() {
         $_SERVER['REQUEST_URI'] = remove_query_arg( 'cache');  
-   		Slickr_Flickr_Cache::clear_cache();
+        $cache = new Slickr_Flickr_Cache();
+   		$cache->clear_all();
    		$this->add_admin_notice(__('WordPress RSS cache',SLICKR_FLICKR_DOMAIN), __('has been cleared successfully',SLICKR_FLICKR_DOMAIN));
    		return true;
    }
@@ -259,12 +264,13 @@ CACHE_PANEL;
 	function save() {
 		check_admin_referer(__CLASS__);
 		$updated = false;
+        $options = $this->plugin->get_options();
 		$settings = 'Slickr Flickr Settings ';
-  		$options = explode(',', stripslashes($_POST['page_options']));
-  		if ($options) {
+  		$allowed_options = explode(',', stripslashes($_POST['page_options']));
+  		if ($allowed_options) {
   			$flickr_options = array();
     		// retrieve option values from POST variables
-    		foreach ($options as $option) {
+    		foreach ($allowed_options as $option) {
        			$option = trim($option);
        			$key = substr($option,7);
        			$val = array_key_exists($option, $_POST) ? trim(stripslashes($_POST[$option])) : '';
@@ -274,7 +280,7 @@ CACHE_PANEL;
 	    		}
     		} //end for
 			
-   			$updates = Slickr_Flickr_Options::save_options($flickr_options) ;
+   			$updates = $options->save_options($flickr_options) ;
    			if ($updates)  {
             	$updated = true;
 				$this->add_admin_notice($settings, __('saved',SLICKR_FLICKR_DOMAIN));

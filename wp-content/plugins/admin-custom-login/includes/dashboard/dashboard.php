@@ -1,6 +1,11 @@
 <!-- Dashboard Settings panel content --- >
 <!----------------------------------------> 
+<?php
+// Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) exit;
+?>
 <div class="row">
+	<?php include(WEBLIZAR_ACL_PLUGIN_DIR_PATH_FREE."includes/banner.php"); ?>
 	<div class="post-social-wrapper clearfix">
 		<div class="col-md-12 post-social-item">
 			<div class="panel panel-default">
@@ -8,7 +13,7 @@
 					<div class="post-social post-social-xs" id="post-social-5">
 						<div class="text-center padding-all text-center">
 							<div class="textbox text-white   margin-bottom settings-title">
-								<?php _e('Admin Custom Login Dashboard','WEBLIZAR_ACL')?>
+								<?php _e('Admin Custom Login Dashboard', WEBLIZAR_ACL); ?>
 							</div>
 						</div>
 					</div>
@@ -16,43 +21,69 @@
 			</div>
 		</div>
 	</div>
+	
+	
+
 	<div class="panel panel-primary panel-default content-panel">
 		<div class="panel-body">
 			<table class="form-table">
 				<tr>
-					<th scope="row" ><?php _e('Admin Custom Login Status','WEBLIZAR_ACL')?></th>
+					<th scope="row" ><?php _e('Admin Custom Login Status', WEBLIZAR_ACL); ?></th>
 					<td></td>
 				</tr>
 				<tr class="radio-span" style="border-bottom:none;">
 					<td>
 						<span>
-							<input type="radio" name="dashboard_status" value="disable" id="dashboard_status1" <?php if($dashboard_status == "disable") echo "checked"; ?> />&nbsp;<?php _e('Disable','WEBLIZAR_ACL')?><br>
+							<input type="radio" name="dashboard_status" value="disable" id="dashboard_status1" <?php if($dashboard_status == "disable") echo "checked"; ?> />&nbsp;<?php _e('Disable', WEBLIZAR_ACL)?><br>
 						</span>
 						<span>
-							<input type="radio" name="dashboard_status" value="enable" id="dashboard_status2" <?php if($dashboard_status == "enable") echo "checked";?> />&nbsp;<?php _e('Enable','WEBLIZAR_ACL')?><br>
+							<input type="radio" name="dashboard_status" value="enable" id="dashboard_status2" <?php if($dashboard_status == "enable") echo "checked";?> />&nbsp;<?php _e('Enable', WEBLIZAR_ACL)?><br>
 						</span>
 					</td>
 				</tr>
 			</table>
 		</div>
 	</div>
+	
 	<div class="panel panel-primary panel-default content-panel">
 		<div class="panel-body">
 			<table class="form-table">
 				<tr>
-					<th scope="row" ><?php _e('View Login Page','WEBLIZAR_ACL')?></th>
+					<th scope="row" ><?php _e('View Login Page', WEBLIZAR_ACL); ?></th>
 					<td></td>
 				</tr>
 				<tr class="radio-span" style="border-bottom:none;">
 					<td>
-						<h4>Copy below link and open in another browser where you are not logged in</h4>
+						<h4><?php _e('Copy below link and open in another browser where you are not logged in', WEBLIZAR_ACL)?></h4>
 						<br>
-						<span style="color:#ef4238">  <?php echo wp_login_url(); ?> </span>
+						<pre><span style="color:#ef4238"><?php echo wp_login_url(); ?></span></pre>
 					</td>
 				</tr>
 			</table>
 		</div>
-	</div>		
+	</div>	
+
+	<!--<div class="panel panel-primary panel-default content-panel">
+		<div class="panel-body">
+			<table class="form-table">
+				<tr>
+					<th scope="row" >Enjoying Using Fre Plugin, Please Donate Us</th>
+					<td></td>
+				</tr>
+				<tr class="radio-span" style="border-bottom:none;">
+					<td class="colcent">
+						<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+							<input type="hidden" name="cmd" value="_s-xclick">
+							<input type="hidden" name="hosted_button_id" value="9MXDU3NKPCR5Y">
+							<input type="image" src="https://www.paypalobjects.com/en_GB/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+							<img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>-->
+
 	<button data-dialog="somedialog" class="dialog-button" style="display:none">Open Dialog</button>
 	<div id="somedialog" class="dialog" style="position: fixed; z-index: 9999;">
 		<div class="dialog__overlay"></div>
@@ -63,10 +94,11 @@
 				</svg>
 			</div>
 			<div class="dialog-inner">
-				<h2><strong><?php _e('Dashboard ','WEBLIZAR_ACL');?></strong><?php _e('Setting Save Successfully','WEBLIZAR_ACL');?></h2><div><button class="action dialog-button-close" data-dialog-close id="dialog-close-button" ><?php _e('Close','WEBLIZAR_ACL');?></button></div>
+				<h2><strong><?php _e('Dashboard', WEBLIZAR_ACL);?></strong> <?php _e('Setting Save Successfully', WEBLIZAR_ACL);?></h2><div><button class="action dialog-button-close" data-dialog-close id="dialog-close-button" ><?php _e('Close', WEBLIZAR_ACL);?></button></div>
 			</div>
 		</div>
 	</div>
+	
 	<button data-dialog7="somedialog7" class="dialog-button7" style="display:none">Open Dialog</button>
 	<div id="somedialog7" class="dialog" style="position: fixed; z-index: 9999;">
 		<div class="dialog__overlay"></div>
@@ -77,17 +109,17 @@
 				</svg>
 			</div>
 			<div class="dialog-inner">
-				<h2><strong><?php _e('Dashboard ','WEBLIZAR_ACL')?></strong><?php _e('Setting Reset Successfully','WEBLIZAR_ACL')?></h2><div><button class="action dialog-button-close" data-dialog-close id="dialog-close-button7" ><?php _e('Close','WEBLIZAR_ACL')?></button></div>
+				<h2><strong><?php _e('Dashboard', WEBLIZAR_ACL)?></strong> <?php _e('Setting Reset Successfully', WEBLIZAR_ACL)?></h2><div><button class="action dialog-button-close" data-dialog-close id="dialog-close-button7" ><?php _e('Close', WEBLIZAR_ACL)?></button></div>
 			</div>
 		</div>
 	</div>
 	<div class="panel panel-primary save-button-block">
 		<div class="panel-body">
 			<div class="pull-left">
-				<button type="button" onclick="return Custom_login_dashboard('dashboardSave', '');" class="btn btn-info btn-lg"><?php _e('Save Changes','WEBLIZAR_ACL');?></button>
+				<button type="button" onclick="return Custom_login_dashboard('dashboardSave', '');" class="btn btn-info btn-lg"><?php _e('Save Changes', WEBLIZAR_ACL);?></button>
 			</div>
 			<div class="pull-right">
-				<button type="button" onclick="return Custom_login_dashboard('dashboardReset', '');" class="btn btn-primary btn-lg"><?php _e('Reset Default','WEBLIZAR_ACL');?></button>
+				<button type="button" onclick="return Custom_login_dashboard('dashboardReset', '');" class="btn btn-primary btn-lg"><?php _e('Reset Default', WEBLIZAR_ACL);?></button>
 			</div>
 		</div>
 	</div>
@@ -150,20 +182,20 @@ function Custom_login_dashboard(Action, id) {
 	
 	// Save Message box Close On Mouse Hover
 	document.getElementById('dialog-close-button').disabled = false;
-	 jQuery('#dialog-close-button').hover(function () {
-		   jQuery("#dialog-close-button").click();
-		   document.getElementById('dialog-close-button').disabled = true; 
-		 }
+		jQuery('#dialog-close-button').hover(function () {
+			jQuery("#dialog-close-button").click();
+			document.getElementById('dialog-close-button').disabled = true; 
+		}
 	 );
 	 
 	// Reset Message box Close On Mouse Hover
    document.getElementById('dialog-close-button7').disabled = false;
-	 jQuery('#dialog-close-button7').hover(function () {
-		   jQuery("#dialog-close-button7").click();
-		   document.getElementById('dialog-close-button7').disabled = true; 
-		 }
+		jQuery('#dialog-close-button7').hover(function () {
+			jQuery("#dialog-close-button7").click();
+			document.getElementById('dialog-close-button7').disabled = true; 
+		}
 	);
-				
+
 	if(Action == "dashboardReset") {
 		(function() {
 			var dlgtrigger = document.querySelector( '[data-dialog7]' ),
@@ -220,9 +252,9 @@ if(isset($_POST['Action'])) {
 
 	//Save
 	if($Action == "dashboardSave") {
-		$dashboard_status = $_POST['dashboard_status'];
-		
-		// save values in option table
+		$dashboard_status = sanitize_option('dashboard_status', $_POST['dashboard_status']);
+	
+	// save values in option table
 		$dashboard_page= serialize(array(
 			'dashboard_status' => $dashboard_status
 		));
@@ -236,3 +268,26 @@ if(isset($_POST['Action'])) {
 	}
 }
 ?>
+<style type="text/css">
+	.colcent{
+		width:100% !important;
+		text-align: center !important;
+	}
+	.img_banner{
+		width:100%;
+	}
+	@font-face {
+font-family: 'Montserrat Alternates', sans-serif;
+font-family: 'Nunito Sans', sans-serif;
+font-family: 'Abel', sans-serif;
+font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Lora', serif;
+    src: url(https://fonts.googleapis.com/css?family=Abel|Lora|Montserrat+Alternates|Nanum+Gothic|Nunito+Sans);
+}
+
+body{
+font-family: 'Nanum Gothic', sans-serif;
+	
+}
+/*--close-media-responsive csss--*/
+</style>
