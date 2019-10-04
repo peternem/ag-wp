@@ -1,18 +1,20 @@
 module.exports = function (grunt) {
 
+    var AutoPrefix = require('less-plugin-autoprefix');
+
     // Project configuration
-    grunt.config('phplint', {
-        options: {
-            phpCmd: "/usr/bin/php",
-            phpArgs: {
-                '-ldf': true,
-                '-d': ["display_errors", "display_startup_errors"]
-            }
-        },
-        all: {
-            src: '<%= paths.php.files %>'
-        }
-    });
+    // grunt.config('phplint', {
+    //     options: {
+    //         phpCmd: "/usr/bin/php",
+    //         phpArgs: {
+    //             '-ldf': true,
+    //             '-d': ["display_errors", "display_startup_errors"]
+    //         }
+    //     },
+    //     all: {
+    //         src: '<%= paths.php.files %>'
+    //     }
+    // });
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -27,8 +29,8 @@ module.exports = function (grunt) {
                 ' */\n\n\n\n'
             },
             roosterpark: {
-                src: ['inc/js/src/theme-scripts.js'],
-                dest: 'inc/js/theme-scripts.js'
+                src: ['dist/js/src/theme-scripts.js'],
+                dest: 'dist/js/theme-scripts.js'
             },
             // extras: {
             //     src: ['assets/js/src/plugin-staticheader.js'],
@@ -54,7 +56,7 @@ module.exports = function (grunt) {
         jshint: {
             all: [
                 'Gruntfile.js',
-                'inc/js/dev/**/*.js',
+                'dist/js/src/**/*.js',
             ],
             options: {
                 curly: true,
@@ -65,20 +67,18 @@ module.exports = function (grunt) {
                 noarg: true,
                 sub: true,
                 undef: true,
+                unused: true,
                 boss: true,
                 eqnull: true,
+                reporterOutput: '',
                 globals: {
-                    exports: true,
-                    module: false,
-                    $: false,
-                    jQuery: false,
-                    console: false,
-                    document: false,
-                    window: false,
-                    google: false,
-                    alert: false,
-                    setInterval: false,
-                    setTimeout: false
+                    'module': true,
+                    'jQuery': true,
+                    'window': true,
+                    'document': true,
+                    'alert': true,
+                    'console': true,
+                    'require': true,
                 }
             }
         },
@@ -95,23 +95,27 @@ module.exports = function (grunt) {
             },
             my_target_1: {
                 files: {
-                    'inc/js/theme-scripts.js': ['inc/js/src/theme-scripts.js']
+                    'dist/js/theme-scripts.js': ['dist/js/src/theme-scripts.js']
                 }
             }
         },
         test: {
-            files: ['assets/js/test/**/*.js']
+            files: ['dist/js/test/**/*.js']
         },
         less: {
             all: {
-                // options: {
-                //   compress: true,
-                //   yuicompress: true,
-                //   optimization: 2
-                // },
+                options: {
+                    compress: true,
+                    yuicompress: true,
+                    sourceMap: true,
+                    optimization: 2,
+                    plugins: [
+                        new AutoPrefix({browsers: '> 1%, last 2 versions, Firefox ESR, Opera 12.1'})
+                    ]
+                },
                 files: {
-                    'inc/css/theme-style.css': 'inc/less/theme-style.less'
-                }
+                    'dist/css/theme-style.css': 'dist/less/theme-style.less'
+                },
             }
         },
         browserSync: {
@@ -120,7 +124,7 @@ module.exports = function (grunt) {
                     proxy: 'http://agalite.test/',
                     host: 'agalite.test',
                     open: 'external',
-                    files: ['inc/css/theme-style.css', 'inc/js/**/*.js', '**/*.php'],
+                    files: ['dist/css/theme-style.css', 'dist/js/**/*.js', '**/*.php'],
                     watchTask: true,
                 }
             }
@@ -137,16 +141,16 @@ module.exports = function (grunt) {
             },
             target: {
                 expand: true,
-                cwd: 'inc/css/',
+                cwd: 'dist/css/',
                 src: ['*.css', '!*.min.css'],
-                dest: 'inc/css/',
+                dest: 'dist/css/',
                 ext: '.css'
             }
         },
         watch: {
 
             styles: {
-                files: ['inc/less/**/*.less'],
+                files: ['dist/less/**/*.less'],
                 tasks: ['less'],
                 options: {
                     debounceDelay: 500,
@@ -154,22 +158,21 @@ module.exports = function (grunt) {
                 }
             },
             scripts: {
-                files: ['inc/js/src/**/*.js'],
+                files: ['dist/js/src/**/*.js'],
                 tasks: ['jshint', 'concat', 'uglify'],
-                tasks: ['jshint'],
                 options: {
                     debounceDelay: 500,
                     reload: true
                 }
             },
-            phplint: {
-                files: ['**/*.php'], // which files to watch,
-                tasks: ['phplint'],
-                options: {
-                    spawn: false,
-                    reload: true
-                }
-            }
+            // phplint: {
+            //     files: ['**/*.php'], // which files to watch,
+            //     tasks: ['phplint'],
+            //     options: {
+            //         spawn: false,
+            //         reload: true
+            //     }
+            // }
         },
         clean: {
             main: ['release/<%= pkg.name %>']
@@ -181,7 +184,6 @@ module.exports = function (grunt) {
                     '**',
                     '!bower_components/**',
                     '!node_modules/**',
-                    '!nbproject/**',
                     '!release/**',
                     '!.git/**',
                     '!js/src/**',
@@ -206,14 +208,14 @@ module.exports = function (grunt) {
                 dest: '<%= pkg.name %>/'
             }
         },
-        phplint: {
-            options: {
-                stdout: true,
-                stderr: true,
-                swapPath: '/tmp'
-            },
-            files: ['*.php', '**/*.php', '!node_modules/**/*.php'] // which files to watch
-        }
+        // phplint: {
+        //     options: {
+        //         stdout: true,
+        //         stderr: true,
+        //         swapPath: '/tmp'
+        //     },
+        //     files: ['*.php', '**/*.php', '!node_modules/**/*.php'] // which files to watch
+        // }
     });
 
     // Load other tasks
@@ -225,14 +227,14 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-phplint');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-browser-sync');
+    grunt.loadNpmTasks('grunt-modernizr');
+
     // Default task.
     grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify', 'less', 'cssmin', 'compress']);
     grunt.registerTask('build', ['default', 'copy']);
-    grunt.registerTask('css', ['less', 'phplint']);
-    grunt.registerTask('php', ['phplint']);
+    grunt.registerTask('css', ['less']);
     grunt.registerTask('serve', ['browserSync', 'watch']);
 
     grunt.util.linefeed = '\n';

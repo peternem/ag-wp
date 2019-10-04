@@ -22,7 +22,7 @@ jQuery(document).ready(function(){
 		wpex_staticheader();
 	});
 
-	jQuery(window).bind('orientationchange', function(event) {
+	jQuery(window).bind('orientationchange', function() {
 		var header_height = jQuery('.navbar').outerHeight();
 		jQuery('#page').css({
 			paddingTop: header_height
@@ -62,7 +62,7 @@ jQuery(document).ready(function(){
 	jQuery( '#submit, .tagcloud, button[type=submit], .comment-reply-link, .widget_rss ul, .postform, table#wp-calendar' ).show( "fast" );
 
 	jQuery(function() {
-		jQuery('.pop').click(function (e) {
+		jQuery('.pop').click(function () {
 			jQuery('#imagemodal .imagepreview').attr('src', jQuery(this).attr('data-img-url'));
 			jQuery('#imagemodal .modal-title').html(jQuery(this).attr('data-img-alt'));
 			jQuery('#imagemodal').modal('show');
