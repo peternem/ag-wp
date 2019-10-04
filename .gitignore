@@ -20,28 +20,7 @@ wp-content/wp-cache-config.php
 
 
 wp-admin/
-wp-include/
-nbproject/
-#################################################
-# IIS
-#################################################
-web.config
-
-#################################################
-# Eclipse Ignore
-#################################################
-*.pydevproject
-.metadata
-.gradle
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
-.settings/
-.loadpath
+wp-includes/*
 
 .DS_Store
 

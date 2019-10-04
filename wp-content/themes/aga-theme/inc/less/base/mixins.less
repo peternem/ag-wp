@@ -1,0 +1,11 @@
+// .opacity (@opacity) {
+//     opacity: @opacity;
+//     -ms-filter: ~`"progid:DXImageTransform.Microsoft.Alpha(opacity=(" + "@{opacity}" * 100 + "))"`;
+//     filter: ~`"alpha(opacity = (" + "@{opacity}" * 100 + "))"`;
+// }
+
+.opacity (@opacity: 0.5) {
+	-webkit-opacity: 	@opacity;
+	-moz-opacity: 		@opacity;
+	opacity: 		@opacity;
+}

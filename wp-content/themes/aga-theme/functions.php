@@ -267,16 +267,15 @@ function sparkling_scripts() {
   	wp_enqueue_style( 'sparkling-bootstrap', get_template_directory_uri() . '/inc/bootstrap/css/bootstrap.min.css', false, $ver);
   	// Add main theme stylesheet
   	wp_enqueue_style('sparkling-style', get_template_directory_uri() . '/style.css', false, $ver);
+	wp_enqueue_style('theme-style', get_template_directory_uri() . '/inc/css/theme-style.css', false, $ver);
   	wp_enqueue_style( 'sparkling-icons', get_template_directory_uri().'/inc/css/font-awesome.min.css' );
  	wp_register_style( 'sparkling-fonts', '//fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,700|Roboto+Slab:400,300,700');
   	wp_enqueue_style( 'sparkling-fonts' );
 
   	// Add Modernizr for better HTML5 and CSS3 support
-  	wp_enqueue_script('sparkling-modernizr', get_template_directory_uri().'/inc/js/modernizr.min.js', array('jquery'), $ver , false);
-	wp_enqueue_script('sparkling-bootstrapjs', get_template_directory_uri().'/inc/js/bootstrap.min.js', array('jquery'), $ver, false);
-	wp_enqueue_script( 'sparkling-functions', get_template_directory_uri() . '/inc/js/dev/functions.js', array('jquery'), $ver, true);
-	// This one is for accessibility
-  	//wp_enqueue_script( 'sparkling-skip-link-focus-fix', get_template_directory_uri() . '/inc/js/skip-link-focus-fix.js', array(), '20140222', true );
+  	wp_enqueue_script('sparkling-modernizr', get_template_directory_uri().'/inc/js/vendor/modernizr.min.js', array('jquery'), $ver , false);
+	wp_enqueue_script('sparkling-bootstrapjs', get_template_directory_uri().'/inc/js/vendor/bootstrap.min.js', array('jquery'), $ver, false);
+	wp_enqueue_script( 'sparkling-functions', get_template_directory_uri() . '/inc/js/theme-scripts.js', array('jquery'), $ver, true);
 
   // Treaded comments
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
