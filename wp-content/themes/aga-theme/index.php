@@ -20,10 +20,11 @@
 			<section id="collections" class="content-area container-fluid grey collections">
 				<?php get_template_part('collections-index'); ?>
 			</section>
-			
+
 		            <?php //get_template_part('hardware-index'); ?>
-		    
+
 			<section id="news" class="content-area container-fluid white">
+				<?php get_template_part('new-product-index2'); ?>
 				<?php get_template_part('new-product-index'); ?>
 			</section>
 		<?php } else { ?>

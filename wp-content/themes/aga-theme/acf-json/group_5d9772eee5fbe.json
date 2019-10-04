@@ -1,0 +1,48 @@
+{
+    "key": "group_5d9772eee5fbe",
+    "title": "Collection Cards",
+    "fields": [
+        {
+            "key": "field_5d9773058101b",
+            "label": "Collection Posts",
+            "name": "collection_posts",
+            "type": "post_object",
+            "instructions": "To reorder post simply drag and drop.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "post_type": [
+                "post"
+            ],
+            "taxonomy": [
+                "category:collections"
+            ],
+            "allow_null": 0,
+            "multiple": 1,
+            "return_format": "object",
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-home-page-collection-cards"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1570212856
+}

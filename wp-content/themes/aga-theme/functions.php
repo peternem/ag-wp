@@ -441,6 +441,22 @@ if( function_exists('acf_add_options_page') ) {
 		'menu_title'	=> 'Home Page Hero Carousel',
 		'parent_slug'	=> 'theme-general-settings',
 	));
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Home - Collection Cards',
+		'menu_title'	=> 'Home - Collection Cards',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Home - New Product',
+		'menu_title'	=> 'Home - New Product',
+		'parent_slug'	=> 'theme-general-settings',
+	));
+
+	acf_add_options_sub_page(array(
+		'page_title' 	=> 'Home - Featured Product',
+		'menu_title'	=> 'Home - Featured Product',
+		'parent_slug'	=> 'theme-general-settings',
+	));
 
 	// acf_add_options_sub_page(array(
 	// 	'page_title' 	=> 'Theme Footer Settings',

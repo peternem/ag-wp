@@ -61,36 +61,43 @@
         <?php
         // Loads all options for each collection
         $cat_name = "";
-        if (is_single('estate-collection')) {
-        	get_template_part('collection-options-estate');
-        }
-
-		if (is_single( 'transcend-collection')) {
-			get_template_part('collection-options-estate');
-		}
-		if (is_single('elite-collection')) {
-			get_template_part('collection-options-estate');
-		}
-
-        if (is_single('accent-collection')) {
-        	get_template_part('collection-options-estate');
-        }
-
-        if (is_single('silhouette-collection')) {
-        	get_template_part('collection-options-estate');
-        }
-        if (is_single('fresco-collection')) {
-        	get_template_part('collection-options-estate');
-        }
-
-        if (is_single('vision-collection')) {
-        	get_template_part('collection-options-estate');
-        }
+        // if (is_single('estate-collection')) {
+        // 	get_template_part('collection-options-estate');
+        // }
+		// if (is_single( 'napa-collection')) {
+		// 	get_template_part('collection-options-estate');
+		// }
+		// if (is_single( 'transcend-collection')) {
+		// 	get_template_part('collection-options-estate');
+		// }
+		// if (is_single('elite-collection')) {
+		// 	get_template_part('collection-options-estate');
+		// }
+		//
+        // if (is_single('accent-collection')) {
+        // 	get_template_part('collection-options-estate');
+        // }
+		//
+        // if (is_single('silhouette-collection')) {
+        // 	get_template_part('collection-options-estate');
+        // }
+        // if (is_single('fresco-collection')) {
+        // 	get_template_part('collection-options-estate');
+        // }
+		//
+        // if (is_single('vision-collection')) {
+        // 	get_template_part('collection-options-estate');
+        // }
+		// if (is_single('estate-collection')) {
+        // 	get_template_part('collection-options-estate');
+        // }
 
         if (is_single('agalite-hardware')) {
         	echo '<h2 class="text-center section-hdr">Hardware Collection Options</h2>';
         	get_template_part('hardware-options');
-        }
+        } else {
+			get_template_part('collection-options-estate');
+		}
         ?>
 	</div>
 </section>

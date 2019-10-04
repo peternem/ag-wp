@@ -1,0 +1,47 @@
+{
+    "key": "group_55ac025d8bbbf",
+    "title": "Collection Rankings",
+    "fields": [
+        {
+            "key": "field_5584a6e84fb24",
+            "label": "Collection Rank",
+            "name": "collection_rank",
+            "type": "number",
+            "instructions": "Collection ranking are needed to rank the collections from most expensive ($$$$) to least expensive ($$).  A rank of 1 = most expensive ($$$$). A rank of 50 = less expensive ($$). A rank of 100 = cheap ($).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "readonly": 0,
+            "disabled": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_taxonomy",
+                "operator": "==",
+                "value": "post_tag:collections-rank"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1570218403
+}
