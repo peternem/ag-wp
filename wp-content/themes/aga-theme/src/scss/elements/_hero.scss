@@ -1,0 +1,57 @@
+/*******************************
+* Hero Section Styling
+****************************************************************/
+
+
+.jumbotron, .carousel {
+    position: relative;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+    .img-responsive.wp-post-image {
+        margin: 0 auto;
+    }
+    h1, .h1 {
+        color: $global-white;
+        font-size: 50px;
+        font-weight: $global-font-weight-bold;
+        text-shadow: $global-text-shadow;
+    }
+    .subtitle, p {
+        color: $global-white;
+        font-weight: $global-font-weight-bold;
+        margin-bottom: 15px;
+        text-shadow: $global-text-shadow;
+    }
+    .jumbo-btn {
+        margin-top: 3%;
+    }
+}
+
+.carousel-caption {
+    bottom: 40%;
+}
+
+.jumbo-caption {
+    left: 5%;
+    position: absolute;
+    right: 5%;
+    top: 10%;
+    z-index: 10;
+    .subtitle, p {
+        color: $global-white;
+        font-weight: $global-font-weight-bold;
+        margin-bottom: 15px;
+        text-shadow: $global-text-shadow;
+    }
+}
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    margin: 0 auto;
+}
+
+.carousel-inner {
+    background-color: $global-ag-color-3;
+}

@@ -10,6 +10,18 @@
 
 		<article class="col-sm-6 col-md-6 col-lg-6">
 			<header class="entry-header page-header">
+				<?php
+				$category = get_the_category();
+				$parent_name = $category[0]->cat_name;
+				$parent_slug = $category[0]->slug
+				 ?>
+				<nav aria-label="breadcrumb">
+				  <ol class="breadcrumb">
+				    <li class="breadcrumb-item"><a href="/">Home</a></li>
+				    <li class="breadcrumb-item"><a href="<?php echo '/'.$parent_slug; ?>"><?php echo $parent_name; ?></a></li>
+				    <li class="breadcrumb-item active" aria-current="page"><?php the_title(); ?></li>
+				  </ol>
+				</nav>
 				<h1 class="entry-title"><?php the_title(); ?></h1>
 				<?php if(function_exists('the_subtitle')) { ?>
 	        	<p class="subtitle"><strong><?php echo the_subtitle();?></strong></p>
@@ -61,43 +73,41 @@
         <?php
         // Loads all options for each collection
         $cat_name = "";
-        // if (is_single('estate-collection')) {
-        // 	get_template_part('collection-options-estate');
-        // }
-		// if (is_single( 'napa-collection')) {
-		// 	get_template_part('collection-options-estate');
-		// }
-		// if (is_single( 'transcend-collection')) {
-		// 	get_template_part('collection-options-estate');
-		// }
-		// if (is_single('elite-collection')) {
-		// 	get_template_part('collection-options-estate');
-		// }
-		//
-        // if (is_single('accent-collection')) {
-        // 	get_template_part('collection-options-estate');
-        // }
-		//
-        // if (is_single('silhouette-collection')) {
-        // 	get_template_part('collection-options-estate');
-        // }
-        // if (is_single('fresco-collection')) {
-        // 	get_template_part('collection-options-estate');
-        // }
-		//
-        // if (is_single('vision-collection')) {
-        // 	get_template_part('collection-options-estate');
-        // }
-		// if (is_single('estate-collection')) {
-        // 	get_template_part('collection-options-estate');
-        // }
+        if (is_single('estate-collection')) {
+        	get_template_part('collection-options-estate');
+        }
+		if (is_single( 'napa-collection')) {
+			get_template_part('collection-options-estate');
+		}
+		if (is_single( 'transcend-collection')) {
+			get_template_part('collection-options-estate');
+		}
+		if (is_single('elite-collection')) {
+			get_template_part('collection-options-estate');
+		}
+
+        if (is_single('accent-collection')) {
+        	get_template_part('collection-options-estate');
+        }
+
+        if (is_single('silhouette-collection')) {
+        	get_template_part('collection-options-estate');
+        }
+        if (is_single('fresco-collection')) {
+        	get_template_part('collection-options-estate');
+        }
+
+        if (is_single('vision-collection')) {
+        	get_template_part('collection-options-estate');
+        }
+		if (is_single('estate-collection')) {
+        	get_template_part('collection-options-estate');
+        }
 
         if (is_single('agalite-hardware')) {
         	echo '<h2 class="text-center section-hdr">Hardware Collection Options</h2>';
         	get_template_part('hardware-options');
-        } else {
-			get_template_part('collection-options-estate');
-		}
+        }
         ?>
 	</div>
 </section>

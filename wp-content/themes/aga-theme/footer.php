@@ -22,5 +22,6 @@
 <!-- end footer -->
 <?php wp_footer(); ?>
 <div class="scroll-to-top"><i class="fa fa-angle-up"></i></div><!-- .scroll-to-top -->
+
 </body>
 </html>

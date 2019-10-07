@@ -4,8 +4,8 @@
 //     filter: ~`"alpha(opacity = (" + "@{opacity}" * 100 + "))"`;
 // }
 
-.opacity (@opacity: 0.5) {
-	-webkit-opacity: 	@opacity;
-	-moz-opacity: 		@opacity;
-	opacity: 		@opacity;
+@mixin opacity ($opacity: 0.5) {
+	-webkit-opacity:  $opacity;
+	-moz-opacity: 		$opacity;
+	opacity: 		$opacity;
 }
