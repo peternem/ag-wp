@@ -1,0 +1,84 @@
+/* Main Nav xx
+----------------------------------------------------
+*/
+
+.navbar-form {
+    border: none;
+}
+
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+    max-height: 380px;
+}
+
+.navbar-collapse.collapse.in {
+    .navbar-form {
+        margin: 0 0 15px;
+        padding: 0;
+        float: none;
+        clear: left;
+        width: 100%;
+    }
+}
+
+.navbar-form {
+    margin-top: ((@navbar-height - @line-height-computed) / 2.25);
+    margin-bottom: ((@navbar-height - @line-height-computed) / 2.25);
+    padding-right: 0;
+}
+
+.navbar {
+    .container-fluid {
+        max-width: 1366px;
+    }
+    .description {
+        font-size: 12px;
+        margin-left: 10px;
+    }
+}
+
+.aglogo.ft {
+    color: white;
+    margin: 0 auto 30px;
+    width: 100%;
+}
+.aglogo {
+    display: block;
+    float: left;
+    margin: ((@navbar-height - @line-height-computed) / 2.25) ((@navbar-height - @line-height-computed) / 2.25) 0;
+}
+
+
+.hgi-links {
+    margin: 0;
+    padding: 0;
+    li {
+        list-style: none;
+        display: inline-block;
+        a {
+            display: inline-block;
+            font-weight: 700;
+            padding: 10px 15px;
+            position: relative;
+            &:hover, &:focus {
+                background-color: #eee;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.entry-meta {
+    .fa {
+        margin-right: 3px;
+    }
+    span {
+        margin-right: 10px;
+    }
+}
+
+.text-center.section-hdr {
+    margin-bottom: 6rem;
+}
+.container-fluid.grey:empty {
+    display: none;
+}

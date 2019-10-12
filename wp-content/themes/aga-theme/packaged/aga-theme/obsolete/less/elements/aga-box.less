@@ -1,0 +1,59 @@
+.aga-box {
+    .collection-wp {
+        background-color: #fafafa;
+        height: 140px;
+        margin-top: 10px;
+        padding: 10px;
+        overflow: hidden;
+        padding: 10px;
+        position: relative;
+        > footer {
+            bottom: 10px;
+            left: 10px;
+            position: absolute;
+            right: 10px;
+            .edit-link {
+                float: right;
+                .fa {
+                    margin-left: 4px;
+                }
+            }
+        }
+    }
+    h2,h3 {
+        border-bottom: @global-border-size solid @global-border-color;
+        color: @global-ag-headline-color; //#504834;
+        margin: 0 0 6%;
+        padding: 15px 0;
+        width: auto;
+        height:80px;
+        //overflow: hidden;
+        a {
+            color: @global-ag-headline-color; //#504834;
+            &:hover {
+                color: lighten(@global-hover-link, 30%);
+                text-decoration: none;
+            }
+        }
+    }
+    .subtitle {
+        max-height: 60px;
+        min-height: 60px;
+        overflow: hidden;
+    }
+    .aga-img {
+        //margin: 0 auto 10px;
+    }
+    ul {
+        padding: 0 15px 15px;
+    }
+    li {
+        list-style: none;
+        margin-bottom: 5%;
+        width: auto;
+        overflow: auto;
+        a {
+            font-weight: 700;
+        }
+    }
+}

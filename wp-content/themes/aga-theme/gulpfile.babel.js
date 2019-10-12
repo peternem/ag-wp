@@ -1,25 +1,27 @@
 'use strict';
 
-import plugins       from 'gulp-load-plugins';
-import yargs         from 'yargs';
-import browser       from 'browser-sync';
-import gulp          from 'gulp';
-import rimraf        from 'rimraf';
-import yaml          from 'js-yaml';
-import fs            from 'fs';
-import dateFormat    from 'dateformat';
-import webpackStream from 'webpack-stream';
-import webpack2      from 'webpack';
-import named         from 'vinyl-named';
-import log           from 'fancy-log';
-import colors        from 'ansi-colors';
+import gutil            from 'gulp-util';
+import plumber          from 'gulp-plumber';
+import gulpStylelint    from 'gulp-stylelint';
+import atImport         from 'postcss-import';
+import cssdeclsort      from 'css-declaration-sorter';
+import postcss          from 'gulp-postcss';
+import autoprefixer     from 'autoprefixer';
 
-const gutil = require('gulp-util');
-const plumber = require('gulp-plumber');
-const gulpStylelint = require('gulp-stylelint');
-const atImport = require('postcss-import');
-const cssdeclsort = require('css-declaration-sorter');
-const postcss = require('gulp-postcss');
+import plugins          from 'gulp-load-plugins';
+import yargs            from 'yargs';
+import browser          from 'browser-sync';
+import gulp             from 'gulp';
+import rimraf           from 'rimraf';
+import yaml             from 'js-yaml';
+import fs               from 'fs';
+import dateFormat       from 'dateformat';
+import webpackStream    from 'webpack-stream';
+import webpack2         from 'webpack';
+import named            from 'vinyl-named';
+import log              from 'fancy-log';
+import colors           from 'ansi-colors';
+
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -120,17 +122,18 @@ function copy() {
 
 gulp.task('lint_sass', function() {
     return gulp.src(['sass/**/*.scss'])
-        .pipe(plumber({errorHandler: function() { gutil.beep(); }}))
-        .pipe(gulpStylelint({
-            reporters: [
-                {formatter: 'string', console: true}
-            ]
-        }));
+    .pipe(plumber({errorHandler: function() { gutil.beep(); }}))
+    .pipe(gulpStylelint({config: '.stylintrc'}))
+    .pipe(gulpStylelint({
+        reporters: [
+            {formatter: 'string', console: true}
+        ]
+    }));
 });
 
 gulp.task('sass-dev', gulp.series('lint_sass', function() {
     var processors = [
-        //autoprefixer({browsers: COMPATIBILITY}),
+        autoprefixer({overrideBrowserslist: COMPATIBILITY}),
         atImport(),
         cssdeclsort({order: 'alphabetically'}),
     ];
@@ -139,21 +142,23 @@ gulp.task('sass-dev', gulp.series('lint_sass', function() {
     .pipe(plumber({errorHandler: onError}))
     .pipe($.sourcemaps.init())
     .pipe($.sass({
-        includePaths: PATHS.sass
+        includePaths: PATHS.sass,
+        outputStyle: 'nested'
     })
-    .on('error', $.sass.logError))
-    .pipe(postcss(processors))
-    .pipe($.autoprefixer({
-        browsers: COMPATIBILITY
-    }))
+    //.on('error', $.sass.logError)
+)
+.pipe(postcss(processors))
+// .pipe($.autoprefixer({
+//     overrideBrowserslist: COMPATIBILITY
+// }))
 
-    .pipe($.if(PRODUCTION, $.cleanCss({ compatibility: 'ie9' })))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
-    .pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev()))
-    .pipe(gulp.dest(PATHS.dist + '/css'))
-    .pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev.manifest()))
-    .pipe(gulp.dest(PATHS.dist + '/css'))
-    .pipe(browser.reload({ stream: true }))
+.pipe($.if(PRODUCTION, $.cleanCss({ compatibility: 'ie9' })))
+.pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+.pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev()))
+.pipe(gulp.dest(PATHS.dist + '/css'))
+.pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev.manifest()))
+.pipe(gulp.dest(PATHS.dist + '/css'))
+.pipe(browser.reload({ stream: true }))
 
 }));
 // Combine JavaScript into one file
@@ -247,12 +252,6 @@ function archive() {
     .pipe(gulp.dest('packaged'));
 }
 
-// Fonts
-// gulp.task('fonts', function() {
-//     return gulp.src(['node_modules/font-awesome/fonts/fontawesome-webfont.*']).pipe(gulp.dest('fonts/'));
-// });
-
-
 
 // PHP Code Sniffer task
 gulp.task('phpcs', function() {
@@ -300,7 +299,7 @@ function reload(done) {
 // Watch for changes to static assets, pages, Sass, and JavaScript
 function watch() {
     gulp.watch(PATHS.assets, copy);
-    gulp.watch('src/scss/**/*.scss', gulp.series('sass'))
+    gulp.watch('src/scss/**/*.scss', gulp.series('sass-dev'))
     .on('change', path => log('File ' + colors.bold(colors.magenta(path)) + ' changed.'))
     .on('unlink', path => log('File ' + colors.bold(colors.magenta(path)) + ' was removed.'));
     gulp.watch('**/*.php', reload)
@@ -312,7 +311,7 @@ function watch() {
 gulp.task('sass', gulp.parallel('sass-dev'));
 
 // Build the "dist" folder by running all of the below tasks
-gulp.task('build', gulp.series(clean, gulp.parallel('sass', 'webpack:build', images, copy)));
+gulp.task('build', gulp.series(clean, gulp.parallel('sass-dev', 'webpack:build', images, copy)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default', gulp.series('build', server, gulp.parallel('webpack:watch', watch)));

@@ -1,0 +1,16 @@
+/* FSCF form styling
+----------------------------------------------------
+*/
+.fscf-div-form {
+    .fscf-required-indicator, .fscf-required-text {
+        color: red;
+        font-size: 12px;
+    }
+    .fscf-required-indicator {
+        margin-left: 5px;
+    }
+    .fscf-div-submit {
+        margin-bottom: 45px;
+        margin-top: 45px;
+    }
+}

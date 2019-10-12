@@ -1,0 +1,25 @@
+.home-collections {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    .home-collections__card {
+        display: flex;
+        position: relative;
+        min-height: 1px;
+        padding-left: 20px;
+        padding-right: 20px;
+        margin-bottom: 2em;
+        @media (min-width: 1025px) {
+            width: 33.33333333%;
+        }
+        @media (max-width: 1024px) {
+            width: 50%;
+        }
+        @media (max-width: 680px) {
+            width: 100%;
+        }
+    }
+
+}

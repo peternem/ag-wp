@@ -1,0 +1,15 @@
+.collection-cta {
+    padding-bottom: $global-margin-bottom;
+    padding-top: $global-margin-top;
+    > h1 {
+        text-align: center;
+    }
+    h2 {
+        margin-bottom: 36px;
+        margin-top: 0;
+    }
+    .btn-block {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+}

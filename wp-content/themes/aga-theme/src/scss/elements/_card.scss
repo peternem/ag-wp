@@ -12,8 +12,8 @@
             margin: 0 0 6%;
             padding: 15px 0;
             width: auto;
-            @media (max-width: 768px) {
-                //font-size: 20px;
+            @include media(">=tablet") {
+                color: pink
             }
         }
         a {
@@ -24,6 +24,7 @@
             }
         }
     }
+
     &__content {
         background-color: #fafafa;
         display: flex;

@@ -1,0 +1,29 @@
+//  Breakpoint Declarations
+//
+//  Responsive breakpoint declarations
+// 	Breakpoints are matched in Responsive VC Design Options Plugin
+//	http://actian/wp-admin/admin.php?page=bb_edo_all_devices
+//
+//	Markup:
+//	'phone-xs': 320px,
+//	'phone-sm': 480px,
+//	'phone': 767px, // Page Builder Default
+//	'tablet': 960px, // Page Builder Default
+//	'desktop-sm': 1200px,
+//	'desktop': 1980px,
+//
+// Styleguide Layout.Breakpoints
+
+$breakpoints: (
+	'phone-xs': 320px,
+	'phone-sm': 480px,
+	'phone-md': 640px,
+	'phone': 767px, // Page Builder Default
+	'tablet': 992px, // Page Builder Default
+	'ipad-landscape': 1024px, // Page Builder Default
+	't-desktop-aio': 1257px, // Site width + scrollbar (17px) + margins (60px). *** This is where the content starts to shrink. ***
+	'site-width': 1366px,
+	'desktop': 1200px, // Page Builder Default
+	'desktop-wide': 1440px,// Comp width
+	'fullscreen': 1903px,// 1920 - 17px scrollbar
+) !default;
