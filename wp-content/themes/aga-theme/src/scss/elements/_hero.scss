@@ -6,9 +6,8 @@
 .jumbotron, .carousel {
     position: relative;
     margin-bottom: 0;
-    padding-bottom: 0;
-    padding-bottom: 0;
     padding-top: 0;
+    padding-bottom: 0;
     .img-responsive.wp-post-image {
         margin: 0 auto;
     }
@@ -19,9 +18,9 @@
         text-shadow: $global-text-shadow;
     }
     .subtitle, p {
+        margin-bottom: 15px;
         color: $global-white;
         font-weight: $global-font-weight-bold;
-        margin-bottom: 15px;
         text-shadow: $global-text-shadow;
     }
     .jumbo-btn {
@@ -34,15 +33,16 @@
 }
 
 .jumbo-caption {
-    left: 5%;
     position: absolute;
-    right: 5%;
     top: 10%;
+    right: 5%;
+    left: 5%;
     z-index: 10;
     .subtitle, p {
+        margin-bottom: 15px;
         color: $global-white;
         font-weight: $global-font-weight-bold;
-        margin-bottom: 15px;
+
         text-shadow: $global-text-shadow;
     }
 }

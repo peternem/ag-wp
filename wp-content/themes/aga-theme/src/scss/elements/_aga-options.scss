@@ -6,10 +6,10 @@
         }
     }
     .slide-wp {
-        //background-color: #f4f4f4;
+        position: relative;
         height: 110px;
         overflow: hidden;
-        position: relative;
+
     }
     &.divider {
         .type:last-child {
@@ -23,8 +23,8 @@
             font-size: 14px;
         }
         .slides {
-            max-height: 322px;
             min-height: 322px;
+            max-height: 322px;
             overflow: hidden;
         }
     }
@@ -49,13 +49,14 @@
         overflow: hidden;
     }
     .acf-label {
-        font-size:15px;
-        line-height: 18px;
-        font-weight: 600;
         margin: 1.5% 0;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 18px;
+
     }
     .acf-desc {
-        font-size:12px;
+        font-size: 12px;
         line-height: 15px;
     }
     .slides {
@@ -66,13 +67,13 @@
         &.zoom {
             position: relative;
             a {
-                background-color: #fff;
                 display: block;
-                padding: 5px 10px;
                 position: absolute;
-                right: 23px;
                 top: 3px;
-                @include opacity(0.50);
+                right: 23px;
+                padding: 5px 10px;
+                background-color: #fff;
+                @include opacity(0.5);
                 &:hover, &:focus {
                     background-color: #000;
                     color: #fff;

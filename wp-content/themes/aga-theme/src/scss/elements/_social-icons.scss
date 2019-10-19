@@ -11,21 +11,18 @@
     text-align: left;
 }
 .social-icons a {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    transition: background-color  0.5s;
+    border-radius: 3px;
+    background-color: #dadada;
     font-size: 18px;
     line-height: 40px;
     list-style: none;
-    display: inline-block;
     text-align: center;
-    height: 40px;
-    width: 40px;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    border-radius: 3px;
-    background-color: #DADADA;
-    -webkit-transition: background-color  0.5s;
-    -moz-transition: background-color  0.5s;
-    -o-transition: background-color  0.5s;
-    transition: background-color  0.5s;
 }
 #footer-area .social-icons a {
     margin-right: 7px;
@@ -37,7 +34,7 @@
     background-color: #4265b9 !important;
 }
 .social-icons a.twitter:hover {
-    background-color: #55ACEE !important;
+    background-color: #55acee !important;
 }
 .social-icons a.dribbble:hover {
     background-color: #ea4c89 !important;
@@ -67,19 +64,19 @@
     background-color: #df3333 !important;
 }
 .social-icons a.instagram:hover {
-    background-color: #F95B60 !important;
+    background-color: #f95b60 !important;
 }
 .social-icons a.rss:hover {
     background-color: #f39c12 !important;
 }
 .social-icons a.foursquare:hover {
-    background-color: #2398C9 !important;
+    background-color: #2398c9 !important;
 }
 .social-icons a.soundcloud:hover {
-    background-color: #F50 !important;
+    background-color: #f50 !important;
 }
 .social-icons a.github:hover {
-    background-color: #4183C4 !important;
+    background-color: #4183c4 !important;
 }
 .fa-googleplus:before {
     content: "\f0d5";

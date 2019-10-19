@@ -1,11 +1,11 @@
 .aga-features {
     h2 {
+        width: auto;
+        margin: 0 0 6%;
+        padding: 15px 0;
         border-bottom: $global-border-size solid $global-border-color;
         color: $global-ag-headline-color; //#504834;
         font-size: 23px;
-        margin: 0 0 6%;
-        padding: 15px 0;
-        width: auto;
         a {
             color: #fff;
             &:hover {

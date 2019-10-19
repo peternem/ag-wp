@@ -1,20 +1,17 @@
 .card {
     display: flex;
+    flex: 0 1 auto;
     flex-direction: column;
     flex-wrap: nowrap;
-    height: 100%;
-    flex: 0 1 auto;
     align-items: stretch;
+    height: 100%;
     &__title {
         h2, h3 {
-            border-bottom: 2px solid #d3d3d3;
-            color: #232323;
+            width: auto;
             margin: 0 0 6%;
             padding: 15px 0;
-            width: auto;
-            @include media(">=tablet") {
-                color: pink
-            }
+            border-bottom: 2px solid #d3d3d3;
+            color: #232323;
         }
         a {
             color: #232323;
@@ -26,16 +23,16 @@
     }
 
     &__content {
-        background-color: #fafafa;
         display: flex;
         flex-grow: 1;
         margin-top: 0;
         padding: 10px 10px 5px;
+        background-color: #fafafa;
     }
     &__footer {
-        background-color: #fafafa;
-        padding: 5px 10px 10px;
         display: flex;
         justify-content: space-between;
+        padding: 5px 10px 10px;
+        background-color: #fafafa;
     }
 }
