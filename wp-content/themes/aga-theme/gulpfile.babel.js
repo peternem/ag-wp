@@ -160,31 +160,31 @@ const webpack = {
         .pipe(named())
         .pipe(webpackStream(webpackConfig, webpack4))
         .pipe($.if(PRODUCTION, $.uglify()
-        .on('error', e => { console.log(e); }),
-    ))
-    .pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev()))
-    .pipe(gulp.dest(PATHS.dist + '/js'))
-    .pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev.manifest()))
+            .on('error', e => { console.log(e); }),
+        ))
+        .pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev()))
+        .pipe(gulp.dest(PATHS.dist + '/js'))
+        .pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev.manifest()))
+        .pipe(gulp.dest(PATHS.dist + '/js'));
+    },
+
+    watch() {
+        const watchConfig = Object.assign(webpackConfig, {
+            watch: true,
+            devtool: 'inline-source-map',
+        });
+
+        return gulp.src(PATHS.entries)
+        .pipe(named())
+        .pipe(webpackStream(webpackConfig, webpack4, webpack.changeHandler)
+        .on('error', (err) => {
+            log('[webpack:error]', err.toString({
+                colors: true,
+            }));
+        }),
+    )
     .pipe(gulp.dest(PATHS.dist + '/js'));
-},
-
-watch() {
-    const watchConfig = Object.assign(webpackConfig, {
-        watch: true,
-        devtool: 'inline-source-map',
-    });
-
-    return gulp.src(PATHS.entries)
-    .pipe(named())
-    .pipe(webpackStream(webpackConfig, webpack4, webpack.changeHandler)
-    .on('error', (err) => {
-        log('[webpack:error]', err.toString({
-            colors: true,
-        }));
-    }),
-)
-.pipe(gulp.dest(PATHS.dist + '/js'));
-},
+    },
 };
 
 gulp.task('webpack:build', webpack.build);
