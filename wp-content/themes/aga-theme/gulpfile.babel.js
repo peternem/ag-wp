@@ -9,11 +9,11 @@ import yaml          from 'js-yaml';
 import fs            from 'fs';
 import dateFormat    from 'dateformat';
 import webpackStream from 'webpack-stream';
-import webpack2      from 'webpack';
+import webpack4      from 'webpack';
+import webpackConfig from './webpack.config.js';
 import named         from 'vinyl-named';
 import log           from 'fancy-log';
 import colors        from 'ansi-colors';
-
 
 import sassLint      from 'gulp-sass-lint';
 
@@ -73,170 +73,10 @@ function loadConfig() {
 // Lint the Sass
 gulp.task("scss-lint", function() {
 
-    // Stylelint config rules
-    var stylelintConfig = {
-        "plugins":[
-            "stylelint-order"
-        ],
-        "rules": {
-            "color-hex-case": "lower",
-            "block-no-empty": true,
-            "color-no-invalid-hex": true,
-            "declaration-colon-space-after": "always",
-            "declaration-colon-space-before": "never",
-            "function-comma-space-after": "always",
-            "function-url-quotes": "always",
-            "media-feature-colon-space-after": "always",
-            "media-feature-colon-space-before": "never",
-            "media-feature-name-no-vendor-prefix": true,
-            "max-empty-lines": 5,
-            "number-leading-zero": "always",
-            "number-no-trailing-zeros": true,
-            "property-no-vendor-prefix": true,
-            //"rule-no-duplicate-properties": true,
-            "declaration-block-single-line-max-declarations": 1,
-            //"rule-trailing-semicolon": "always",
-            "no-extra-semicolons": true,
-            "selector-list-comma-space-before": "never",
-            "selector-list-comma-newline-after": "always-multi-line",
-            "selector-max-id": 2,
-            //"string-quotes": "single",
-            "value-no-vendor-prefix": true,
-            "order/properties-order": [
-                "display",
-                "position",
-                "top",
-                "right",
-                "bottom",
-                "left",
-                "flex",
-                "flex-basis",
-                "flex-direction",
-                "flex-flow",
-                "flex-grow",
-                "flex-shrink",
-                "flex-wrap",
-                "align-content",
-                "align-items",
-                "align-self",
-                "justify-content",
-                "order",
-                "width",
-                "min-width",
-                "max-width",
-                "height",
-                "min-height",
-                "max-height",
-                "margin",
-                "margin-top",
-                "margin-right",
-                "margin-bottom",
-                "margin-left",
-                "padding",
-                "padding-top",
-                "padding-right",
-                "padding-bottom",
-                "padding-left",
-                "float",
-                "clear",
-                "clip",
-                "columns",
-                "column-gap",
-                "column-fill",
-                "column-rule",
-                "column-span",
-                "column-count",
-                "column-width",
-                "transform",
-                "transform-box",
-                "transform-origin",
-                "transform-style",
-                "transition",
-                "transition-delay",
-                "transition-duration",
-                "transition-property",
-                "transition-timing-function",
-                "border",
-                "border-top",
-                "border-right",
-                "border-bottom",
-                "border-left",
-                "border-width",
-                "border-top-width",
-                "border-right-width",
-                "border-bottom-width",
-                "border-left-width",
-                "border-style",
-                "border-top-style",
-                "border-right-style",
-                "border-bottom-style",
-                "border-left-style",
-                "border-radius",
-                "border-top-left-radius",
-                "border-top-right-radius",
-                "border-bottom-left-radius",
-                "border-bottom-right-radius",
-                "border-color",
-                "border-top-color",
-                "border-right-color",
-                "border-bottom-color",
-                "border-left-color",
-                "outline",
-                "outline-color",
-                "outline-offset",
-                "outline-style",
-                "outline-width",
-                "background",
-                "background-attachment",
-                "background-clip",
-                "background-color",
-                "background-image",
-                "background-repeat",
-                "background-position",
-                "background-size",
-                "color",
-                "font",
-                "font-family",
-                "font-size",
-                "font-smoothing",
-                "font-style",
-                "font-variant",
-                "font-weight",
-                "letter-spacing",
-                "line-height",
-                "list-style",
-                "text-align",
-                "text-decoration",
-                "text-indent",
-                "text-overflow",
-                "text-rendering",
-                "text-shadow",
-                "text-transform",
-                "text-wrap",
-                "white-space",
-                "word-spacing",
-                "border-collapse",
-                "border-spacing",
-                "box-shadow",
-                "caption-side",
-                "content",
-                "cursor",
-                "empty-cells",
-                "opacity",
-                "overflow",
-                "quotes",
-                "speak",
-                "table-layout",
-                "vertical-align",
-                "visibility",
-                "z-index"
-            ]
-        },
-
-    }
-
     var processors = [
-        stylelint(stylelintConfig),
+
+        //stylint uses external ./stylelintrc.json
+        stylelint(),
         reporter({
             clearReportedMessages: true,
             clearMessages: true,
@@ -278,9 +118,7 @@ function sass() {
         outputStyle: 'nested'
     })
     .on('error', $.sass.logError))
-    .pipe($.autoprefixer({
-        browsers: COMPATIBILITY
-    }))
+    .pipe($.autoprefixer())
 
     .pipe($.if(PRODUCTION, $.cleanCss({ compatibility: 'ie9' })))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
@@ -294,20 +132,20 @@ function sass() {
 // Combine JavaScript into one file
 // In production, the file is minified
 const webpack = {
-    config: {
-        module: {
-            rules: [
-                {
-                    test: /.js$/,
-                    loader: 'babel-loader',
-                    exclude: /node_modules(?![\\\/]foundation-sites)/,
-                },
-            ],
-        },
-        externals: {
-            jquery: 'jQuery',
-        },
-    },
+    // config: {
+    //     module: {
+    //         rules: [
+    //             {
+    //                 test: /.js$/,
+    //                 loader: 'babel-loader',
+    //                 exclude: /node_modules(?![\\\/]foundation-sites)/,
+    //             },
+    //         ],
+    //     },
+    //     externals: {
+    //         jquery: 'jQuery',
+    //     },
+    // },
 
     changeHandler(err, stats) {
         log('[webpack]', stats.toString({
@@ -320,7 +158,7 @@ const webpack = {
     build() {
         return gulp.src(PATHS.entries)
         .pipe(named())
-        .pipe(webpackStream(webpack.config, webpack2))
+        .pipe(webpackStream(webpackConfig, webpack4))
         .pipe($.if(PRODUCTION, $.uglify()
         .on('error', e => { console.log(e); }),
     ))
@@ -331,14 +169,14 @@ const webpack = {
 },
 
 watch() {
-    const watchConfig = Object.assign(webpack.config, {
+    const watchConfig = Object.assign(webpackConfig, {
         watch: true,
         devtool: 'inline-source-map',
     });
 
     return gulp.src(PATHS.entries)
     .pipe(named())
-    .pipe(webpackStream(watchConfig, webpack2, webpack.changeHandler)
+    .pipe(webpackStream(webpackConfig, webpack4, webpack.changeHandler)
     .on('error', (err) => {
         log('[webpack:error]', err.toString({
             colors: true,
@@ -422,7 +260,7 @@ function server(done) {
         ui: {
             port: 8080
         },
-        
+
     });
     done();
 }
