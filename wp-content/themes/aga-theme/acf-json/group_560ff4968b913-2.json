@@ -1702,7 +1702,7 @@
         {
             "key": "field_5c3cb409d4184",
             "label": "Elite SD Install Docs (Column A)",
-            "name": "elite_ssd_col_a_docs",
+            "name": "elite_sd_col_a_docs",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -1731,8 +1731,8 @@
                         "class": "",
                         "id": ""
                     },
-                    "return_format": "",
-                    "library": "",
+                    "return_format": "array",
+                    "library": "all",
                     "min_size": "",
                     "max_size": "",
                     "mime_types": "pdf"
@@ -1799,7 +1799,7 @@
         {
             "key": "field_5c3cb432d4188",
             "label": "Elite SD Install Docs (Column B)",
-            "name": "elite_ssd_col_b_docs",
+            "name": "elite_sd_col_b_docs",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -1892,5 +1892,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1570807100
+    "modified": 1571666540
 }

@@ -5,20 +5,22 @@
 	</div>
 	<article class="col-lg-6">
 		<?php
-		if(get_field('elite_sd_left_label')) {
-			echo '<h3>' . get_field('elite_sd_left_label') . '</h3>';
+
+		if(get_field('elite_sd_col_a_label')) {
+			echo '<h3>' . get_field('elite_sd_col_a_label') . '</h3>';
 		}
 		?>
 		<?php
-		if( have_rows('elite_docs_left_column') ): ?>
+		if( have_rows('elite_sd_col_a_docs') ): ?>
 		<!-- hardware_panel_clamp_options -->
 
 		<ul class="doc-list">
-			<?php while( have_rows('elite_docs_left_column') ): the_row();
+			<?php while( have_rows('elite_sd_col_a_docs') ): the_row();
 			$file_url = get_sub_field('file');
 			$label = get_sub_field('label');
 			$description = get_sub_field('description');
 			?>
+
 			<li>
 				<img class="pdf-icon" src="<?php echo $file_url['icon']; ?>" alt="" />
 				<a href="<?php echo $file_url['url']; ?>" title="<?php echo $file_url['url'];?>" target="blank"><?php echo $label; ?></a>
@@ -32,16 +34,16 @@
 	<article class="col-lg-6">
 
 		<?php
-		if(get_field('elite_sd_right_label')) {
-			echo '<h3>' . get_field('elite_sd_right_label') . '</h3>';
+		if(get_field('elite_sd_col_b_label')) {
+			echo '<h3>' . get_field('elite_sd_col_b_label') . '</h3>';
 		}
 		?>
 		<?php
-		if( have_rows('elite_docs_right_column') ): ?>
+		if( have_rows('elite_sd_col_b_docs') ): ?>
 		<!-- hardware_panel_clamp_options -->
 
 		<ul class="doc-list">
-			<?php while( have_rows('elite_docs_right_column') ): the_row();
+			<?php while( have_rows('elite_sd_col_b_docs') ): the_row();
 			$file_url = get_sub_field('file');
 			$label = get_sub_field('label');
 			$description = get_sub_field('description');
